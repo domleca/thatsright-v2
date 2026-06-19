@@ -14,7 +14,7 @@ Tracked here so they don't get lost across sessions.
       Twitter card, and proper `<meta name="description">` so the URL previews
       nicely on iMessage / Slack / WhatsApp. None of that is set right now —
       the page will share as a blank preview.
-- [ ] **Favicon.** No favicon is set, so the browser tab shows a default icon.
+- [x] ~~Favicon.~~ Done — generated from iOS AppIcon-1024.png (32×32, 180×180 Apple touch, 192×192 Android).
 
 ## Translation
 
