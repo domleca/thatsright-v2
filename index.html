@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>That's Right. — a daily presence for someone whose memory has begun to waver</title>
+<style>
+  :root{
+    --paper:#f4f2ee;
+    --paper-deep:#ece8e1;
+    --ink:#2e2e2e;
+    --ink-soft:#6f6a63;
+    --ink-faint:#a39d94;
+    --terra:#b7572e;
+    --terra-soft:#c8825f;
+    --line:#ddd7cd;
+    --line-faint:#eae6dd;
+    --bubble-them:#faf8f3;
+    --bubble-you:#3c352d;
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+    --sans: -apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Inter,system-ui,sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+
+  /* ---------- top utility bar ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 28px;
+    font-size:13px;letter-spacing:.02em;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+  }
+  .topbar .brand{font-weight:600;letter-spacing:.01em;pointer-events:auto}
+  .topbar .controls{display:flex;gap:18px;align-items:center;pointer-events:auto}
+  .toggle, .lang{
+    background:none;border:none;font-family:var(--sans);
+    font-size:12px;letter-spacing:.04em;color:var(--ink-soft);
+    cursor:pointer;text-transform:uppercase;
+    padding:4px 0;
+  }
+  .toggle b{color:var(--ink);font-weight:600}
+  .lang{display:flex;align-items:center;gap:6px}
+  .langpill{
+    background:none;border:none;font-family:var(--sans);
+    font-size:12px;letter-spacing:.04em;color:var(--ink-faint);
+    cursor:pointer;text-transform:uppercase;padding:4px 2px;
+  }
+  .langpill.on{color:var(--ink);font-weight:600}
+  .langpill:hover{color:var(--ink)}
+  .lang .sep{color:var(--ink-faint);font-size:12px;user-select:none}
+  .toggle:hover{color:var(--ink)}
+  .navLink{
+    background:none;border:none;font-family:var(--sans);
+    font-size:12px;letter-spacing:.04em;color:var(--ink-soft);
+    cursor:pointer;text-transform:uppercase;padding:4px 2px;
+    text-decoration:none;pointer-events:auto;
+  }
+  .navLink:hover{color:var(--ink)}
+  .btn-cta{
+    appearance:none;border:0;cursor:pointer;font-family:var(--sans);
+    padding:9px 17px;background:var(--terra);color:var(--paper);
+    border-radius:999px;font-size:13px;font-weight:500;letter-spacing:.01em;
+    text-transform:none;mix-blend-mode:normal;
+    transition:filter .15s ease, transform .15s ease;
+  }
+  .btn-cta:hover{transform:translateY(-1px);filter:brightness(1.06)}
+  .btn-cta:active{transform:scale(0.96)}
+
+  /* ---------- generic beat ---------- */
+  .beat{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:120px 28px;
+    max-width:760px;margin:0 auto;
+  }
+  .beat.tight{min-height:auto;padding:90px 28px}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity 1.1s ease,transform 1.1s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- beat 0 : the question ---------- */
+  #q{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:40px 28px;position:relative;
+  }
+  #q h1{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(34px,6.2vw,62px);
+    line-height:1.18;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+  }
+  .scrollcue{
+    position:absolute;bottom:38px;left:50%;transform:translateX(-50%);
+    color:var(--ink-faint);
+  }
+  .scrollcue svg{
+    display:block;fill:none;stroke:currentColor;
+    stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;
+    animation:nudge 2.8s ease-in-out infinite;
+  }
+  @keyframes nudge{
+    0%{transform:translateY(-3px);opacity:0}
+    35%{opacity:.55}
+    70%{opacity:.4}
+    100%{transform:translateY(7px);opacity:0}
+  }
+
+  /* ---------- beat 1 : the cost ---------- */
+  .lede{font-family:var(--serif);font-size:clamp(21px,2.8vw,27px);line-height:1.5;font-weight:400}
+  .lede .qs{font-style:italic;color:var(--ink-soft)}
+  .hinge{
+    font-family:var(--serif);
+    font-size:clamp(21px,2.8vw,27px);
+    line-height:1.5;margin-top:1.2em;font-weight:400;
+  }
+  .hinge b{color:var(--terra);font-weight:400;font-style:italic}
+
+  /* ---------- beat 2 : the orb + presence line ---------- */
+  #answer{align-items:center;text-align:center}
+  #answer .eyebrow{margin-bottom:24px}
+  .orbwrap{margin-bottom:48px}
+  .presence{
+    font-family:var(--serif);
+    font-size:clamp(26px,4vw,40px);
+    line-height:1.32;font-weight:400;letter-spacing:-0.01em;
+    max-width:18ch;
+  }
+  .presence .em{color:var(--terra)}
+  .sub{margin-top:1.5em;font-size:clamp(16px,2vw,18px);color:var(--ink-soft);max-width:34ch;line-height:1.6}
+
+  /* orb */
+  .orb{width:180px;height:180px}
+  .orb .ring{fill:none;stroke:var(--ink);stroke-width:1.6}
+  .orb .halo{fill:none;stroke:var(--ink-faint);stroke-width:1;opacity:.5}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+  @keyframes drift{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.07) rotate(2deg)}}
+  .orb .ring{transform-origin:center;animation:pulse 4.2s ease-in-out infinite}
+  .orb .halo{transform-origin:center;animation:drift 6.5s ease-in-out infinite}
+
+  /* ---------- beat 3 : three reliefs ---------- */
+  #how{max-width:880px}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:48px}
+  .step{
+    display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+    padding:44px 0;border-top:1px solid var(--line-faint);
+  }
+  .step:last-child{border-bottom:1px solid var(--line-faint)}
+  .step .txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.8vw,28px);line-height:1.3;margin-bottom:.5em}
+  .step .txt p{color:var(--ink-soft);font-size:17px;line-height:1.7}
+  .step .txt p em{font-style:italic;color:var(--ink)}
+  .step.flip .visual{order:-1}
+
+  /* device + visuals inside steps */
+  .device{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:22px 20px;
+    aspect-ratio:9/17.5;
+    max-width:240px;margin:0 auto;width:100%;
+    display:flex;flex-direction:column;
+    box-shadow:0 18px 40px -28px rgba(46,46,46,.4);
+  }
+  .device .dtop{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-faint);margin-bottom:auto}
+  .device.voice{align-items:center;justify-content:center;text-align:center}
+  .device.voice .orb{width:120px;height:120px;margin-bottom:20px}
+  .device.voice .speaking{font-family:var(--serif);font-size:18px}
+  .device .note .nh{font-weight:600;font-size:13px;margin-bottom:10px;display:flex;gap:6px;align-items:center}
+  .device .note .nh::before{content:"";width:10px;height:10px;border:1.5px solid var(--terra);border-radius:2px;display:inline-block}
+  .device .note ul{list-style:none;font-size:12.5px;color:var(--ink-soft);line-height:1.5}
+  .device .note li{position:relative;padding-left:14px;margin-bottom:8px}
+  .device .note li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--terra);opacity:.7}
+  .bubbles{display:flex;flex-direction:column;gap:8px;justify-content:flex-end;height:100%}
+  .bub{padding:9px 12px;border-radius:14px;font-size:12.5px;max-width:84%;line-height:1.4}
+  .bub.them{background:var(--bubble-them);color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line-faint)}
+  .bub.you{background:var(--bubble-you);color:#f4f2ee;align-self:flex-end;border-bottom-right-radius:4px}
+  .bub .who{display:block;font-size:10px;color:var(--terra);font-weight:600;margin-bottom:2px}
+  .bub.you .who{color:var(--terra-soft)}
+
+  /* ---------- animation: device orbs + sequences ---------- */
+  .orbcanvas{display:block}
+  /* Hero orb uses a "stage" pattern: the visible box is .orb-stage; the canvas
+     is 2× the stage and overflows so ripples can extend past the orb without
+     being clipped. Matches the live site. */
+  .orb-stage{position:relative;width:min(380px,72vw);aspect-ratio:1/1;margin:0 auto;pointer-events:none}
+  .orb-stage .hero-orb{
+    position:absolute;top:50%;left:50%;
+    width:200%;height:200%;transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  .device.voice{transition:background .55s ease,border-color .55s ease}
+  .device.voice .orbcanvas{width:100%;max-width:188px;aspect-ratio:1/1;margin-bottom:6px}
+  .device.voice .speaking{transition:color .55s ease}
+  .device.voice.listening{background:var(--ink);border-color:var(--ink)}
+  .device.voice.listening .orbcanvas{filter:invert(1)}
+  .device.voice.listening .speaking{color:var(--paper)}
+  .device.voice.listening .dtop{color:rgba(244,242,238,.5)}
+  #reportNote .nh,#reportNote li{opacity:0;transform:translateY(8px);transition:opacity .55s ease,transform .55s ease}
+  #reportNote .nh.seen,#reportNote li.seen{opacity:1;transform:none}
+  #answerBubbles > .note,#answerBubbles > .bub,#answerBubbles > .ack{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  #answerBubbles > .note.seen,#answerBubbles > .bub.seen,#answerBubbles > .ack.seen{opacity:1;transform:none}
+
+  /* chat-style devices anchor their content to the TOP of the screen */
+  .device.chat{justify-content:flex-start;overflow:hidden}
+  .device.chat .dtop{margin-bottom:14px;flex:none}
+  .chatcol{
+    display:flex;flex-direction:column;gap:10px;margin-top:6px;padding:16px 0 20px;
+    flex:1;min-height:0;overflow-y:auto;
+    scrollbar-width:none;-ms-overflow-style:none;scroll-behavior:smooth;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);
+            mask-image:linear-gradient(180deg,transparent 0,#000 14px,#000 calc(100% - 14px),transparent 100%);
+  }
+  .chatcol::-webkit-scrollbar{display:none;width:0;height:0}
+  .chatcol .note{margin-bottom:2px;flex:none}
+  .chatcol .bub,.chatcol .ack{flex:none}
+
+  /* ---------- how-it-works: tighter spacing + sequential reveal ---------- */
+  #how{min-height:auto;padding:72px 28px}
+  #how .eyebrow{margin-bottom:30px}
+  #how .step{padding:30px 0}
+  #how .step.reveal{opacity:1;transform:none;transition:none}
+  #how .step .txt{opacity:0;transform:translateX(-26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1)}
+  #how .step.flip .txt{transform:translateX(26px)}
+  #how .step .visual{opacity:0;transform:translateY(38px) scale(.96);transition:opacity .95s cubic-bezier(.22,1,.36,1) .12s,transform .95s cubic-bezier(.22,1,.36,1) .12s}
+  #how .step.in .txt,#how .step.in .visual{opacity:1;transform:none}
+
+  /* ---------- beat 4 : founder ---------- */
+  #why{max-width:640px}
+  #why .eyebrow{margin-bottom:28px}
+  #why h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,40px);margin-bottom:32px;letter-spacing:-0.01em}
+  #why p{font-size:18px;line-height:1.7;color:var(--ink);margin-bottom:20px}
+  #why .sign{font-family:var(--serif);font-style:normal;color:var(--ink-soft);margin-top:8px}
+
+  /* ---------- beat 5 : privacy ---------- */
+  #privacy{max-width:640px;text-align:center;align-items:center}
+  #privacy h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.6vw,36px);margin-bottom:24px}
+  #privacy p{font-size:17px;line-height:1.7;color:var(--ink-soft);max-width:46ch}
+  .priv-link{color:var(--terra);text-decoration:none;font-size:16px;font-weight:500;letter-spacing:.005em;display:inline-flex;align-items:center;gap:10px;padding-bottom:3px;border-bottom:1px solid transparent;transition:border-color .15s ease}
+  .priv-link:hover{border-bottom-color:currentColor}
+  .priv-link-arrow{display:inline-block;transition:transform .2s ease}
+  .priv-link:hover .priv-link-arrow{transform:translateX(3px)}
+  #privacy .priv-link{margin-top:14px}
+
+  /* ---------- beat 6 : gate ---------- */
+  #gate{background:var(--paper-deep);max-width:none;width:100%;align-items:center;text-align:center}
+  .gateinner{max-width:560px;margin:0 auto}
+  #gate h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,40px);margin-bottom:20px}
+  #gate p{color:var(--ink-soft);font-size:16px;line-height:1.65;margin-bottom:32px;max-width:42ch;margin-left:auto;margin-right:auto}
+  /* combined pill: outer container is the rounded shell, input is transparent,
+     button is a nested terra pill sitting flush right inside */
+  .form{
+    display:flex;align-items:center;max-width:520px;margin:0 auto;
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:999px;padding:6px 6px 6px 22px;
+    transition:border-color .15s ease;
+  }
+  .form:focus-within{border-color:var(--terra)}
+  .form input{
+    flex:1;min-width:0;background:transparent;border:0;outline:none;
+    font-family:var(--sans);font-size:15px;color:var(--ink);
+    padding:12px 12px 12px 0;
+  }
+  .form input::placeholder{color:var(--ink-faint)}
+  .form button{
+    flex:none;font-family:var(--sans);font-size:14px;font-weight:500;
+    padding:11px 22px;border:0;border-radius:999px;
+    background:var(--terra);color:var(--paper);cursor:pointer;letter-spacing:.01em;
+    transition:filter .15s ease, transform .15s ease;
+  }
+  .form button:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .fineprint{margin-top:20px;font-size:13px;color:var(--ink-faint)}
+  #gate .fineprint{font-size:13px}
+
+  /* ---------- footer : giant half-orb ---------- */
+  footer{
+    position:relative;overflow:hidden;text-align:center;
+    padding:88px 28px 0;min-height:clamp(420px,58vh,640px);
+    display:flex;flex-direction:column;align-items:center;
+    font-size:13px;color:var(--ink-faint);
+    background:var(--paper);
+  }
+  footer a{color:var(--ink-soft);text-decoration:none;margin:0 8px}
+  footer a:hover{color:var(--ink)}
+  .foot-inner{position:relative;z-index:2;max-width:520px}
+  .foot-links{margin-top:10px}
+  .foot-orb{position:absolute;left:50%;bottom:0;transform:translate(-50%,52%);width:min(1100px,165vw);pointer-events:none;z-index:1}
+  .foot-orb canvas{width:100%;aspect-ratio:1/1;display:block}
+
+  @media(max-width:680px){
+    .topbar{padding:14px 18px}
+    .beat{min-height:auto;padding:60px 22px}
+    #answer{padding:72px 22px}
+    .orbwrap{margin-bottom:30px}
+    #how{padding:48px 22px}
+    .step{grid-template-columns:1fr;gap:24px}
+    .step.flip .visual{order:0}
+    .step .txt p{font-size:18px;line-height:1.7}
+    .sub{font-size:17.5px}
+    .device{max-width:300px;margin:22px auto}
+    .device .note .nh{font-size:14px}
+    .device .note ul{font-size:13.5px}
+    .bub{font-size:14px}
+    .bub .who{font-size:11px}
+    .form{flex-direction:column;align-items:stretch;gap:12px}
+    .form input{width:100%}
+    .form button{width:100%;padding:15px 26px}
+    footer{min-height:clamp(360px,52vh,520px);padding:64px 22px 0}
+  }
+  @media(max-width:420px){
+    .topbar{padding:12px 15px}
+    .topbar .controls{gap:12px}
+    .toggle,.langpill,.lang .sep{font-size:11px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{transition:none;opacity:1;transform:none}
+    #how .step .txt,#how .step .visual{opacity:1;transform:none;transition:none}
+    #reportNote .nh,#reportNote li,#answerBubbles > .note,#answerBubbles > .bub,#answerBubbles > .ack{opacity:1;transform:none;transition:none}
+    .orb .ring,.orb .halo,.scrollcue svg{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body data-mode="kindness" data-lang="en">
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#f4f2ee"/>
+    <circle cx="50" cy="42" r="16" fill="none" stroke="#b7572e" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M43 42 l5 5 l9 -11" fill="none" stroke="#b7572e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="50" y="74" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#2e2e2e">That’s Right.</text>
+  </svg>
+</template>
+
+<div class="topbar">
+  <span class="brand">That's Right</span>
+  <div class="controls">
+    <a href="#how" class="navLink" id="navHow" data-k="nav_how"></a>
+    <div class="lang" id="langSwitch" role="group" aria-label="Language"></div>
+    <button type="button" class="btn-cta" id="navCta" data-k="nav_cta"></button>
+  </div>
+</div>
+
+<!-- BEAT 0 — THE QUESTION -->
+<section id="q">
+  <h1 data-k="q_head"></h1>
+  <div class="scrollcue" aria-hidden="true">
+    <svg viewBox="0 0 24 14" width="22" height="13"><path d="M2 2 L12 11 L22 2"></path></svg>
+  </div>
+</section>
+
+<!-- BEAT 1 — THE COST -->
+<section class="beat" id="cost">
+  <p class="lede reveal" data-k="cost_lede">The same questions come again and again — what year is it, where do I live now, who's coming Sunday. Each one deserves the same calm answer, the hundredth time as much as the first.</p>
+  <p class="hinge reveal" data-k="cost_hinge"></p>
+</section>
+
+<!-- BEAT 2 — THE ANSWER -->
+<section class="beat" id="answer">
+  <div class="orbwrap reveal">
+    <div class="orb-stage"><canvas class="orbcanvas hero-orb" id="heroOrb" aria-hidden="true"></canvas></div>
+  </div>
+  <div class="eyebrow reveal" data-k="answer_eb"></div>
+  <p class="presence reveal" data-k="presence">A steady presence when memory wavers.</p>
+  <p class="sub reveal" data-k="presence_sub">A calm voice they can talk to at any hour — one that knows their life, and answers the way you would.</p>
+</section>
+
+<!-- BEAT 3 — HOW IT WORKS -->
+<section class="beat" id="how">
+  <p class="eyebrow reveal" data-k="how_eyebrow"></p>
+
+  <div class="step reveal">
+    <div class="txt">
+      <h3 data-k="s1_h">They always have someone to ask</h3>
+      <p data-k="s1_p">One tap is all it takes. The answer comes from what your family has shared — never invented — so it's always right. </p>
+    </div>
+    <div class="visual">
+      <div class="device voice listening">
+        <div class="dtop"><span>9:41</span></div>
+        <canvas class="orbcanvas dev-orb" id="hiwOrb" aria-hidden="true"></canvas>
+        <div class="speaking" id="voiceLabel"></div>
+        <div class="dtop" style="margin-top:auto"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step flip reveal">
+    <div class="txt">
+      <h3 data-k="s2_h">You know how their day went</h3>
+      <p data-k="s2_p">You get a short summary of their day every evening — what they asked, what reassured them. You keep tabs on their real difficulties.</p>
+    </div>
+    <div class="visual">
+      <div class="device chat">
+        <div class="dtop"><span data-k="dev_family"></span><span>•••</span></div>
+        <div class="note" id="reportNote" style="margin-top:18px">
+          <div class="nh" data-k="dev_note_h"></div>
+          <ul>
+            <li data-k="dev_n1"></li>
+            <li data-k="dev_n2"></li>
+            <li data-k="dev_n3"></li>
+            <li data-k="dev_n4"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step reveal">
+    <div class="txt">
+      <h3 data-k="s3_h">Everyone keeps the answers true</h3>
+      <p data-k="s3_p">It learns by your side everything it needs to know to provide the right answers. The whole family can help, from wherever they are.</p>
+    </div>
+    <div class="visual">
+      <div class="device chat">
+        <div class="dtop"><span data-k="dev_family"></span><span>•••</span></div>
+        <div class="chatcol" id="answerBubbles">
+          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_q1"></span></div>
+          <div class="bub you"><span class="who" data-k="dev_a1_who"></span><span data-k="dev_a1"></span></div>
+          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_ack1"></span></div>
+          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_q2"></span></div>
+          <div class="bub you"><span class="who" data-k="dev_a2_who"></span><span data-k="dev_a2"></span></div>
+          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_q3"></span></div>
+          <div class="bub you"><span class="who" data-k="dev_a3_who"></span><span data-k="dev_a3"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEAT 4 — WHY -->
+<section class="beat" id="why">
+  <div class="eyebrow reveal" data-k="why_eb"></div>
+  <h2 class="reveal" data-k="why_h"></h2>
+  <p class="reveal" data-k="why_p1"></p>
+  <p class="reveal" data-k="why_p2"></p>
+  <p class="reveal" data-k="why_p3"></p>
+</section>
+
+<!-- BEAT 5 — PRIVACY -->
+<section class="beat" id="privacy">
+  <h2 class="reveal" data-k="priv_h"></h2>
+  <p class="reveal" data-k="priv_p"></p>
+  <p class="reveal"><a class="priv-link" href="Privacy.html"><span class="priv-link-text" data-k="priv_link"></span><span class="priv-link-arrow" aria-hidden="true">→</span></a></p>
+</section>
+
+<!-- BEAT 6 — GATE -->
+<section class="beat" id="gate">
+  <div class="gateinner">
+    <h2 class="reveal" data-k="gate_h"></h2>
+    <p class="reveal" data-k="gate_p"></p>
+    <div class="form reveal">
+      <input type="email" data-k-ph="gate_ph" aria-label="email">
+      <button data-k="gate_btn"></button>
+    </div>
+    <p class="fineprint reveal" data-k="gate_fine"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <p data-k="foot"></p>
+    <p class="foot-links"><a href="Privacy.html" data-k="foot_priv"></a> · <a href="mailto:domlecadev@gmail.com" data-k="foot_supp"></a></p>
+  </div>
+  <div class="foot-orb"><canvas id="footOrb" aria-hidden="true"></canvas></div>
+</footer>
+
+<script>
+const COPY = {
+  en:{
+    scroll:"scroll",
+    dev_listening:"Listening…",
+    dev_speaking:"Speaking…",
+    dev_family:"Family",
+    dev_note_h:"John's day",
+    dev_n1:"Asked twice when Marie is visiting.",
+    dev_n2:"Wasn't sure whether he'd eaten lunch.",
+    dev_n3:"Worried about his doctor's appointment.",
+    dev_n4:"Couldn't find his keys before his walk.",
+    dev_q1:"John asked when Carol is coming. Do you know?",
+    dev_a1_who:"Marie",
+    dev_a1:"Sunday at noon.",
+    dev_ack1:"Got it — I'll tell him.",
+    dev_q2:"He is worried about missing his doctor appointment tomorrow. When is it scheduled?",
+    dev_a2_who:"Paul",
+    dev_a2:"It's every Tuesday at 11am.",
+    dev_q3:"He keeps forgetting the name of his caregiver?",
+    dev_a3_who:"Marie",
+    dev_a3:"It's Kelly.",
+    foot:"© 2026 · That's Right. · Made in Paris — for one father, first.",
+    foot_priv:"Privacy", foot_supp:"Support",
+    nav_cta:"Request access",
+    nav_how:"How it works",
+    answer_eb:"A new kind of voice companion",
+    priv_link:"Read the full privacy policy",
+    kindness:{
+      q_head:"When you can't be there, who answers?",
+      cost_lede:"The same questions come again and again — <span class='qs'>what year is it, where do I live now, who's coming Sunday.</span> Each one deserves the same calm answer, the hundredth time as much as the first.",
+      cost_hinge:"No one can be there every hour. <b>But someone can always answer.</b>",
+      presence:"A steady presence when memory wavers.",
+      presence_sub:"A calm voice they can talk to at any hour — one that knows their life, and answers the way you would.",
+      how_eyebrow:"How it works",
+      s1_h:"They always have someone to ask",
+      s1_p:"One tap is all it takes. The answer comes from what your family has shared — never invented — so it's always right.",
+      s2_h:"You know how their day went",
+      s2_p:"You get a short summary of their day every evening — what they asked, what reassured them. You keep tabs on their real difficulties.",
+      s3_h:"Everyone keeps the answers true",
+      s3_p:"It learns by your side everything it needs to know to provide the right answers. The whole family can help, from wherever they are.",
+      why_eyebrow:"Why this exists",
+      why_eb:"Why this exists",
+      why_h:"For my father",
+      why_p1:"My father has Alzheimer's. The hardest part wasn't the diagnosis — it was realizing how much of his day we couldn't see. The questions he asked when no one was home. The small confusions we only learned about too late to help.",
+      why_p2:"So I built him a voice. One he can talk to anytime, knows who he is, and answers him the way we would — with infinite patience. Each evening it tells us how his day really went, and each of us, wherever we are, can quietly make tomorrow's answers a little more right.",
+      why_p3:"It's early, and it's still mostly his. If you're going through a similar experience with someone you love, I'd like to hear from you.",
+      priv_h:"Their life is not a dataset.",
+      priv_p:"No analytics. No advertising. No trackers. What your family writes stays on their iPhone and inside your family's own private group chat — readable by you, and no one else.",
+      gate_h:"If this is your story too.",
+      gate_p:"Private beta, families only. Leave your email and I'll write to you personally when a spot opens — nothing else.",
+      gate_ph:"Your email address",
+      gate_btn:"Request access",
+      gate_fine:"No newsletter. No marketing. iPhone only for now. English and French."
+    }
+  },
+  fr:{
+    scroll:"défiler",
+    dev_listening:"À l'écoute…",
+    dev_speaking:"Réponse…",
+    dev_family:"Famille",
+    dev_note_h:"La journée de John",
+    dev_n1:"A demandé deux fois quand Marie vient.",
+    dev_n2:"N'était pas sûr d'avoir déjeuné.",
+    dev_n3:"Inquiet pour son rendez-vous médical.",
+    dev_n4:"N'a pas retrouvé ses clés avant sa promenade.",
+    dev_q1:"John a demandé quand Carol arrivera. Vous savez ?",
+    dev_a1_who:"Marie",
+    dev_a1:"Dimanche midi.",
+    dev_ack1:"Bien noté — je le lui dirai.",
+    dev_q2:"Il s'inquiète de rater son rendez-vous médical demain. À quelle heure est-il prévu ?",
+    dev_a2_who:"Paul",
+    dev_a2:"C'est tous les mardis à 11h.",
+    dev_q3:"Il oublie souvent le nom de son aidante ?",
+    dev_a3_who:"Marie",
+    dev_a3:"C'est Kelly.",
+    foot:"© 2026 · That's Right. · Fait à Paris — pour un père, d'abord.",
+    foot_priv:"Confidentialité", foot_supp:"Contact",
+    nav_cta:"Demander un accès",
+    nav_how:"Comment ça marche",
+    answer_eb:"Un nouveau type de compagnon vocal",
+    priv_link:"Lire la politique de confidentialité",
+    kindness:{
+      q_head:"Quand vous ne pouvez pas être là, qui lui répond ?",
+      cost_lede:"Une mémoire qui vacille pose les mêmes questions, encore et encore — <span class='qs'>quelle année sommes-nous, est-ce que Maman est encore là, qui vient dimanche.</span> Chacune mérite la même réponse douce, la centième fois autant que la première.",
+      cost_hinge:"Personne ne peut être là à chaque heure. <b>Mais quelqu'un peut toujours répondre.</b>",
+      presence:"Une présence calme quand la mémoire vacille.",
+      presence_sub:"Une voix calme à qui parler, à toute heure — qui connaît sa vie et lui répond comme vous le feriez, avec patience, à chaque fois.",
+      how_eyebrow:"Comment ça marche",
+      s1_h:"Il a toujours quelqu'un à qui demander",
+      s1_p:"Une pression, et il parle — <em>quelle année sommes-nous, qui vient dimanche.</em> La voix répond à voix haute, calmement, à partir de ce que votre famille a confié. Rien à lire, aucun bouton, rien à apprendre.",
+      s2_h:"Vous savez comment s'est passée sa journée",
+      s2_p:"Vous recevez un court résumé de sa journée chaque soir — ce qu'il a demandé, ce qui l'a rassuré. Vous gardez un œil sur ses vraies difficultés.",
+      s3_h:"Chacun garde les réponses justes",
+      s3_p:"À vos côtés, elle apprend tout ce qu'elle doit savoir pour donner les bonnes réponses. Toute la famille peut aider, où qu'elle se trouve.",
+      why_eyebrow:"Pourquoi ça existe",
+      why_eb:"Pourquoi cela existe",
+      why_h:"Pour mon père",
+      why_p1:"Mon père a la maladie d'Alzheimer. Le plus dur n'a pas été le diagnostic — c'est de réaliser à quel point nous ne voyions plus son quotidien. Les questions qu'il posait quand il était seul. Les petites confusions dont nous apprenions l'existence trop tard pour l'aider.",
+      why_p2:"Alors je lui ai construit une voix. Une voix à qui parler à toute heure, qui sait qui il est, et qui lui répond comme nous le ferions — avec une patience infinie. Chaque soir, elle nous raconte comment sa journée s'est vraiment passée, et chacun de nous, où qu'il soit, peut tranquillement rendre les réponses de demain un peu plus justes.",
+      why_p3:"C'est tout récent, et c'est encore surtout à lui. Si vous vivez une expérience semblable avec un proche, j'aimerais avoir de vos nouvelles.",
+      priv_h:"Sa vie n'est pas une base de données.",
+      priv_p:"Aucune analyse. Aucune publicité. Aucun traqueur. Ce que votre famille écrit reste sur son iPhone et dans votre groupe privé — lisible par vous, et par personne d'autre.",
+      gate_h:"Si c'est aussi votre histoire.",
+      gate_p:"Bêta privée, réservée aux familles. Laissez votre adresse et je vous écrirai personnellement dès qu'une place se libère — rien d'autre.",
+      gate_ph:"Votre adresse e-mail",
+      gate_btn:"Demander un accès",
+      gate_fine:"Pas de newsletter. Pas de marketing. iPhone seulement pour l'instant. Français et anglais."
+    }
+  }
+};
+
+const MODE_LABEL = {
+  en:{guilt:"Tone: <b>Recognition</b>", kindness:"Tone: <b>Kindness</b>"},
+  fr:{guilt:"Ton : <b>Reconnaissance</b>", kindness:"Ton : <b>Tendresse</b>"}
+};
+
+/* ----------------------------------------------------------------------------
+   LOCALIZATION
+   To add a language later: (1) add a COPY["xx"] block above with the same keys,
+   (2) add one line to LANGS below, (3) optionally add MODE_LABEL["xx"].
+   Anything missing falls back to FALLBACK automatically — partial translations
+   are safe to ship.
+---------------------------------------------------------------------------- */
+const LANGS = [
+  {code:"en", label:"EN", name:"English"},
+  {code:"fr", label:"FR", name:"Français"}
+];
+// Public lang gate. Flip FR_ENABLED to true once the French copy is reviewed
+// and ready to ship. While false: switcher is hidden, browser-detected FR
+// falls back to EN, and FR copy still lives in COPY for easy re-enable.
+const FR_ENABLED = false;
+const PUBLIC_LANGS = FR_ENABLED ? LANGS : LANGS.filter(l => l.code === "en");
+const FALLBACK = "en";
+const STORE = {lang:"tr-lang", mode:"tr-mode"};
+
+let lang = FALLBACK, mode = "kindness";
+
+// resolve a key: current-lang mode → current-lang base → fallback mode → fallback base
+function tr(key){
+  for(const code of [lang, FALLBACK]){
+    const base = COPY[code]; if(!base) continue;
+    const m = base[mode];
+    if(m && m[key] !== undefined) return m[key];
+    if(base[key] !== undefined) return base[key];
+  }
+  return null;
+}
+window.__tr = tr;
+
+function render(){
+  document.querySelectorAll("[data-k]").forEach(el=>{
+    const v = tr(el.getAttribute("data-k"));
+    if(v !== null) el.innerHTML = v;
+  });
+  document.querySelectorAll("[data-k-ph]").forEach(el=>{
+    const v = tr(el.getAttribute("data-k-ph"));
+    if(v !== null) el.placeholder = v;
+  });
+  document.documentElement.lang = lang;
+  document.body.dataset.mode = mode;
+  document.body.dataset.lang = lang;
+  document.querySelectorAll("#langSwitch .langpill").forEach(b=>{
+    const on = b.dataset.lang === lang;
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  if(window.__afterRender) window.__afterRender();
+}
+
+function setLang(code){
+  lang = COPY[code] ? code : FALLBACK;
+  try{ localStorage.setItem(STORE.lang, lang); }catch(e){}
+  render();
+}
+
+// build the language switcher from the public-lang registry
+(function buildLangSwitch(){
+  const wrap = document.getElementById("langSwitch");
+  if(PUBLIC_LANGS.length < 2){ wrap.style.display = "none"; return; }
+  PUBLIC_LANGS.forEach((l,i)=>{
+    if(i){
+      const s = document.createElement("span");
+      s.className = "sep"; s.setAttribute("aria-hidden","true"); s.textContent = "·";
+      wrap.appendChild(s);
+    }
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "langpill"; b.dataset.lang = l.code;
+    b.textContent = l.label; b.title = l.name; b.setAttribute("aria-label", l.name);
+    b.addEventListener("click", ()=>setLang(l.code));
+    wrap.appendChild(b);
+  });
+})();
+
+// top-right CTA: smooth-scroll to the email gate section
+(function navCta(){
+  const btn = document.getElementById("navCta");
+  if(!btn) return;
+  btn.addEventListener("click", ()=>{
+    const gate = document.getElementById("gate");
+    if(gate) gate.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+})();
+
+// top-right "How it works" link: smooth-scroll to the #how section
+(function navHow(){
+  const link = document.getElementById("navHow");
+  if(!link) return;
+  link.addEventListener("click", (e)=>{
+    e.preventDefault();
+    const target = document.getElementById("how");
+    if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+})();
+
+// restore saved choice, else detect browser language, else fallback
+// (only languages in PUBLIC_LANGS are honored — keeps FR private while gated)
+(function restore(){
+  const isPublic = c => PUBLIC_LANGS.some(l => l.code === c);
+  let sl = null, sm = null;
+  try{ sl = localStorage.getItem(STORE.lang); sm = localStorage.getItem(STORE.mode); }catch(e){}
+  if(sl && COPY[sl] && isPublic(sl)) lang = sl;
+  else {
+    const n = (navigator.language || FALLBACK).slice(0,2).toLowerCase();
+    if(COPY[n] && isPublic(n)) lang = n;
+  }
+})();
+
+
+// scroll reveal
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add("in"); });
+},{threshold:0.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+render();
+</script>
+<script src="orb.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tr = function(k){ return (window.__tr ? window.__tr(k) : '') || ''; };
+  var Orb = window.ThatsRightOrb;
+
+  // hero orb (beat 2) + giant footer half-orb
+  var heroCanvas = document.getElementById('heroOrb');
+  if(heroCanvas && Orb) Orb.mount(heroCanvas, {reactivity:'proximity'});
+  var footCanvas = document.getElementById('footOrb');
+  if(footCanvas && Orb) Orb.mount(footCanvas, {reactivity:'proximity', speed:0.5});
+
+  // device 1 — voice: cycle listening / speaking
+  var voiceDevice = document.querySelector('.device.voice');
+  var voiceLabel = document.getElementById('voiceLabel');
+  var listening = true, orb = null;
+  var orbCanvas = document.getElementById('hiwOrb');
+  if(orbCanvas && Orb) orb = Orb.mount(orbCanvas, {reactivity:'voice'});
+  function paintVoice(){
+    if(!voiceDevice) return;
+    voiceDevice.classList.toggle('listening', listening);
+    voiceDevice.classList.toggle('speaking', !listening);
+    if(voiceLabel) voiceLabel.textContent = tr(listening ? 'dev_listening' : 'dev_speaking');
+  }
+  window.__afterRender = paintVoice;
+  var vT = [];
+  function clearV(){ vT.forEach(clearTimeout); vT = []; }
+  function runVoice(){
+    clearV(); if(orb) orb.setVoice(true); listening = true; paintVoice();
+    if(reduce) return;
+    (function cycle(){
+      vT.push(setTimeout(function(){
+        listening = false; paintVoice();
+        vT.push(setTimeout(function(){ listening = true; paintVoice(); cycle(); }, 3600));
+      }, 3000));
+    })();
+  }
+  function stopVoice(){ clearV(); if(orb) orb.setVoice(false); }
+
+  // staggered sequence loops (evening report + family answers)
+  function makeSeq(items, opts){
+    opts = opts || {};
+    var step = opts.step || 820, hold = opts.hold || 2600, lead = opts.lead || 350, T = [];
+    var stepMin = opts.stepMin, stepMax = opts.stepMax;
+    function gap(){ return (stepMin != null && stepMax != null) ? (stepMin + Math.random()*(stepMax - stepMin)) : step; }
+    function clear(){ T.forEach(clearTimeout); T = []; }
+    function set(on){ items.forEach(function(el){ el.classList.toggle('seen', on); }); }
+    function run(){
+      clear();
+      if(opts.onReset) opts.onReset();
+      if(reduce){ set(true); if(opts.onReveal && items.length) opts.onReveal(items[items.length-1]); return; }
+      set(false);
+      var at = lead;
+      items.forEach(function(el,i){
+        if(i > 0) at += gap();
+        T.push(setTimeout(function(){ el.classList.add('seen'); if(opts.onReveal) opts.onReveal(el); }, at));
+      });
+      T.push(setTimeout(run, at + hold));
+    }
+    return { run:run, stop:clear };
+  }
+  var report = makeSeq([].slice.call(document.querySelectorAll('#reportNote .nh, #reportNote li')), {step:760, hold:2600});
+  var answersEl = document.getElementById('answerBubbles');
+  // progressive scroll: nudge the column down just enough to bring each newly
+  // revealed item into view at the bottom, leaving earlier items above.
+  function followScroll(el){
+    if(!answersEl || !el) return;
+    var cRect = answersEl.getBoundingClientRect();
+    var eRect = el.getBoundingClientRect();
+    var delta = (eRect.bottom - cRect.bottom) + 18;
+    if(delta > 0) answersEl.scrollTop += delta;
+  }
+  var answers = makeSeq([].slice.call(document.querySelectorAll('#answerBubbles > .note, #answerBubbles > .bub, #answerBubbles > .ack')), {
+    stepMin:1400, stepMax:1600, hold:3600, lead:550,
+    onReset:function(){ if(answersEl) answersEl.scrollTop = 0; },
+    onReveal:followScroll
+  });
+
+  function observe(el, onIn, onOut){
+    if(!el) return;
+    if(!('IntersectionObserver' in window)){ onIn(); return; }
+    new IntersectionObserver(function(es){ es.forEach(function(e){ e.isIntersecting ? onIn() : onOut(); }); }, {threshold:0.35}).observe(el);
+  }
+  observe(voiceDevice, runVoice, stopVoice);
+  observe(document.getElementById('reportNote'), report.run, report.stop);
+  observe(document.getElementById('answerBubbles'), answers.run, answers.stop);
+
+  paintVoice();
+})();
+</script>
+</body>
+</html>

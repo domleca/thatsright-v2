@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Privacy Policy &mdash; That&rsquo;s Right.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cstyle%3Ecircle%7Bstroke:%232e2e2e%7D%40media(prefers-color-scheme:dark)%7Bcircle%7Bstroke:%23faf6f0%7D%7D%3C/style%3E%3Crect width='32' height='32' fill='none'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke-width='2.6'/%3E%3C/svg%3E"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #faf6f0;
+      --paper: #f4f2ee;
+      --surface: #fbfaf7;
+      --ink: #2e2e2e;
+      --ink-deep: #1d1d1d;
+      --muted: #57534e;
+      --quiet: #78716c;
+      --rule: #e7e2d8;
+      --accent: #b04a2c;
+      --sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', ui-sans-serif, system-ui, sans-serif;
+      --display: 'Schibsted Grotesk', -apple-system, BlinkMacSystemFont, ui-sans-serif, system-ui, sans-serif;
+      --maxw: 720px;
+      --pad: 32px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 84px; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg); color: var(--ink);
+      font-family: var(--sans);
+      font-feature-settings: 'ss01', 'cv01';
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      -webkit-text-size-adjust: 100%;
+      line-height: 1.6;
+    }
+    ::selection { background: rgba(176,74,44,0.20); color: var(--ink-deep); }
+    a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(176,74,44,0.38); border-radius: 2px; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--pad); }
+
+    /* ── Nav ─────────────────────────────────────────────────────── */
+    nav.site {
+      position: sticky; top: 0; z-index: 40;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(250,246,240,0.85);
+      backdrop-filter: saturate(150%) blur(12px);
+      -webkit-backdrop-filter: saturate(150%) blur(12px);
+    }
+    nav.site .inner {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px var(--pad); max-width: 1080px; margin: 0 auto;
+    }
+    .brand {
+      font-size: 17px; font-weight: 600; color: var(--ink);
+      letter-spacing: -0.01em; text-decoration: none;
+    }
+    .back {
+      font-size: 13.5px; color: var(--quiet); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 7px; transition: color .15s;
+    }
+    .back:hover { color: var(--ink); }
+    .back .arr { transition: transform .2s ease; }
+    .back:hover .arr { transform: translateX(-3px); }
+
+    /* ── Header ──────────────────────────────────────────────────── */
+    header.doc { padding-block: clamp(56px, 9vw, 92px) clamp(28px, 4vw, 44px); }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: 0.18em;
+      font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 18px;
+    }
+    h1 {
+      font-family: var(--display); font-weight: 500; letter-spacing: -0.025em;
+      font-size: clamp(34px, 5.4vw, 52px); line-height: 1.04; margin: 0 0 22px;
+      color: var(--ink);
+    }
+    .meta {
+      display: flex; gap: 22px; flex-wrap: wrap;
+      font-size: 13.5px; color: var(--quiet);
+      padding-bottom: 30px; border-bottom: 1px solid var(--rule);
+    }
+    .meta strong { color: var(--ink); font-weight: 600; }
+
+    /* ── Body ────────────────────────────────────────────────────── */
+    main.doc { padding-bottom: clamp(64px, 9vw, 110px); }
+    h2 {
+      font-family: var(--display); font-weight: 500; letter-spacing: -0.02em;
+      font-size: clamp(22px, 2.8vw, 28px); line-height: 1.14;
+      color: var(--ink); margin: 56px 0 18px;
+    }
+    h3 {
+      font-family: var(--display); font-weight: 500; letter-spacing: -0.01em;
+      font-size: 18px; line-height: 1.3; color: var(--ink-deep);
+      margin: 34px 0 12px;
+    }
+    p { margin: 0 0 16px; color: var(--muted); }
+    strong { color: var(--ink); font-weight: 600; }
+    em { color: var(--ink); font-style: italic; }
+    ul { margin: 0 0 18px; padding-left: 0; list-style: none; }
+    ul li {
+      position: relative; padding-left: 24px; margin-bottom: 11px; color: var(--muted);
+    }
+    ul li::before {
+      content: ""; position: absolute; left: 4px; top: 11px;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: .65;
+    }
+    hr { border: 0; border-top: 1px solid var(--rule); margin: 44px 0; }
+
+    /* drop-cap-free section number tag */
+    .sec-num {
+      font-family: var(--display); color: var(--accent); font-weight: 600;
+      font-size: 14px; letter-spacing: 0; margin-right: 10px;
+    }
+
+    /* ── "In short" callout ──────────────────────────────────────── */
+    .short {
+      background: var(--surface); border: 1px solid var(--rule);
+      border-radius: 14px; padding: clamp(24px, 4vw, 34px);
+      margin: 8px 0 8px;
+    }
+    .short .eyebrow { margin-bottom: 14px; }
+    .short p:last-child { margin-bottom: 0; }
+
+    /* ── Table ───────────────────────────────────────────────────── */
+    .table-scroll { overflow-x: auto; margin: 8px 0 22px; }
+    table {
+      border-collapse: collapse; width: 100%; min-width: 560px;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left; vertical-align: top; padding: 14px 16px;
+      border-bottom: 1px solid var(--rule);
+    }
+    th {
+      font-family: var(--sans); font-weight: 600; color: var(--ink-deep);
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    td { color: var(--muted); }
+    td strong { color: var(--ink); }
+    tbody tr:last-child td { border-bottom: 0; }
+
+    .field { display: block; font-size: 12.5px; color: var(--quiet); margin-top: 14px; }
+    .field strong { color: var(--ink-deep); }
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer.site {
+      border-top: 1px solid var(--rule); padding-block: 30px;
+      font-size: 13px; color: var(--quiet);
+    }
+    footer.site .row {
+      display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
+    }
+    footer.site a { color: var(--quiet); text-decoration: none; transition: color .15s; }
+    footer.site a:hover { color: var(--ink); }
+    .foot-brand { color: var(--ink); font-weight: 600; }
+    .foot-links { display: flex; gap: 22px; align-items: center; }
+  </style>
+</head>
+<body>
+  <nav class="site">
+    <div class="inner">
+      <a class="brand" href="/">That&rsquo;s Right.</a>
+      <a class="back" href="/"><span class="arr">&larr;</span> Back to site</a>
+    </div>
+  </nav>
+
+  <header class="doc wrap">
+    <div class="eyebrow">Private by construction</div>
+    <h1>Privacy Policy</h1>
+    <div class="meta">
+      <span><strong>Effective</strong> &nbsp;10 June 2026</span>
+      <span><strong>Version</strong> &nbsp;1.0</span>
+      <span><strong>Controller</strong> &nbsp;That&rsquo;s Right SAS</span>
+    </div>
+  </header>
+
+  <main class="doc wrap">
+
+    <div class="short">
+      <div class="eyebrow">In short</div>
+      <p>We built That&rsquo;s Right. for a single, narrow purpose: to help an elderly person stay grounded through the day, and to keep their family quietly informed. Everything below follows from that.</p>
+      <ul>
+        <li><strong>We don&rsquo;t record or store your voice.</strong> Speech is transcribed on your iPhone, in real time, on-device. The audio itself never leaves your phone.</li>
+        <li><strong>What we <em>do</em> keep</strong> is the text of what was said, what the app replied, and a short profile of the person using it &mdash; so their family can receive a daily recap and so the app remembers the person from one day to the next.</li>
+        <li><strong>Who sees it:</strong> the person&rsquo;s designated family group on Telegram, the AI provider that generates the recaps (Anthropic, via OpenRouter), Apple (for sign-in), and us, the people running the servers. No advertisers. No data brokers. No analytics companies.</li>
+        <li><strong>Where it lives:</strong> on a server we operate in Germany, and on the iPhone itself.</li>
+        <li><strong>You can ask us to delete everything, at any time</strong>, by writing to the address at the bottom of this page.</li>
+      </ul>
+      <p>This summary is true, but it isn&rsquo;t the whole policy. The rest of this page is the detail.</p>
+    </div>
+
+    <h2><span class="sec-num">1</span>Who we are</h2>
+    <p>That&rsquo;s Right. (the &ldquo;app&rdquo;) is operated by <strong>That&rsquo;s Right SAS</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;), the data controller for the purposes of the EU General Data Protection Regulation (GDPR) and equivalent laws.</p>
+    <p>For any question about this policy, or to exercise any of the rights described below, write to: <a href="mailto:domlecadev@gmail.com">domlecadev@gmail.com</a>.</p>
+    <p>We answer privacy requests personally &mdash; there is no support ticket queue. We aim to reply within seven days.</p>
+
+    <h2><span class="sec-num">2</span>Who this policy is for</h2>
+    <p>That&rsquo;s Right. is used by two distinct people, and we want to be clear about how we treat each:</p>
+    <ul>
+      <li><strong>The patient</strong> &mdash; the person speaking with the app, typically an elderly relative living with cognitive decline. The patient is the subject of most of the data described below.</li>
+      <li><strong>The caregiver</strong> &mdash; typically an adult child or close family member. The caregiver sets the app up, manages the family Telegram group, and acts on behalf of the patient when the patient cannot.</li>
+    </ul>
+    <p>Both are &ldquo;data subjects&rdquo; under GDPR. Where the patient cannot meaningfully consent on their own behalf, the caregiver provides consent in their place, in line with applicable family-care and capacity laws. We rely on the caregiver to have the authority to do so before installing the app.</p>
+
+    <h2><span class="sec-num">3</span>What we handle, and why</h2>
+    <p>The clearest way to explain what we do with data is to walk through it by category, the same way the app itself uses it.</p>
+
+    <h3>3.1 &nbsp;The patient&rsquo;s profile (&ldquo;Ground Truth&rdquo;)</h3>
+    <p>When the app is first set up, it builds a short profile of the patient: preferred name, year of birth, a short biography, family contacts, medical conditions, allergies, mobility, daily rhythm, soothing activities, things to avoid. This profile lives on the iPhone (in iCloud Drive if you have it enabled) and is synced to our server.</p>
+    <span class="field"><strong>Why:</strong> the app uses this profile to recognise the patient from day to day, to respond appropriately, and to write the daily recap.</span>
+    <span class="field"><strong>Legal basis (GDPR):</strong> explicit consent (Article 6(1)(a)) for ordinary fields, and explicit consent (Article 9(2)(a)) for the health-related fields (medical conditions, allergies, mobility). Some of this information qualifies as <strong>&ldquo;special category&rdquo; data</strong> under GDPR &mdash; we treat it accordingly.</span>
+    <span class="field"><strong>Retention:</strong> for as long as the account is active. Deleted on request, or when the account is closed.</span>
+
+    <h3>3.2 &nbsp;Conversations</h3>
+    <p>Each time the patient speaks with the app, the app saves a structured record of the exchange. That record contains: the transcribed text of what the patient said, the app&rsquo;s reply, when it happened, how long the reply took, and a few small technical fields (app version, whether the patient interrupted, whether the system detected a phrase indicating distress).</p>
+    <span class="field"><strong>Why:</strong> these records are the raw material for the daily recap, and they let the family review the day if something seems off.</span>
+    <span class="field"><strong>Legal basis (GDPR):</strong> explicit consent (Article 6(1)(a) and, for health-related content within conversations, Article 9(2)(a)).</span>
+    <span class="field"><strong>Retention:</strong> kept for as long as the account is active, so the family can scroll back through recent days. We do not have a hard expiry today; we plan to introduce one in a future version, and we will update this policy when we do.</span>
+
+    <h3>3.3 &nbsp;Voice audio &mdash; the important paragraph</h3>
+    <p>Speech is recognised <strong>on the iPhone itself</strong>, using Apple&rsquo;s on-device speech recognition framework. The raw audio is processed inside the phone, converted to text, and immediately discarded. <strong>No audio file is ever written to the phone&rsquo;s long-term storage, sent to our server, or sent to anyone else.</strong> What leaves the phone is the transcript text, never the recording.</p>
+    <p>The same is true of the app&rsquo;s voice replies: they are generated on the phone by Apple&rsquo;s text-to-speech, locally, and not recorded.</p>
+
+    <h3>3.4 &nbsp;Daily reports and urgent alerts (Hermes)</h3>
+    <p>Once a day, our server reads the conversations for that patient, asks an AI model to summarise them, and posts a short report to the family&rsquo;s Telegram group. The report describes the day&rsquo;s mood and rhythm, notes anything the family may want to follow up on, and sometimes quotes the patient verbatim where the quote matters.</p>
+    <p>Separately, if the system detects a phrase the patient said that suggests distress (for example, an expression of physical pain), it sends an immediate alert to the same Telegram group.</p>
+    <span class="field"><strong>Why:</strong> the entire point of the product.</span>
+    <span class="field"><strong>Legal basis (GDPR):</strong> explicit consent. The caregiver opts in to this routing when they connect the app to a Telegram group.</span>
+    <span class="field"><strong>Retention:</strong> the report and alert messages live in your Telegram group until you delete them &mdash; Telegram is the system of record there, not us. On our side, we keep a copy of what we sent.</span>
+
+    <h3>3.5 &nbsp;Account and authentication</h3>
+    <p>To sign in, the patient (or the caregiver on their behalf) uses <strong>Sign in with Apple</strong>. Apple gives us an opaque identifier (the &ldquo;Apple subject&rdquo; &mdash; a string that means nothing outside this app) and confirms that the sign-in is genuine. We do <strong>not</strong> receive the user&rsquo;s Apple ID email, name, or any other Apple account information beyond that identifier, unless Apple includes them and the user explicitly chooses to share them.</p>
+    <p>On our server we store: the Apple identifier, a hashed session token (the original is never written to disk), a creation date, and a &ldquo;last seen&rdquo; date. On the iPhone, the session token is stored in the secure Keychain.</p>
+    <span class="field"><strong>Why:</strong> so the app knows it&rsquo;s still the same person on the same phone, without asking them to log in every day.</span>
+    <span class="field"><strong>Legal basis (GDPR):</strong> contractual necessity (Article 6(1)(b)) &mdash; without authentication, the app cannot function.</span>
+    <span class="field"><strong>Retention:</strong> for as long as the account is active. When you delete your account, the identifier and tokens are removed within thirty days.</span>
+
+    <h3>3.6 &nbsp;Family contacts</h3>
+    <p>The patient&rsquo;s profile includes the names and phone numbers of family contacts (typically the caregiver and one or two others). We treat these contacts as personal data belonging to those individuals.</p>
+    <span class="field"><strong>Why:</strong> so the app and the family group know who to call or refer to in the conversation.</span>
+    <span class="field"><strong>Legal basis (GDPR):</strong> legitimate interest (Article 6(1)(f)) &mdash; the family&rsquo;s interest in being reachable for the patient&rsquo;s care &mdash; provided the caregiver confirms the contacts are aware their details have been added. We rely on the caregiver to obtain that confirmation.</span>
+    <span class="field"><strong>Retention:</strong> same as the patient profile.</span>
+
+    <h3>3.7 &nbsp;What we do <em>not</em> collect</h3>
+    <p>To remove any doubt:</p>
+    <ul>
+      <li>We do <strong>not</strong> collect your location.</li>
+      <li>We do <strong>not</strong> collect contacts from your phone book.</li>
+      <li>We do <strong>not</strong> collect photos or media.</li>
+      <li>We do <strong>not</strong> use any advertising identifier.</li>
+      <li>We do <strong>not</strong> run any analytics, telemetry, or crash-reporting service (no Google Analytics, no Firebase, no Sentry, no Mixpanel &mdash; none).</li>
+      <li>We do <strong>not</strong> sell, rent, or share personal data with advertisers or data brokers.</li>
+      <li>We do <strong>not</strong> profile users for any purpose other than running the app.</li>
+    </ul>
+
+    <h2><span class="sec-num">4</span>Who else handles your data</h2>
+    <p>That&rsquo;s Right. depends on a small number of external services. We&rsquo;ve chosen each of them deliberately and we keep the list short.</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Service</th><th>What they do for us</th><th>What data reaches them</th><th>Where</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Apple</strong></td>
+            <td>Sign in with Apple, on-device speech recognition, text-to-speech</td>
+            <td>The Sign in with Apple identifier; speech is processed entirely on the iPhone and not transmitted to Apple&rsquo;s servers</td>
+            <td>Apple Inc., USA / EU</td>
+          </tr>
+          <tr>
+            <td><strong>OpenRouter</strong> (Anthropic models)</td>
+            <td>Generates the app&rsquo;s spoken replies and the daily family report</td>
+            <td>The patient profile and the transcribed text of conversations, sent at the moment of the request</td>
+            <td>Routed through OpenRouter&rsquo;s infrastructure to Anthropic&rsquo;s models (USA)</td>
+          </tr>
+          <tr>
+            <td><strong>Telegram</strong></td>
+            <td>Delivers the daily report and urgent alerts to the family group</td>
+            <td>The text of each message; the Telegram chat ID of the family group</td>
+            <td>Telegram FZ-LLC (UAE / global)</td>
+          </tr>
+          <tr>
+            <td><strong>Hetzner Online GmbH</strong></td>
+            <td>Hosts our server</td>
+            <td>All server-side data described in this policy is stored on a Hetzner virtual machine</td>
+            <td>Falkenstein, Germany (EU)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Each of these providers acts as a &ldquo;processor&rdquo; or independent controller, under their own privacy terms, which we recommend you read. They are not permitted, under our agreements with them or under applicable law, to use your data for their own purposes beyond providing the service.</p>
+
+    <h2><span class="sec-num">5</span>Where your data lives</h2>
+    <p>Our primary server is in <strong>Germany</strong> (an EU member state), operated by Hetzner. Data is stored there on disk, encrypted at rest at the file-system level and accessible only to processes running on the machine.</p>
+    <p>Some of the providers above (notably Anthropic, via OpenRouter, and Telegram) operate outside the European Economic Area. When data is sent to them, we rely on the appropriate legal mechanisms &mdash; standard contractual clauses or equivalent &mdash; to keep that transfer lawful under GDPR and similar laws.</p>
+
+    <h2><span class="sec-num">6</span>How we protect your data</h2>
+    <ul>
+      <li>All traffic between the app and our server uses TLS 1.2 or higher.</li>
+      <li>The session token on your iPhone is stored in the iOS Keychain, the same secure store the operating system uses for passwords.</li>
+      <li>On our server, the database is readable only by the application process, and the host is firewalled to the public internet except for the application port.</li>
+      <li>We do not log raw transcripts or conversation contents to operational logs. We log only what we need to debug &mdash; request counts, error codes, and the like.</li>
+      <li>We do not export, back up, or copy personal data outside of routine encrypted snapshots of the server, which themselves live in the same data centre.</li>
+    </ul>
+    <p>No system is perfect. If we ever discover that personal data has been exposed, we will tell affected users within 72 hours of discovering it, and notify the supervisory authority where required.</p>
+
+    <h2><span class="sec-num">7</span>Your rights</h2>
+    <p>If you live in the EU, the UK, or another jurisdiction with a GDPR-style regime, you have the right to:</p>
+    <ul>
+      <li><strong>Access</strong> the personal data we hold about you, and receive a copy.</li>
+      <li><strong>Correct</strong> anything that is wrong.</li>
+      <li><strong>Delete</strong> your data (&ldquo;right to be forgotten&rdquo;). For a patient account, this deletes the profile, all conversation records, the authentication identifier, and any pending family reports. It does not retroactively remove messages already sent to your Telegram group &mdash; those are yours to delete from Telegram itself.</li>
+      <li><strong>Restrict</strong> or <strong>object</strong> to how we use your data.</li>
+      <li><strong>Port</strong> your data to another service, in a machine-readable format.</li>
+      <li><strong>Withdraw consent</strong> at any time. Withdrawing consent does not affect the lawfulness of processing that already happened.</li>
+      <li><strong>Complain</strong> to your local data protection authority. In France, that is the <a href="https://www.cnil.fr/" target="_blank" rel="noopener">Commission Nationale de l&rsquo;Informatique et des Libert&eacute;s (CNIL)</a>. In other EU countries, the equivalent regulator.</li>
+    </ul>
+    <p>If you live in California, you have analogous rights under the CCPA/CPRA, including the right to know what we collect, the right to delete, and the right to opt out of any &ldquo;sale&rdquo; or &ldquo;sharing&rdquo; of personal information &mdash; though, as noted above, we do not sell or share for advertising.</p>
+    <p>To exercise any of these rights, email <a href="mailto:domlecadev@gmail.com">domlecadev@gmail.com</a>. We may ask you to confirm your identity (for the patient&rsquo;s account, normally by confirming the Apple identifier or by being signed in through the app). We will respond within 30 days.</p>
+
+    <h2><span class="sec-num">8</span>Children</h2>
+    <p>That&rsquo;s Right. is not designed for, marketed to, or intended for use by children under 16, and we do not knowingly collect personal data from them. If you believe a child&rsquo;s data has reached us, please write and we will delete it.</p>
+
+    <h2><span class="sec-num">9</span>Changes to this policy</h2>
+    <p>When we change this policy in a way that materially affects how we handle your data, we will:</p>
+    <ul>
+      <li>update the effective date at the top of the page,</li>
+      <li>notify the caregiver through the family Telegram group, with a short summary of what changed, and</li>
+      <li>post the previous version below (we keep an archive).</li>
+    </ul>
+    <p>Smaller, clarifying edits &mdash; fixing a typo, clarifying a sentence &mdash; will just be made silently. The effective date will still tell you when the page was last touched.</p>
+
+    <h2><span class="sec-num">10</span>Contact</h2>
+    <p>For any question, request, complaint, or concern related to this policy or to your data:</p>
+    <p><strong>That&rsquo;s Right SAS</strong><br/>Email: <a href="mailto:domlecadev@gmail.com">domlecadev@gmail.com</a></p>
+    <p>We read every message ourselves.</p>
+
+  </main>
+
+  <footer class="site">
+    <div class="wrap row">
+      <span>&copy; 2026 &middot; <span class="foot-brand">That&rsquo;s Right.</span> &middot; Made in Paris &mdash; for one father, first.</span>
+      <div class="foot-links">
+        <a href="/">Home</a>
+        <a href="mailto:domlecadev@gmail.com">Support</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
