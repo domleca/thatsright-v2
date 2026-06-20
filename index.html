@@ -612,7 +612,7 @@ const LANGS = [
 // Public lang gate. Flip FR_ENABLED to true once the French copy is reviewed
 // and ready to ship. While false: switcher is hidden, browser-detected FR
 // falls back to EN, and FR copy still lives in COPY for easy re-enable.
-const FR_ENABLED = false;
+const FR_ENABLED = true;
 const PUBLIC_LANGS = FR_ENABLED ? LANGS : LANGS.filter(l => l.code === "en");
 const FALLBACK = "en";
 const STORE = {lang:"tr-lang", mode:"tr-mode"};
