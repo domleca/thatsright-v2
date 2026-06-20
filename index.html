@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>That's Right. — a daily presence for someone whose memory has begun to waver</title>
+<meta name="theme-color" content="#f4f2ee">
+<title>That’s Right. — a daily presence for someone whose memory has begun to waver</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -33,7 +34,33 @@
     -webkit-font-smoothing:antialiased;
     line-height:1.55;
     overflow-x:hidden;
+    -webkit-tap-highlight-color:transparent;
   }
+
+  /* Visually-hidden for accessible labels that shouldn’t render */
+  .visually-hidden{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  /* Skip-link — appears when focused via Tab */
+  .skip-link{
+    position:absolute;top:8px;left:8px;z-index:100;
+    padding:10px 14px;background:var(--ink);color:var(--paper);
+    border-radius:6px;font-size:13px;text-decoration:none;
+    transform:translateY(-200%);transition:transform .15s ease;
+  }
+  .skip-link:focus-visible{transform:translateY(0)}
+
+  /* Global focus ring — visible only via keyboard */
+  :where(a,button,input,[tabindex]):focus-visible{
+    outline:2px solid var(--terra);
+    outline-offset:2px;
+    border-radius:4px;
+  }
+
+  /* Headings: balance lines to avoid widows on supporting browsers */
+  h1,h2,h3{text-wrap:balance}
 
   /* ---------- top utility bar ---------- */
   .topbar{
@@ -50,7 +77,7 @@
     background:none;border:none;font-family:var(--sans);
     font-size:12px;letter-spacing:.04em;color:var(--ink-soft);
     cursor:pointer;text-transform:uppercase;
-    padding:4px 0;
+    padding:4px 0;touch-action:manipulation;
   }
   .toggle b{color:var(--ink);font-weight:600}
   .lang{display:flex;align-items:center;gap:6px}
@@ -58,6 +85,7 @@
     background:none;border:none;font-family:var(--sans);
     font-size:12px;letter-spacing:.04em;color:var(--ink-faint);
     cursor:pointer;text-transform:uppercase;padding:4px 2px;
+    touch-action:manipulation;
   }
   .langpill.on{color:var(--ink);font-weight:600}
   .langpill:hover{color:var(--ink)}
@@ -68,13 +96,15 @@
     font-size:12px;letter-spacing:.04em;color:var(--ink-soft);
     cursor:pointer;padding:4px 2px;
     text-decoration:none;pointer-events:auto;
+    touch-action:manipulation;
   }
   .navLink:hover{color:var(--ink)}
   .btn-cta{
     appearance:none;border:0;cursor:pointer;font-family:var(--sans);
     padding:9px 17px;background:var(--terra);color:var(--paper);
     border-radius:999px;font-size:13px;font-weight:500;letter-spacing:.01em;
-    text-transform:none;mix-blend-mode:normal;
+    text-transform:none;mix-blend-mode:normal;text-decoration:none;
+    display:inline-block;line-height:1.2;touch-action:manipulation;
     transition:filter .15s ease, transform .15s ease;
   }
   .btn-cta:hover{transform:translateY(-1px);filter:brightness(1.06)}
@@ -283,6 +313,7 @@
     flex:none;font-family:var(--sans);font-size:14px;font-weight:500;
     padding:11px 22px;border:0;border-radius:999px;
     background:var(--terra);color:var(--paper);cursor:pointer;letter-spacing:.01em;
+    touch-action:manipulation;
     transition:filter .15s ease, transform .15s ease;
   }
   .form button:hover{filter:brightness(1.06);transform:translateY(-1px)}
@@ -340,6 +371,8 @@
 </head>
 <body data-mode="kindness" data-lang="en">
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <template id="__bundler_thumbnail">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <rect width="100" height="100" fill="#f4f2ee"/>
@@ -350,14 +383,15 @@
 </template>
 
 <div class="topbar">
-  <span class="brand">That's Right</span>
+  <span class="brand" translate="no">That’s Right</span>
   <div class="controls">
     <a href="#how" class="navLink" id="navHow" data-k="nav_how"></a>
     <div class="lang" id="langSwitch" role="group" aria-label="Language"></div>
-    <button type="button" class="btn-cta" id="navCta" data-k="nav_cta"></button>
+    <a href="#gate" class="btn-cta" id="navCta" data-k="nav_cta"></a>
   </div>
 </div>
 
+<main id="main">
 <!-- BEAT 0 — THE QUESTION -->
 <section id="q">
   <h1 data-k="q_head"></h1>
@@ -368,7 +402,7 @@
 
 <!-- BEAT 1 — THE COST -->
 <section class="beat" id="cost">
-  <p class="lede reveal" data-k="cost_lede">The same questions come again and again — what year is it, where do I live now, who's coming Sunday. Each one deserves the same calm answer, the hundredth time as much as the first.</p>
+  <p class="lede reveal" data-k="cost_lede">The same questions come again and again — what year is it, where do I live now, who’s coming Sunday. Each one deserves the same calm answer, the hundredth time as much as the first.</p>
   <p class="hinge reveal" data-k="cost_hinge"></p>
 </section>
 
@@ -389,7 +423,7 @@
   <div class="step reveal">
     <div class="txt">
       <h3 data-k="s1_h">They always have someone to ask</h3>
-      <p data-k="s1_p">One tap is all it takes. The answer comes from what your family has shared — never invented — so it's always right. </p>
+      <p data-k="s1_p">One tap is all it takes. The answer comes from what your family has shared — never invented — so it’s always right. </p>
     </div>
     <div class="visual">
       <div class="device voice listening">
@@ -431,12 +465,12 @@
       <div class="device chat">
         <div class="dtop"><span data-k="dev_family"></span><span>•••</span></div>
         <div class="chatcol" id="answerBubbles">
-          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_q1"></span></div>
+          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_q1"></span></div>
           <div class="bub you"><span class="who" data-k="dev_a1_who"></span><span data-k="dev_a1"></span></div>
-          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_ack1"></span></div>
-          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_q2"></span></div>
+          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_ack1"></span></div>
+          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_q2"></span></div>
           <div class="bub you"><span class="who" data-k="dev_a2_who"></span><span data-k="dev_a2"></span></div>
-          <div class="bub them"><span class="who">That's Right</span><span data-k="dev_q3"></span></div>
+          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_q3"></span></div>
           <div class="bub you"><span class="who" data-k="dev_a3_who"></span><span data-k="dev_a3"></span></div>
         </div>
       </div>
@@ -465,13 +499,17 @@
   <div class="gateinner">
     <h2 class="reveal" data-k="gate_h"></h2>
     <p class="reveal" data-k="gate_p"></p>
-    <div class="form reveal">
-      <input type="email" data-k-ph="gate_ph" aria-label="email">
-      <button data-k="gate_btn"></button>
-    </div>
+    <form class="form reveal" id="gateForm"
+          action="https://formspree.io/f/xojzbled" method="POST">
+      <label class="visually-hidden" for="gateEmail" data-k="gate_ph"></label>
+      <input type="email" id="gateEmail" name="email" autocomplete="email" inputmode="email"
+             required spellcheck="false" data-k-ph="gate_ph">
+      <button type="submit" data-k="gate_btn"></button>
+    </form>
     <p class="fineprint reveal" data-k="gate_fine"></p>
   </div>
 </section>
+</main>
 
 <footer>
   <div class="foot-inner">
@@ -489,36 +527,36 @@ const COPY = {
     dev_listening:"Listening…",
     dev_speaking:"Speaking…",
     dev_family:"Family",
-    dev_note_h:"John's day",
+    dev_note_h:"John’s day",
     dev_n1:"Asked twice when Marie is visiting.",
-    dev_n2:"Wasn't sure whether he'd eaten lunch.",
-    dev_n3:"Worried about his doctor's appointment.",
-    dev_n4:"Couldn't find his keys before his walk.",
+    dev_n2:"Wasn’t sure whether he’d eaten lunch.",
+    dev_n3:"Worried about his doctor’s appointment.",
+    dev_n4:"Couldn’t find his keys before his walk.",
     dev_q1:"John asked when Carol is coming. Do you know?",
     dev_a1_who:"Marie",
     dev_a1:"Sunday at noon.",
-    dev_ack1:"Got it — I'll tell him.",
+    dev_ack1:"Got it — I’ll tell him.",
     dev_q2:"He is worried about missing his doctor appointment tomorrow. When is it scheduled?",
     dev_a2_who:"Paul",
-    dev_a2:"It's every Tuesday at 11am.",
+    dev_a2:"It’s every Tuesday at 11am.",
     dev_q3:"He keeps forgetting the name of his caregiver?",
     dev_a3_who:"Marie",
-    dev_a3:"It's Kelly.",
-    foot:"© 2026 · That's Right. · Made in Paris — for one father, first.",
+    dev_a3:"It’s Kelly.",
+    foot:"© 2026 · That’s Right. · Made in Paris — for one father, first.",
     foot_priv:"Privacy", foot_supp:"Support",
     nav_cta:"Request access",
     nav_how:"How it works",
     answer_eb:"A new kind of voice companion",
     priv_link:"Read the full privacy policy",
     kindness:{
-      q_head:"When you can't be there,<br> who answers?",
-      cost_lede:"The same questions come again and again — <span class='qs'>what year is it, where do I live now, who's coming Sunday.</span> Each one deserves the same calm answer, the hundredth time as much as the first.",
+      q_head:"When you can’t be there,<br> who answers?",
+      cost_lede:"The same questions come again and again — <span class=qs>what year is it, where do I live now, who’s coming Sunday.</span> Each one deserves the same calm answer, the hundredth time as much as the first.",
       cost_hinge:"No one can be there every hour. <b>But someone can always answer.</b>",
       presence:"A steady presence when memory wavers",
       presence_sub:"A calm voice they can talk to at any hour — one that knows their life, and answers the way you would.",
       how_eyebrow:"How it works",
       s1_h:"They always have someone to ask",
-      s1_p:"One tap is all it takes. The answer comes from what your family has shared — never invented — so it's always right.",
+      s1_p:"One tap is all it takes. The answer comes from what your family has shared — never invented — so it’s always right.",
       s2_h:"You know how their day went",
       s2_p:"You get a short summary of their day every evening — what they asked, what reassured them. You keep tabs on their real difficulties.",
       s3_h:"Everyone keeps the answers true",
@@ -526,39 +564,39 @@ const COPY = {
       why_eyebrow:"Why this exists",
       why_eb:"Why this exists",
       why_h:"For my father",
-      why_p1:"My father has Alzheimer's. The hardest part wasn't the diagnosis — it was realizing how much of his day we couldn't see. The questions he asked when no one was home. The small confusions we only learned about too late to help.",
-      why_p2:"So I built him a voice. One he can talk to anytime, knows who he is, and answers him the way we would — with infinite patience. Each evening it tells us how his day really went, and each of us, wherever we are, can quietly make tomorrow's answers a little more right.",
-      why_p3:"It's early, and it's still mostly his. If you're going through a similar experience with someone you love, I'd like to hear from you.",
+      why_p1:"My father has Alzheimer’s. The hardest part wasn’t the diagnosis — it was realizing how much of his day we couldn’t see. The questions he asked when no one was home. The small confusions we only learned about too late to help.",
+      why_p2:"So I built him a voice. One he can talk to anytime, knows who he is, and answers him the way we would — with infinite patience. Each evening it tells us how his day really went, and each of us, wherever we are, can quietly make tomorrow’s answers a little more right.",
+      why_p3:"It’s early, and it’s still mostly his. If you’re going through a similar experience with someone you love, I’d like to hear from you.",
       priv_h:"Their life is not a dataset",
-      priv_p:"No analytics. No advertising. No trackers. What your family writes stays on their iPhone and inside your family's own private group chat — readable by you, and no one else.",
+      priv_p:"No analytics. No advertising. No trackers. What your family writes stays on their iPhone and inside your family’s own private group chat — readable by you, and no one else.",
       gate_h:"If this is your story too",
-      gate_p:"Private beta, families only. Leave your email and I'll write to you personally when a spot opens — nothing else.",
-      gate_ph:"Your email address",
+      gate_p:"Private beta, families only. Leave your email and I’ll write to you personally when a spot opens — nothing else.",
+      gate_ph:"Your email address…",
       gate_btn:"Request access",
       gate_fine:"No newsletter. No marketing. iPhone only for now. English and French."
     }
   },
   fr:{
     scroll:"défiler",
-    dev_listening:"À l'écoute…",
+    dev_listening:"À l’écoute…",
     dev_speaking:"Réponse…",
     dev_family:"Famille",
     dev_note_h:"La journée de John",
     dev_n1:"A demandé deux fois quand Marie vient.",
-    dev_n2:"N'était pas sûr d'avoir déjeuné.",
+    dev_n2:"N’était pas sûr d’avoir déjeuné.",
     dev_n3:"Inquiet pour son rendez-vous médical.",
-    dev_n4:"N'a pas retrouvé ses clés avant sa promenade.",
+    dev_n4:"N’a pas retrouvé ses clés avant sa promenade.",
     dev_q1:"John a demandé quand Carol arrivera. Vous savez ?",
     dev_a1_who:"Marie",
     dev_a1:"Dimanche midi.",
     dev_ack1:"Bien noté — je le lui dirai.",
-    dev_q2:"Il s'inquiète de rater son rendez-vous médical demain. À quelle heure est-il prévu ?",
+    dev_q2:"Il s’inquiète de rater son rendez-vous médical demain. À quelle heure est-il prévu ?",
     dev_a2_who:"Paul",
-    dev_a2:"C'est tous les mardis à 11h.",
+    dev_a2:"C’est tous les mardis à 11h.",
     dev_q3:"Il oublie souvent le nom de son aidante ?",
     dev_a3_who:"Marie",
-    dev_a3:"C'est Kelly.",
-    foot:"© 2026 · That's Right. · Fait à Paris — pour un père, d'abord.",
+    dev_a3:"C’est Kelly.",
+    foot:"© 2026 · That’s Right. · Fait à Paris — pour un père, d’abord.",
     foot_priv:"Confidentialité", foot_supp:"Contact",
     nav_cta:"Demander un accès",
     nav_how:"Comment ça marche",
@@ -566,7 +604,7 @@ const COPY = {
     priv_link:"Lire la politique de confidentialité",
     kindness:{
       q_head:"Quand vous n’êtes pas là,<br> qui lui répond ?",
-      cost_lede:"Une personne dont la mémoire vacille pose les mêmes questions, encore et encore — <span class='qs'>en quelle année sommes-nous ? Qui vient dimanche ? Comment s’appellent mes filles ?</span><br>Chacune mérite une réponse calme. La centième fois comme la première.",
+      cost_lede:"Une personne dont la mémoire vacille pose les mêmes questions, encore et encore — <span class=qs>en quelle année sommes-nous ? Qui vient dimanche ? Comment s’appellent mes filles ?</span><br>Chacune mérite une réponse calme. La centième fois comme la première.",
       cost_hinge:"Vous ne pouvez pas être disponible en permanence. <b>Mais votre proche peut toujours obtenir une réponse.</b>",
       presence:"Une présence calme quand la mémoire vacille",
       presence_sub:"Une voix calme à qui parler, à toute heure — qui connaît sa vie et lui répond comme vous le feriez.",
@@ -583,13 +621,13 @@ const COPY = {
       why_p1:"Mon père est atteint de la maladie d’Alzheimer.<br>Nous l’aidons autant que nous le pouvons. Mais parfois, nous ne sommes simplement pas disponibles. Ses difficultés quotidiennes nous échappent. Penser à ce qu’il ressent quand personne n’est là pour lui répondre est angoissant.",
       why_p2:"Je lui ai créé une voix : disponible en permanence, qui sait qui il est et lui répond comme nous le ferions, avec une infinie patience.<br>Chaque soir, l’application nous rend compte du déroulement de sa journée. Chacun de nous peut contribuer, où qu’il soit, à rendre les réponses de demain plus pertinentes.",
       why_p3:"L’application est encore naissante et calibrée sur les besoins de mon père.<br>Si vous vivez une expérience similaire et pensez que cette application pourrait vous aider, laissez-moi votre email.",
-      priv_h:"Leur vie n'est pas une base de données",
-      priv_p:"Aucune publicité. Aucun traqueur. Ce que votre famille écrit reste sur son iPhone et dans votre groupe privé — lisible par vous, et par personne d'autre.",
-      gate_h:"Si c'est aussi votre histoire",
+      priv_h:"Leur vie n’est pas une base de données",
+      priv_p:"Aucune publicité. Aucun traqueur. Ce que votre famille écrit reste sur son iPhone et dans votre groupe privé — lisible par vous, et par personne d’autre.",
+      gate_h:"Si c’est aussi votre histoire",
       gate_p:"Laissez-moi votre email et je vous contacterai personnellement s’il m’est possible de vous inclure dans le test.",
-      gate_ph:"Votre adresse e-mail",
+      gate_ph:"Votre adresse e-mail…",
       gate_btn:"Demander un accès",
-      gate_fine:"Pas de newsletter. Pas de marketing. iPhone seulement pour l'instant. Français et anglais."
+      gate_fine:"Pas de newsletter. Pas de marketing. iPhone seulement pour l’instant. Français et anglais."
     }
   }
 };
@@ -602,15 +640,7 @@ const MODE_LABEL = {
 // i18n engine lives in i18n.js — exposes window.I18n.
 // To add a language: edit LANGS in i18n.js, then add a COPY["xx"] block above.
 
-// top-right CTA: smooth-scroll to the email gate section
-(function navCta(){
-  const btn = document.getElementById("navCta");
-  if(!btn) return;
-  btn.addEventListener("click", ()=>{
-    const gate = document.getElementById("gate");
-    if(gate) gate.scrollIntoView({behavior:"smooth", block:"start"});
-  });
-})();
+// nav CTA is now a plain <a href="#gate"> — anchor handles scroll natively.
 
 // top-right "How it works" link: smooth-scroll to the #how section
 (function navHow(){
