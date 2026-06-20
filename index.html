@@ -640,9 +640,9 @@ I18n.init(COPY, { defaultMode: "kindness" });
 
   // hero orb (beat 2) + giant footer half-orb
   var heroCanvas = document.getElementById('heroOrb');
-  if(heroCanvas && Orb) Orb.mount(heroCanvas, {reactivity:'proximity'});
+  if(heroCanvas && Orb) Orb.mount(heroCanvas, {reactivity:'proximity', emitEvery:2.4});
   var footCanvas = document.getElementById('footOrb');
-  if(footCanvas && Orb) Orb.mount(footCanvas, {reactivity:'proximity', speed:0.5});
+  if(footCanvas && Orb) Orb.mount(footCanvas, {reactivity:'proximity', speed:0.5, emitEvery:1.2});
 
   // device 1 — voice: cycle listening / speaking
   var voiceDevice = document.querySelector('.device.voice');
