@@ -5,11 +5,9 @@ Tracked here so they don't get lost across sessions.
 
 ## Blockers before this is "really" public
 
-- [ ] **Wire up the "Request access" email backend.** Both Request access
-      buttons (top nav + email gate at the bottom) currently submit nowhere —
-      the markup is in place but there's no `<form action>`, no handler, no
-      service connected. Decide on a destination (mailto, Formspree, Resend,
-      ConvertKit, etc.) and wire it.
+- [x] ~~Wire up the "Request access" email backend.~~ Done in the live `TRW/`
+      site — form posts to Formspree (`xojzbled`). Top nav + hero CTA both
+      scroll to the single form at the bottom.
 - [ ] **Meta tags & social sharing.** Add Open Graph title/description/image,
       Twitter card, and proper `<meta name="description">` so the URL previews
       nicely on iMessage / Slack / WhatsApp. None of that is set right now —
