@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="theme-color" content="#f4f2ee">
-<title>That’s Right. — a daily presence for someone whose memory has begun to waver</title>
+<title>That’s Right — a daily presence for someone whose memory has begun to waver</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -26,7 +26,10 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  /* Both html and body clip horizontal overflow — Safari on iOS grows the html
+     element to fit absolutely-positioned children (the 200%-wide orb canvas)
+     even when body alone is clipped. */
+  html{scroll-behavior:smooth;overflow-x:hidden}
   body{
     background:var(--paper);
     color:var(--ink);
@@ -337,8 +340,12 @@
 
   @media(max-width:680px){
     .topbar{padding:14px 18px}
+    /* Mobile nav: brand + CTA only. "How it works" and EN/FR live on desktop
+       only; auto language detection (navigator.language in i18n.js) covers the
+       common case for mobile visitors. */
+    #navHow, #langSwitch{display:none}
     .beat{min-height:auto;padding:60px 22px}
-    #answer{padding:72px 22px}
+    #answer{padding:72px 22px;overflow-x:hidden}
     .orbwrap{margin-bottom:30px}
     #how{padding:48px 22px}
     .step{grid-template-columns:1fr;gap:24px}
@@ -350,8 +357,20 @@
     .device .note ul{font-size:13.5px}
     .bub{font-size:14px}
     .bub .who{font-size:11px}
-    .form{flex-direction:column;align-items:stretch;gap:12px}
-    .form input{width:100%}
+    /* Form: input and button as two distinct pills (not stacked inside one
+       container) so the input reads as a real field, not a placeholder
+       floating above a button. */
+    .form{
+      flex-direction:column;align-items:stretch;gap:10px;
+      background:transparent;border:0;border-radius:0;padding:0;
+    }
+    .form:focus-within{border-color:transparent}
+    .form input{
+      width:100%;text-align:center;
+      background:var(--paper);border:1px solid var(--line);
+      border-radius:999px;padding:14px 22px;
+    }
+    .form input:focus{border-color:var(--terra)}
     .form button{width:100%;padding:15px 26px}
     footer{min-height:clamp(360px,52vh,520px);padding:64px 22px 0}
   }
@@ -378,7 +397,7 @@
     <rect width="100" height="100" fill="#f4f2ee"/>
     <circle cx="50" cy="42" r="16" fill="none" stroke="#b7572e" stroke-width="3.4" stroke-linecap="round"/>
     <path d="M43 42 l5 5 l9 -11" fill="none" stroke="#b7572e" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="50" y="74" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#2e2e2e">That’s Right.</text>
+    <text x="50" y="74" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="#2e2e2e">That’s Right</text>
   </svg>
 </template>
 
@@ -542,7 +561,7 @@ const COPY = {
     dev_q3:"He keeps forgetting the name of his caregiver?",
     dev_a3_who:"Marie",
     dev_a3:"It’s Kelly.",
-    foot:"© 2026 · That’s Right. · Made in Paris — for one father, first.",
+    foot:"© 2026 · That’s Right · Made in Paris — for one father, first.",
     foot_priv:"Privacy", foot_supp:"Support",
     nav_cta:"Request access",
     nav_how:"How it works",
@@ -596,7 +615,7 @@ const COPY = {
     dev_q3:"Il oublie souvent le nom de son aidante ?",
     dev_a3_who:"Marie",
     dev_a3:"C’est Kelly.",
-    foot:"© 2026 · That’s Right. · Fait à Paris — pour un père, d’abord.",
+    foot:"© 2026 · That’s Right · Fait à Paris — pour un père, d’abord.",
     foot_priv:"Confidentialité", foot_supp:"Contact",
     nav_cta:"Demander un accès",
     nav_how:"Comment ça marche",

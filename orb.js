@@ -1,5 +1,5 @@
 /* ───────────────────────────────────────────────────────────────────────────
-   That's Right. — V7 orb, ported to <canvas>.
+   That's Right — V7 orb, ported to <canvas>.
 
    A stroked wireframe polar curve (NOT a sphere). No fill, no gradient, no glow.
    180 polar points, 5 harmonics (k = 2,3,5,7,11). At rest it reads as a near-

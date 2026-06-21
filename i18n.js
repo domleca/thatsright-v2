@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
-   That's Right. — shared i18n engine
+   That's Right — shared i18n engine
    Each page declares its own COPY = { en:{...}, fr:{...} } and calls
    window.I18n.init(COPY, opts).
 
