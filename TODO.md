@@ -28,11 +28,27 @@ Tracked here so they don't get lost across sessions.
 - Note: `og.png` is the cream variant ("A steady presence when memory
       wavers"); `og-dark.png` is the dark/inverted alternative kept in
       the repo as backup. Swap by renaming if we ever want the dark card.
-- [ ] Validate with https://www.opengraph.xyz/ (share-card preview) and
-      https://search.google.com/test/rich-results (JSON-LD).
-- [ ] Submit `https://www.thatsright.xyz/sitemap.xml` to Google Search Console
-      and Bing Webmaster Tools (verify ownership first, DNS TXT record or
-      HTML file).
+- [x] ~~Programmatic OG / Twitter / JSON-LD audit on `/` and `/fr`.~~ Done
+      2026-06-21. Both pages have complete OG (with `og:image` 1200×630),
+      Twitter `summary_large_image`, canonical, mirrored hreflang
+      (en/fr/x-default), and 3 valid JSON-LD blocks (`Organization`,
+      `WebSite`, `SoftwareApplication`). Predicted validator outcome:
+      opengraph.xyz renders the cream card cleanly; Google Rich Results
+      passes Organization + WebSite, and `SoftwareApplication` validates
+      with one *recommendation* (missing `aggregateRating`) — non-blocking,
+      addressable once the app has App Store reviews.
+- [ ] **Optional manual sanity-check** via https://www.opengraph.xyz/ and
+      https://search.google.com/test/rich-results — visual confirmation
+      only; underlying tags already audited above.
+- [x] ~~Submit `https://www.thatsright.xyz/sitemap.xml` to Google Search
+      Console and Bing Webmaster Tools.~~ Done 2026-06-21. Google: ownership
+      verified twice (URL-prefix property via `google34d758e2b381d81b.html`
+      at repo root, committed in `3f92ccd`; Domain property via TXT record
+      `google-site-verification=W_1J7XDhnBXLkvthbRR9D91k9fLeu8Uhgt0gKHKRSf8`
+      on Vercel DNS). Sitemap submitted to the Domain property — initial
+      status "Couldn't fetch / Type: Unknown" is the normal queued state
+      and should clear to "Success" within 24–48 h. Bing: imported from
+      Google Search Console (verification + sitemap copied automatically).
 - [ ] Flip `availability` in the `SoftwareApplication` JSON-LD from
       `PreOrder` to `InStock` once the app is publicly available.
 - [x] ~~**Decide on French SEO** (marketing page).~~ Done 2026-06-21. Picked
