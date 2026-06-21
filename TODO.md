@@ -35,11 +35,33 @@ Tracked here so they don't get lost across sessions.
       HTML file).
 - [ ] Flip `availability` in the `SoftwareApplication` JSON-LD from
       `PreOrder` to `InStock` once the app is publicly available.
-- [ ] **Decide on French SEO.** Today French ships via runtime JS swap and
-      isn't independently indexed by Google. Bilingual indexing would need
-      either pre-rendering (small build step — against V2's "no build" rule)
-      or hand-maintained `/fr/` HTML files. Defer until French discovery
-      becomes a real priority.
+- [x] ~~**Decide on French SEO** (marketing page).~~ Done 2026-06-21. Picked
+      hand-maintained `/fr/index.html`, generated from `index.html` by
+      `generate_fr.py` (run from repo root). Adds canonical, hreflang
+      (en / fr / x-default), French OG + Twitter cards, FR JSON-LD
+      descriptions. Root `index.html` gained matching hreflang tags;
+      `sitemap.xml` lists both `/` and `/fr` with `xhtml:link` alternates.
+      **Privacy policy not yet translated** — see item below.
+- [ ] **Resolve scroll-smoothness regression in path-aware `i18n.js`.**
+      The intended UX was: clicking EN/FR full-page-navigates between
+      `/` and `/fr` so each URL stays canonical. That version of `i18n.js`
+      reproducibly makes scroll on `/` feel less smooth (verified 2026-06-21
+      in a private window, fresh cache, on local server). Cause is not yet
+      understood — the diff only adds a few helper functions plus changes
+      `setLang` / `restoreLang`; none of them attach scroll handlers or
+      run after init. The modified file is preserved at
+      `/tmp/i18n.js.with-changes`; the committed `i18n.js` is back at the
+      pre-session version. **Next-session work:** bisect by re-applying the
+      three change groups one at a time and scroll-testing each, then fix
+      whichever piece triggers the jank. If unfixable, fall back to the
+      committed (in-place-swap) `setLang` — `/fr/index.html` remains
+      indexable either way; only the language-pill UX changes.
+- [x] ~~**Decide on French privacy policy.**~~ Done 2026-06-21. Picked
+      option (a): `privacy.html` stays English-only for the pre-launch
+      window, with a small italic note at the top inviting French speakers
+      to email for a French version. Revisit if/when a real French audience
+      starts asking — a full FR translation has GDPR weight and needs a
+      lawyer pass.
 - [x] ~~Favicon.~~ Done — generated from iOS AppIcon-1024.png (32×32, 180×180 Apple touch, 192×192 Android).
 
 ## Translation
