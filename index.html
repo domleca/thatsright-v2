@@ -122,13 +122,32 @@
   h1,h2,h3{text-wrap:balance}
 
   /* ---------- top utility bar ---------- */
+  /* Stays transparent over the hero so it doesn't fight the opening shot,
+     then fades in a frosted background once the page is scrolled — otherwise
+     the brand + CTA would overlap and become unreadable against body text.
+     The backdrop sits on a ::before pseudo so it sits BEHIND the controls
+     (cleaner than blurring the controls through backdrop-filter). */
   .topbar{
     position:fixed;top:0;left:0;right:0;z-index:50;
     display:flex;justify-content:space-between;align-items:center;
     padding:18px 28px;
     font-size:13px;letter-spacing:.02em;
-    mix-blend-mode:multiply;
     pointer-events:none;
+  }
+  .topbar::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:rgba(244,242,238,0);
+    backdrop-filter:saturate(150%) blur(0px);
+    -webkit-backdrop-filter:saturate(150%) blur(0px);
+    border-bottom:1px solid transparent;
+    transition:background .2s ease, backdrop-filter .2s ease,
+               -webkit-backdrop-filter .2s ease, border-color .2s ease;
+  }
+  .topbar.scrolled::before{
+    background:rgba(244,242,238,0.82);
+    backdrop-filter:saturate(150%) blur(12px);
+    -webkit-backdrop-filter:saturate(150%) blur(12px);
+    border-bottom-color:var(--line-faint);
   }
   .topbar .brand{font-weight:600;letter-spacing:.01em;pointer-events:auto}
   .topbar .controls{display:flex;gap:18px;align-items:center;pointer-events:auto}
@@ -726,6 +745,24 @@ const MODE_LABEL = {
     const target = document.getElementById("how");
     if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
   });
+})();
+
+// Topbar: stay transparent over the hero, gain a frosted background once we
+// scroll past it — otherwise brand + CTA overlap body text and become
+// unreadable. Threshold is small (30px) so it kicks in immediately on any
+// purposeful scroll.
+(function topbarScrolled(){
+  const bar = document.querySelector(".topbar");
+  if(!bar) return;
+  let ticking = false;
+  function update(){
+    bar.classList.toggle("scrolled", window.scrollY > 30);
+    ticking = false;
+  }
+  window.addEventListener("scroll", ()=>{
+    if(!ticking){ ticking = true; requestAnimationFrame(update); }
+  }, {passive:true});
+  update();
 })();
 
 // scroll reveal
