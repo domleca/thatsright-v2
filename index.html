@@ -213,7 +213,12 @@
     font-size:clamp(34px,6.2vw,62px);
     line-height:1.18;
     letter-spacing:-0.01em;
-    max-width:14ch;
+    /* The <br> in the copy enforces the two-line break. The px cap is a
+       guardrail for ultra-wide displays; avoid `ch` here — its pixel value
+       depends on which serif the browser has resolved, so it shifts between
+       the initial paint (generic fallback) and the final paint (Iowan/
+       Palatino), causing the line to re-wrap. */
+    max-width:min(720px,92vw);
   }
   .scrollcue{
     position:absolute;bottom:38px;left:50%;transform:translateX(-50%);

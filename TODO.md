@@ -38,14 +38,17 @@ Tracked here so they don't get lost across sessions.
 
 ## Translation
 
-- [ ] **French copy review.** The page is currently locked to English via
-      `FR_ENABLED = false` in the script. French copy still lives in the
-      `COPY` dict but is hidden from the public. Once the FR copy is
-      reviewed and final, flip the flag to `true` and the language switcher
-      reappears automatically.
+- [x] ~~**French copy review.**~~ Done 2026-06-21. French copy reviewed and
+      reintegrated; `FR_ENABLED = true` in `i18n.js`, the EN/FR switcher is
+      live on desktop. (Note: this only affects the public UI — the
+      "Decide on French SEO" item above is still open and the site still
+      ships only English to indexers.)
 
 ## Known issues carried over
 
-- [ ] **Hero h1 layout flash on load** (carried from prior memory notes).
-      On page load, the hero question renders correctly for a moment and
-      then snaps to a worse line-wrap. Needs fresh debug.
+- [x] ~~**Hero h1 layout flash on load.**~~ Fixed 2026-06-21. Root cause:
+      `#q h1` used `max-width: 14ch`; `ch` is the width of "0" in the
+      currently-resolved font, so it shifted between the initial paint
+      (generic serif fallback) and the final paint (Iowan/Palatino),
+      re-wrapping the line. Replaced the `ch` cap with `min(720px, 92vw)`
+      so the constraint no longer depends on which serif is loaded.
