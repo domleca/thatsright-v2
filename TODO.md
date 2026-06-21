@@ -8,10 +8,32 @@ Tracked here so they don't get lost across sessions.
 - [x] ~~Wire up the "Request access" email backend.~~ Done in the live `TRW/`
       site — form posts to Formspree (`xojzbled`). Top nav + hero CTA both
       scroll to the single form at the bottom.
-- [ ] **Meta tags & social sharing.** Add Open Graph title/description/image,
-      Twitter card, and proper `<meta name="description">` so the URL previews
-      nicely on iMessage / Slack / WhatsApp. None of that is set right now —
-      the page will share as a blank preview.
+- [x] ~~**Meta tags & social sharing.**~~ Done in commit `bff0bde` (unpushed
+      at end of 2026-06-21 session). Added: per-page meta description +
+      canonical, Open Graph (title/desc/image, locale en_US + fr_FR alternate),
+      Twitter `summary_large_image` card, 3 JSON-LD blocks (Organization w/
+      Dom Leca as founder, WebSite, SoftwareApplication iOS PreOrder). Static
+      assets at repo root: `og.png` (1200×630, cream bg + orb + wordmark),
+      `robots.txt`, `sitemap.xml`, `llms.txt`. `vercel.json` adds `cleanUrls`
+      and 301s the old `Privacy.html` → `/privacy`. Privacy file renamed to
+      lowercase. **Next: push to trigger Vercel deploy.**
+
+## SEO follow-ups (post-deploy)
+
+- [ ] Push `bff0bde` to `origin/main`; verify Vercel deploys and
+      `https://www.thatsright.xyz/og.png` returns 200.
+- [ ] Validate with https://www.opengraph.xyz/ (share-card preview) and
+      https://search.google.com/test/rich-results (JSON-LD).
+- [ ] Submit `https://www.thatsright.xyz/sitemap.xml` to Google Search Console
+      and Bing Webmaster Tools (verify ownership first, DNS TXT record or
+      HTML file).
+- [ ] Flip `availability` in the `SoftwareApplication` JSON-LD from
+      `PreOrder` to `InStock` once the app is publicly available.
+- [ ] **Decide on French SEO.** Today French ships via runtime JS swap and
+      isn't independently indexed by Google. Bilingual indexing would need
+      either pre-rendering (small build step — against V2's "no build" rule)
+      or hand-maintained `/fr/` HTML files. Defer until French discovery
+      becomes a real priority.
 - [x] ~~Favicon.~~ Done — generated from iOS AppIcon-1024.png (32×32, 180×180 Apple touch, 192×192 Android).
 
 ## Translation
