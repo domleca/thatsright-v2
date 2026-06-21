@@ -20,6 +20,30 @@
   const FALLBACK = "en";
   const STORE = {lang:"tr-lang", mode:"tr-mode"};
 
+  // Hand-maintained French pages live at /fr (Vercel resolves to /fr/index.html
+  // with trailingSlash:false). Clicking a langpill navigates between / and /fr
+  // so Google can index each independently. Pages under /fr/* force lang=fr at
+  // boot regardless of localStorage, so the URL stays canonical.
+  function langFromPath(){
+    const p = location.pathname;
+    return (p === "/fr" || p.indexOf("/fr/") === 0) ? "fr" : "en";
+  }
+
+  function pathWithoutLocale(){
+    const p = location.pathname;
+    if(p === "/fr") return "/";
+    if(p.indexOf("/fr/") === 0) return p.slice(3); // "/fr/foo" → "/foo"
+    return p;
+  }
+
+  function localizedHref(code){
+    const rest = pathWithoutLocale();
+    const prefix = code === "fr" ? "/fr" : "";
+    const tail = rest === "/" ? "" : rest;
+    const path = (prefix + tail) || "/";
+    return path + location.search + location.hash;
+  }
+
   let COPY = null;
   let lang = FALLBACK;
   let mode = null;
@@ -59,8 +83,15 @@
   }
 
   function setLang(code){
-    lang = COPY && COPY[code] ? code : FALLBACK;
-    try{ localStorage.setItem(STORE.lang, lang); }catch(e){}
+    // If the click changes language, navigate to the localized URL instead of
+    // swapping in place. This keeps /fr/ canonical for SEO and history.
+    const target = COPY && COPY[code] ? code : FALLBACK;
+    if(target !== lang){
+      try{ localStorage.setItem(STORE.lang, target); }catch(e){}
+      location.href = localizedHref(target);
+      return;
+    }
+    lang = target;
     render();
   }
 
@@ -89,10 +120,13 @@
     });
   }
 
-  // restore saved choice, else detect browser language, else fallback
-  // (only languages in PUBLIC_LANGS are honored)
+  // URL path wins over everything: /fr/* always renders FR, / always renders EN.
+  // localStorage and browser language are only consulted at the root path
+  // when no FR-localized variant exists for the current URL.
   function restoreLang(){
     const isPublic = c => PUBLIC_LANGS.some(l => l.code === c);
+    const fromPath = langFromPath();
+    if(COPY[fromPath] && isPublic(fromPath)){ lang = fromPath; return; }
     let sl = null;
     try{ sl = localStorage.getItem(STORE.lang); }catch(e){}
     if(sl && COPY[sl] && isPublic(sl)){ lang = sl; return; }

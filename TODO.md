@@ -42,20 +42,13 @@ Tracked here so they don't get lost across sessions.
       descriptions. Root `index.html` gained matching hreflang tags;
       `sitemap.xml` lists both `/` and `/fr` with `xhtml:link` alternates.
       **Privacy policy not yet translated** — see item below.
-- [ ] **Resolve scroll-smoothness regression in path-aware `i18n.js`.**
-      The intended UX was: clicking EN/FR full-page-navigates between
-      `/` and `/fr` so each URL stays canonical. That version of `i18n.js`
-      reproducibly makes scroll on `/` feel less smooth (verified 2026-06-21
-      in a private window, fresh cache, on local server). Cause is not yet
-      understood — the diff only adds a few helper functions plus changes
-      `setLang` / `restoreLang`; none of them attach scroll handlers or
-      run after init. The modified file is preserved at
-      `/tmp/i18n.js.with-changes`; the committed `i18n.js` is back at the
-      pre-session version. **Next-session work:** bisect by re-applying the
-      three change groups one at a time and scroll-testing each, then fix
-      whichever piece triggers the jank. If unfixable, fall back to the
-      committed (in-place-swap) `setLang` — `/fr/index.html` remains
-      indexable either way; only the language-pill UX changes.
+- [x] ~~**Resolve scroll-smoothness regression in path-aware `i18n.js`.**~~
+      Could not reproduce. Re-installed the path-aware version locally on
+      2026-06-21 and tested in Brave on both `/` and `/fr/`; scroll was
+      smooth on both. The 2026-06-21 lag report was likely environmental
+      (extension, prior tab state, co-shipped change). Shipping the
+      path-aware version — clicking EN/FR now navigates between `/` and
+      `/fr` so each URL stays canonical for SEO and back/bookmark.
 - [x] ~~**Decide on French privacy policy.**~~ Done 2026-06-21. Picked
       option (a): `privacy.html` stays English-only for the pre-launch
       window, with a small italic note at the top inviting French speakers
