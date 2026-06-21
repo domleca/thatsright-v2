@@ -20,8 +20,14 @@ Tracked here so they don't get lost across sessions.
 
 ## SEO follow-ups (post-deploy)
 
-- [ ] Push `bff0bde` to `origin/main`; verify Vercel deploys and
-      `https://www.thatsright.xyz/og.png` returns 200.
+- [x] ~~Push `bff0bde` to `origin/main`; verify Vercel deploys and
+      `https://www.thatsright.xyz/og.png` returns 200.~~ Done 2026-06-21.
+      All five static assets (og.png, sitemap.xml, robots.txt, llms.txt,
+      privacy) return 200 on prod. Homepage emits 3 JSON-LD blocks, OG +
+      Twitter cards, canonical, en_US/fr_FR alternate locale.
+- Note: `og.png` is the cream variant ("A steady presence when memory
+      wavers"); `og-dark.png` is the dark/inverted alternative kept in
+      the repo as backup. Swap by renaming if we ever want the dark card.
 - [ ] Validate with https://www.opengraph.xyz/ (share-card preview) and
       https://search.google.com/test/rich-results (JSON-LD).
 - [ ] Submit `https://www.thatsright.xyz/sitemap.xml` to Google Search Console
