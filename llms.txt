@@ -1,0 +1,21 @@
+# That's Right
+
+> A voice companion for people living with memory loss,
+> and the families who love them.
+
+That's Right is an iPhone app, currently in private preview. A person
+living with memory loss can speak to it anytime; it answers calmly using
+what their family has shared. Each evening, it tells the family how the
+day really went, so they can steer the AI in the right direction.
+Available in English and French. iPhone only at launch.
+Built by Dom Leca.
+
+## Pages
+- [Home](https://www.thatsright.xyz/): What That's Right is, how it works, the story behind it.
+- [Privacy](https://www.thatsright.xyz/privacy): How data is handled — on-device speech, no analytics, no trackers.
+
+## About
+- Built by Dom Leca.
+- iPhone only at launch. Currently in private preview ("Request access").
+- The product does not invent answers. It speaks only from what the family has written down.
+- No analytics, no advertising, no third-party trackers. Server in Germany (Hetzner).
