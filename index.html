@@ -79,7 +79,7 @@
     --line:#ddd7cd;
     --line-faint:#eae6dd;
     --bubble-them:#faf8f3;
-    --bubble-you:#3c352d;
+    --bubble-you:rgba(183,87,46,.20);
     --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
     --sans: -apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Inter,system-ui,sans-serif;
   }
@@ -305,11 +305,13 @@
   .device .note li{position:relative;padding-left:14px;margin-bottom:8px}
   .device .note li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%;background:var(--terra);opacity:.7}
   .bubbles{display:flex;flex-direction:column;gap:8px;justify-content:flex-end;height:100%}
-  .bub{padding:9px 12px;border-radius:14px;font-size:12.5px;max-width:84%;line-height:1.4}
-  .bub.them{background:var(--bubble-them);color:var(--ink);align-self:flex-start;border-bottom-left-radius:4px;border:1px solid var(--line-faint)}
-  .bub.you{background:var(--bubble-you);color:#f4f2ee;align-self:flex-end;border-bottom-right-radius:4px}
-  .bub .who{display:block;font-size:10px;color:var(--terra);font-weight:600;margin-bottom:2px}
-  .bub.you .who{color:var(--terra-soft)}
+  .msg{display:flex;flex-direction:column;max-width:84%}
+  .msg.them{align-self:flex-start;align-items:flex-start}
+  .msg.you{align-self:flex-end;align-items:flex-end}
+  .bub{padding:9px 12px;border-radius:14px;font-size:12.5px;line-height:1.4}
+  .msg.them .bub{background:var(--bubble-them);color:var(--ink);border-bottom-left-radius:4px;border:1px solid var(--line-faint)}
+  .msg.you .bub{background:var(--bubble-you);color:var(--ink);border-bottom-right-radius:4px;border:1px solid rgba(183,87,46,.22)}
+  .who{display:block;font-size:10px;color:var(--ink-soft);font-weight:400;margin-top:3px;padding:0 2px}
 
   /* ---------- animation: device orbs + sequences ---------- */
   .orbcanvas{display:block}
@@ -331,8 +333,8 @@
   .device.voice.listening .dtop{color:rgba(244,242,238,.5)}
   #reportNote .nh,#reportNote li{opacity:0;transform:translateY(8px);transition:opacity .55s ease,transform .55s ease}
   #reportNote .nh.seen,#reportNote li.seen{opacity:1;transform:none}
-  #answerBubbles > .note,#answerBubbles > .bub,#answerBubbles > .ack{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
-  #answerBubbles > .note.seen,#answerBubbles > .bub.seen,#answerBubbles > .ack.seen{opacity:1;transform:none}
+  #answerBubbles > .note,#answerBubbles > .msg,#answerBubbles > .ack{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  #answerBubbles > .note.seen,#answerBubbles > .msg.seen,#answerBubbles > .ack.seen{opacity:1;transform:none}
 
   /* chat-style devices anchor their content to the TOP of the screen */
   .device.chat{justify-content:flex-start;overflow:hidden}
@@ -346,7 +348,7 @@
   }
   .chatcol::-webkit-scrollbar{display:none;width:0;height:0}
   .chatcol .note{margin-bottom:2px;flex:none}
-  .chatcol .bub,.chatcol .ack{flex:none}
+  .chatcol .msg,.chatcol .ack{flex:none}
 
   /* ---------- how-it-works: tighter spacing + sequential reveal ---------- */
   #how{min-height:auto;padding:72px 28px}
@@ -439,7 +441,7 @@
     .device .note .nh{font-size:14px}
     .device .note ul{font-size:13.5px}
     .bub{font-size:14px}
-    .bub .who{font-size:11px}
+    .who{font-size:11px}
     /* Form: input and button as two distinct pills (not stacked inside one
        container) so the input reads as a real field, not a placeholder
        floating above a button. */
@@ -465,7 +467,7 @@
   @media(prefers-reduced-motion:reduce){
     .reveal{transition:none;opacity:1;transform:none}
     #how .step .txt,#how .step .visual{opacity:1;transform:none;transition:none}
-    #reportNote .nh,#reportNote li,#answerBubbles > .note,#answerBubbles > .bub,#answerBubbles > .ack{opacity:1;transform:none;transition:none}
+    #reportNote .nh,#reportNote li,#answerBubbles > .note,#answerBubbles > .msg,#answerBubbles > .ack{opacity:1;transform:none;transition:none}
     .orb .ring,.orb .halo,.scrollcue svg{animation:none}
     html{scroll-behavior:auto}
   }
@@ -567,13 +569,13 @@
       <div class="device chat">
         <div class="dtop"><span data-k="dev_family"></span><span>•••</span></div>
         <div class="chatcol" id="answerBubbles">
-          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_q1"></span></div>
-          <div class="bub you"><span class="who" data-k="dev_a1_who"></span><span data-k="dev_a1"></span></div>
-          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_ack1"></span></div>
-          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_q2"></span></div>
-          <div class="bub you"><span class="who" data-k="dev_a2_who"></span><span data-k="dev_a2"></span></div>
-          <div class="bub them"><span class="who" translate="no">That’s Right</span><span data-k="dev_q3"></span></div>
-          <div class="bub you"><span class="who" data-k="dev_a3_who"></span><span data-k="dev_a3"></span></div>
+          <div class="msg them"><div class="bub"><span data-k="dev_q1"></span></div><span class="who" translate="no">That’s Right</span></div>
+          <div class="msg you"><div class="bub"><span data-k="dev_a1"></span></div><span class="who" data-k="dev_a1_who"></span></div>
+          <div class="msg them"><div class="bub"><span data-k="dev_ack1"></span></div><span class="who" translate="no">That’s Right</span></div>
+          <div class="msg them"><div class="bub"><span data-k="dev_q2"></span></div><span class="who" translate="no">That’s Right</span></div>
+          <div class="msg you"><div class="bub"><span data-k="dev_a2"></span></div><span class="who" data-k="dev_a2_who"></span></div>
+          <div class="msg them"><div class="bub"><span data-k="dev_q3"></span></div><span class="who" translate="no">That’s Right</span></div>
+          <div class="msg you"><div class="bub"><span data-k="dev_a3"></span></div><span class="who" data-k="dev_a3_who"></span></div>
         </div>
       </div>
     </div>
@@ -637,7 +639,7 @@ const COPY = {
     dev_q1:"John asked when Carol is coming. Do you know?",
     dev_a1_who:"Marie",
     dev_a1:"Sunday at noon.",
-    dev_ack1:"Got it — I’ll tell him.",
+    dev_ack1:"Got it, I’ll tell him.",
     dev_q2:"He is worried about missing his doctor appointment tomorrow. When is it scheduled?",
     dev_a2_who:"Paul",
     dev_a2:"It’s every Tuesday at 11am.",
@@ -691,7 +693,7 @@ const COPY = {
     dev_q1:"John a demandé quand Carol arrivera. Vous savez ?",
     dev_a1_who:"Marie",
     dev_a1:"Dimanche midi.",
-    dev_ack1:"Bien noté — je le lui dirai.",
+    dev_ack1:"Bien noté, je le lui dirai.",
     dev_q2:"Il s’inquiète de rater son rendez-vous médical demain. À quelle heure est-il prévu ?",
     dev_a2_who:"Paul",
     dev_a2:"C’est tous les mardis à 11h.",
@@ -854,7 +856,7 @@ I18n.init(COPY, { defaultMode: "kindness" });
     var delta = (eRect.bottom - cRect.bottom) + 18;
     if(delta > 0) answersEl.scrollTop += delta;
   }
-  var answers = makeSeq([].slice.call(document.querySelectorAll('#answerBubbles > .note, #answerBubbles > .bub, #answerBubbles > .ack')), {
+  var answers = makeSeq([].slice.call(document.querySelectorAll('#answerBubbles > .note, #answerBubbles > .msg, #answerBubbles > .ack')), {
     stepMin:1400, stepMax:1600, hold:3600, lead:550,
     onReset:function(){ if(answersEl) answersEl.scrollTop = 0; },
     onReveal:followScroll
