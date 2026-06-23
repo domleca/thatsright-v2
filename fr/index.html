@@ -414,8 +414,9 @@
   .form button:hover{filter:brightness(1.06);transform:translateY(-1px)}
   .fineprint{margin-top:20px;font-size:13px;color:var(--ink-faint)}
   #gate .fineprint{font-size:13px}
-  .form-done{margin:0 auto;max-width:42ch;font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--terra)}
-  .form-err{margin-top:16px;font-size:13px;color:var(--terra)}
+  .form[hidden]{display:none}
+  #gate .form-done{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink);max-width:34ch;margin:8px auto 0}
+  #gate .form-err{margin-top:16px;font-size:13px;color:var(--terra)}
 
   /* ---------- footer : giant half-orb ---------- */
   footer{
@@ -620,7 +621,7 @@
       <button type="submit" data-k="gate_btn">Demander un accès</button>
     </form>
     <p class="fineprint reveal" data-k="gate_fine">Pas de newsletter. Pas de marketing. iPhone seulement pour l’instant. Français et anglais.</p>
-    <p class="form-done" id="gateDone" data-k="gate_done" hidden>Merci — vous êtes sur la liste. Je vous écrirai personnellement dès qu’une place se libère.</p>
+    <p class="form-done" id="gateDone" data-k="gate_done" hidden>Merci — vous êtes sur la liste. Je vous écrirai personnellement.</p>
     <p class="form-err" id="gateErr" data-k="gate_err" hidden>Une erreur s’est produite. Réessayez, ou écrivez à domlecadev@gmail.com.</p>
   </div>
 </section>
@@ -689,7 +690,7 @@ const COPY = {
       gate_ph:"Your email address…",
       gate_btn:"Request access",
       gate_fine:"No newsletter. No marketing. iPhone only for now. English and French.",
-      gate_done:"Thank you — you’re on the list. I’ll write to you personally when a spot opens.",
+      gate_done:"Thank you — you’re on the list. I’ll be in touch personally.",
       gate_err:"Something went wrong. Please try again, or email domlecadev@gmail.com."
     }
   },
@@ -745,7 +746,7 @@ const COPY = {
       gate_ph:"Votre adresse e-mail…",
       gate_btn:"Demander un accès",
       gate_fine:"Pas de newsletter. Pas de marketing. iPhone seulement pour l’instant. Français et anglais.",
-      gate_done:"Merci — vous êtes sur la liste. Je vous écrirai personnellement dès qu’une place se libère.",
+      gate_done:"Merci — vous êtes sur la liste. Je vous écrirai personnellement.",
       gate_err:"Une erreur s’est produite. Réessayez, ou écrivez à domlecadev@gmail.com."
     }
   }
