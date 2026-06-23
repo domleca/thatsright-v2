@@ -239,6 +239,23 @@
       ctx.stroke();
     }
 
+    // Pre-fill the wave train so the surface reads as already alive the moment
+    // it appears, instead of waiting a full emit cadence (+ travel time) for the
+    // first ripple to build up — at emitEvery 2.8 that empty-buffer wait was ~5s.
+    // Ages are spaced to match the steady-state distribution this orb settles
+    // into (≈ emitEvery*0.3 of age per emit @60fps), then a fresh ripple is
+    // forced out on the first frame. Also resets lastRipple, so re-entering the
+    // viewport never stalls emission on a stale (large) timestamp.
+    function seedRipples() {
+      ripples.length = 0;
+      const ageDelta = Math.min(0.5, Math.max(0.18, emitEvery * 0.3));
+      const ampEmit = 1 + (target || 0) * 5.5;
+      for (let age = ageDelta; age < 1; age += ageDelta) {
+        ripples.push({ age, tEmit: 0, ampEmit });
+      }
+      lastRipple = -1e9; // force a fresh ripple to emit on the very first frame
+    }
+
     // ── loop ─────────────────────────────────────────────────────────────
     let raf = null, t0 = null, running = false;
     function frame(now) {
@@ -262,7 +279,7 @@
       draw(t);
       raf = requestAnimationFrame(frame);
     }
-    function start() { if (running || reduceMotion) return; running = true; t0 = null; raf = requestAnimationFrame(frame); }
+    function start() { if (running || reduceMotion) return; running = true; t0 = null; seedRipples(); raf = requestAnimationFrame(frame); }
     function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
 
     resize();
@@ -272,11 +289,18 @@
     } else {
       start();
       // Looping animations should pause when off-screen (saves CPU/GPU).
+      // Watch the orb's *visible* box, not the canvas: the hero canvas is drawn
+      // 2× its visible size (so ripples can overflow the orb), which means the
+      // canvas top edge enters the viewport ~half an orb-height before the orb
+      // itself. Observing the parent (the visible stage) starts the now-instant
+      // seeded ripples only once the orb's first pixel is actually on screen,
+      // so they no longer appear above the orb during the scroll-in reveal.
       if ('IntersectionObserver' in window) {
+        const visTarget = canvas.parentElement || canvas;
         const vio = new IntersectionObserver((ents) => {
           ents.forEach((e) => { e.isIntersecting ? start() : stop(); });
         }, { threshold: 0 });
-        vio.observe(canvas);
+        vio.observe(visTarget);
       }
     }
 
