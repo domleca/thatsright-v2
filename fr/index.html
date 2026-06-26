@@ -367,6 +367,86 @@
   #how .step .visual{opacity:0;transform:translateY(38px) scale(.96);transition:opacity .95s cubic-bezier(.22,1,.36,1) .12s,transform .95s cubic-bezier(.22,1,.36,1) .12s}
   #how .step.in .txt,#how .step.in .visual{opacity:1;transform:none}
 
+  /* ---------- beat 3.5 : reminders (split) ---------- */
+  /* Reuses the site's .device / .device.chat / .device.voice / .msg / .bub
+     primitives so the phones and chat bubbles match the rest of the page.
+     Everything novel here (the split layout + the two-act voice device) is
+     scoped under #reminders so it can't leak into #how. */
+  #reminders{max-width:900px;min-height:auto;padding:72px 28px}
+  #reminders .eyebrow{margin-bottom:18px}
+  #reminders .rem-h{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,40px);
+    line-height:1.18;letter-spacing:-0.01em;max-width:none}
+  #reminders .rem-h em{font-style:italic;color:var(--terra)}
+  #reminders .rem-lead{color:var(--ink-soft);font-size:clamp(16px,2vw,18px);line-height:1.6;
+    max-width:52ch;margin-top:18px}
+
+  #reminders .split{display:grid;grid-template-columns:1fr 1px 1fr;gap:44px;margin-top:52px;align-items:start}
+  #reminders .vline{background:var(--line);align-self:stretch;width:1px}
+  #reminders .half{display:flex;flex-direction:column;gap:18px}
+  #reminders .half .copy{display:flex;flex-direction:column;gap:8px;min-height:96px}
+  #reminders .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:600}
+  #reminders .panel-h{font-family:var(--serif);font-weight:400;font-size:clamp(20px,2.4vw,24px);
+    line-height:1.3;letter-spacing:-0.01em}
+  #reminders .panel-p{color:var(--ink-soft);font-size:15.5px;line-height:1.62;max-width:34ch}
+  #reminders .device{margin-top:4px}
+
+  /* voice device — two acts: notifications arrive, then the orb replies aloud */
+  #reminders .device.voice{align-items:stretch;justify-content:flex-start;text-align:center}
+  #reminders .device.voice .dtop{margin-bottom:0;flex:none}
+  #reminders .vbody{position:relative;flex:1;margin-top:14px}
+  /* Notification stack — inspired by Sonner (emilkowalski/sonner), reimplemented
+     in vanilla CSS so the site stays dependency-free. Toasts are bottom-anchored
+     and overlap; the newest is the full-size "front" toast, older ones recede
+     (scaled back + lifted + faded). On expand they spread to full size with a
+     gap so every reminder is readable. --before = how many toasts sit in front. */
+  #reminders .notif-stage{position:absolute;inset:0;transition:opacity .35s ease}
+  #reminders .notif{
+    position:absolute;left:0;right:0;bottom:0;
+    display:flex;gap:9px;align-items:flex-start;text-align:left;padding:9px 11px;
+    border-radius:13px;background:var(--bubble-them);border:1px solid var(--line-faint);
+    opacity:0;transform:translateY(120%);
+    transition:transform .5s cubic-bezier(.21,1.02,.73,1),opacity .5s ease,
+               box-shadow .25s ease,border-color .25s ease,background .25s ease;
+    will-change:transform,opacity}
+  /* collapsed Sonner stack: newest is the full-size front; the older toast
+     recedes (scaled back + lifted + faded) and STAYS behind — no unfolding. */
+  #reminders .notif[data-mounted="true"]{opacity:1}
+  #reminders .notif[data-mounted="true"][data-front="true"]{
+    transform:translateY(0) scale(1);z-index:50;
+    box-shadow:0 12px 26px -16px rgba(46,46,46,.5)}
+  #reminders .notif[data-mounted="true"][data-front="false"]{
+    transform:translateY(calc(var(--before) * -14px)) scale(calc(1 - var(--before) * 0.05));
+    opacity:.6;z-index:calc(50 - var(--before))}
+  #reminders .notif.active{border-color:var(--terra);background:#fff;
+    box-shadow:0 12px 26px -14px rgba(183,87,46,.7)}
+  /* reset frame must not animate (avoids a slide-down flash when the loop restarts) */
+  #reminders .notif-stage[data-resetting] .notif{transition:none}
+
+  /* chat thread plays once when scrolled into view — bubbles rise in, then stay */
+  #reminders .chatcol .msg{opacity:0;transform:translateY(10px);
+    transition:opacity .5s ease,transform .5s ease}
+  #reminders .chatcol .msg.seen{opacity:1;transform:none}
+  #reminders .notif .dot{width:9px;height:9px;border:1.5px solid var(--terra);border-radius:50%;margin-top:3px;flex:none}
+  #reminders .notif.active .dot{background:var(--terra)}
+  #reminders .notif .nt{font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.3}
+  #reminders .notif .nb{font-size:11px;color:var(--ink-faint);margin-top:1px}
+  #reminders .voice-stage{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:4px;opacity:0;transition:opacity .5s ease}
+  #reminders .voice-stage .orbcanvas{width:100%;max-width:150px;aspect-ratio:1/1;margin-bottom:0}
+  #reminders .spoken{font-family:var(--serif);font-size:15px;line-height:1.42;color:var(--ink);
+    max-width:24ch;margin:2px auto 0}
+  #reminders .spoken::before{content:"\201C"}
+  #reminders .spoken::after{content:"\201D"}
+  #reminders .spoken-cap{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);
+    margin-top:10px;display:flex;gap:6px;align-items:center;justify-content:center}
+  #reminders .wave{display:inline-flex;gap:2px;align-items:flex-end;height:9px}
+  #reminders .wave i{width:2px;background:var(--terra);border-radius:1px;animation:remEq 1s ease-in-out infinite}
+  #reminders .wave i:nth-child(1){height:4px;animation-delay:0s}
+  #reminders .wave i:nth-child(2){height:9px;animation-delay:.15s}
+  #reminders .wave i:nth-child(3){height:6px;animation-delay:.3s}
+  #reminders .wave i:nth-child(4){height:8px;animation-delay:.45s}
+  @keyframes remEq{0%,100%{transform:scaleY(.5)}50%{transform:scaleY(1)}}
+
   /* ---------- beat 4 : founder ---------- */
   #why{max-width:640px}
   #why .eyebrow{margin-bottom:28px}
@@ -448,6 +528,10 @@
     .step .txt p{font-size:18px;line-height:1.7}
     .sub{font-size:17.5px}
     .device{max-width:300px;margin:22px auto}
+    #reminders .split{grid-template-columns:1fr;gap:34px;margin-top:38px}
+    #reminders .vline{display:none}
+    #reminders .half{gap:14px}
+    #reminders .half .copy{min-height:0}
     .device .note .nh{font-size:14px}
     .device .note ul{font-size:13.5px}
     .bub{font-size:14px}
@@ -479,6 +563,9 @@
     #how .step .txt,#how .step .visual{opacity:1;transform:none;transition:none}
     #reportNote .nh,#reportNote li,#answerBubbles > .note,#answerBubbles > .msg,#answerBubbles > .ack{opacity:1;transform:none;transition:none}
     .orb .ring,.orb .halo,.scrollcue svg{animation:none}
+    #reminders .wave i{animation:none}
+    #reminders .notif{transition:none}
+    #reminders .chatcol .msg{opacity:1;transform:none;transition:none}
     html{scroll-behavior:auto}
   }
 </style>
@@ -592,6 +679,60 @@
   </div>
 </section>
 
+<!-- BEAT 3.5 — REMINDERS (split) -->
+<section class="beat" id="reminders">
+  <p class="eyebrow reveal" data-k="rem_eyebrow">Le rôle des proches</p>
+  <h2 class="rem-h reveal" data-k="rem_h">Des rappels, en <em>mots simples</em></h2>
+  <p class="rem-lead reveal" data-k="rem_lead">That’s Right transforme ce que vous lui dites en un rappel dit avec douceur.</p>
+
+  <div class="split">
+    <!-- left: a family member sends a message -->
+    <div class="half reveal">
+      <div class="copy">
+        <span class="kicker" data-k="rem_k1">01 — Vous</span>
+        <h3 class="panel-h" data-k="rem_s1_h">Vous envoyez simplement un message…</h3>
+        <p class="panel-p" data-k="rem_s1_p">Dans le chat familial, avec vos propres mots.</p>
+      </div>
+      <div class="device chat">
+        <div class="dtop"><span data-k="dev_family">Famille</span><span>9:41</span></div>
+        <div class="chatcol">
+          <div class="msg you"><div class="bub"><span data-k="rem_chat1">Il voit Jake, son kiné, tous les samedis à 14h. Pense à bien le lui rappeler.</span></div><span class="who" translate="no">Marie</span></div>
+          <div class="msg them"><div class="bub"><span data-k="rem_chat2">14h tous les samedis. C’est noté.</span></div><span class="who" translate="no">That’s Right</span></div>
+          <div class="msg you"><div class="bub"><span data-k="rem_chat3">Rappelle à papa de manger quelque chose tous les jours à l’heure du déjeuner, s’il te plaît</span></div><span class="who" translate="no">Thomas</span></div>
+          <div class="msg them"><div class="bub"><span data-k="rem_chat4">C’est noté. Je crée le rappel.</span></div><span class="who" translate="no">That’s Right</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vline" aria-hidden="true"></div>
+
+    <!-- right: it speaks the reminder aloud, on time -->
+    <div class="half reveal">
+      <div class="copy">
+        <span class="kicker" data-k="rem_k2">02 — Lui</span>
+        <h3 class="panel-h" data-k="rem_s2_h">…pour que votre proche n’oublie jamais</h3>
+        <p class="panel-p" data-k="rem_s2_p">La notification tombe toujours à pic.</p>
+      </div>
+      <div class="device voice">
+        <div class="dtop"><span translate="no">That’s Right</span><span>11:58</span></div>
+        <div class="vbody">
+          <!-- bottom-anchored stack: Lunch sits above Jake in DOM so that, once
+               both have arrived, Lunchtime is the one stacked on top. -->
+          <div class="notif-stage">
+            <div class="notif" data-n="lunch"><span class="dot"></span><div><div class="nt" data-k="rem_n_lunch_t">Déjeuner</div><div class="nb" data-k="rem_n_lunch_b">Chaque jour · 12h00</div></div></div>
+            <div class="notif" data-n="jake"><span class="dot"></span><div><div class="nt" data-k="rem_n_jake_t">Jake — Kiné</div><div class="nb" data-k="rem_n_jake_b">Samedis · 14h00</div></div></div>
+          </div>
+          <div class="voice-stage">
+            <canvas class="orbcanvas dev-orb" id="remOrb" aria-hidden="true"></canvas>
+            <p class="spoken" data-k="rem_spoken">Il est presque midi, John — qu’avez-vous prévu pour votre déjeuner ?</p>
+            <div class="spoken-cap"><span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span> <span data-k="rem_spoken_cap">dit à voix haute</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BEAT 4 — WHY -->
 <section class="beat" id="why">
   <div class="eyebrow reveal" data-k="why_eb">Pourquoi cette application ?</div>
@@ -677,6 +818,25 @@ const COPY = {
       s2_p:"You get a short summary of their day every evening — what they asked, what reassured them. You keep tabs on their real difficulties.",
       s3_h:"Everyone keeps the answers true",
       s3_p:"It learns by your side everything it needs to know to provide the right answers. The whole family can help, from wherever they are.",
+      rem_eyebrow:"How families steer it",
+      rem_h:"Reminders, in <em>plain English</em>",
+      rem_lead:"That’s Right turns what you tell it into a gentle spoken reminder.",
+      rem_k1:"01 — You",
+      rem_s1_h:"You just send a message…",
+      rem_s1_p:"From the family chat in your own words.",
+      rem_chat1:"He sees Jake his physiotherapist every Saturday at 2. Make sure to remind him.",
+      rem_chat2:"2pm every Saturday. Noted.",
+      rem_chat3:"Remind dad to eat something at lunch time every day please",
+      rem_chat4:"Noted. Setting a reminder.",
+      rem_k2:"02 — Them",
+      rem_s2_h:"…so your relative never forgets",
+      rem_s2_p:"It speaks up at the right moment.",
+      rem_n_jake_t:"Jake — Physio",
+      rem_n_jake_b:"Saturdays · 14:00",
+      rem_n_lunch_t:"Lunchtime",
+      rem_n_lunch_b:"Every day · 12:00",
+      rem_spoken:"It’s almost noon, John — what are you having for lunch today?",
+      rem_spoken_cap:"spoken aloud",
       why_eyebrow:"Why this exists",
       why_eb:"Why this exists",
       why_h:"For my father",
@@ -733,6 +893,25 @@ const COPY = {
       s2_p:"Chaque soir, vous recevez un résumé de la journée de votre proche : les questions posées, ce qui l’a rassuré, les difficultés auxquelles il fait face en votre absence.",
       s3_h:"Des réponses toujours plus justes",
       s3_p:"L’application apprend de vous et de vos proches, où qu’ils se trouvent. Chacun peut contribuer à affiner les réponses, au fil des jours.",
+      rem_eyebrow:"Le rôle des proches",
+      rem_h:"Des rappels, en <em>mots simples</em>",
+      rem_lead:"That’s Right transforme ce que vous lui dites en un rappel dit avec douceur.",
+      rem_k1:"01 — Vous",
+      rem_s1_h:"Vous envoyez simplement un message…",
+      rem_s1_p:"Dans le chat familial, avec vos propres mots.",
+      rem_chat1:"Il voit Jake, son kiné, tous les samedis à 14h. Pense à bien le lui rappeler.",
+      rem_chat2:"14h tous les samedis. C’est noté.",
+      rem_chat3:"Rappelle à papa de manger quelque chose tous les jours à l’heure du déjeuner, s’il te plaît",
+      rem_chat4:"C’est noté. Je crée le rappel.",
+      rem_k2:"02 — Lui",
+      rem_s2_h:"…pour que votre proche n’oublie jamais",
+      rem_s2_p:"La notification tombe toujours à pic.",
+      rem_n_jake_t:"Jake — Kiné",
+      rem_n_jake_b:"Samedis · 14h00",
+      rem_n_lunch_t:"Déjeuner",
+      rem_n_lunch_b:"Chaque jour · 12h00",
+      rem_spoken:"Il est presque midi, John — qu’avez-vous prévu pour votre déjeuner ?",
+      rem_spoken_cap:"dit à voix haute",
       why_eyebrow:"Pourquoi ça existe",
       why_eb:"Pourquoi cette application ?",
       why_h:"Pour mon père",
@@ -921,6 +1100,125 @@ I18n.init(COPY, { defaultMode: "kindness" });
   observe(document.getElementById('answerBubbles'), answers.run, answers.stop);
 
   paintVoice();
+})();
+</script>
+<script>
+// Reminders section — two-act choreography for the voice device:
+//   Act 1 — the two reminders slide in; "Lunchtime" gets tapped/selected.
+//   Act 2 — the notifications fade out, the orb fades in and speaks the
+//           reminder aloud (voice-reactive), then the whole thing loops.
+// Runs only while the device is in view, mirroring the #how voice device.
+(function(){
+  var section = document.getElementById('reminders');
+  if(!section) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var Orb = window.ThatsRightOrb;
+
+  var device    = section.querySelector('.device.voice');
+  var orbCanvas = section.querySelector('#remOrb');
+  var nStage    = section.querySelector('.notif-stage');
+  var vStage    = section.querySelector('.voice-stage');
+  var nJake     = section.querySelector('[data-n="jake"]');
+  var nLunch    = section.querySelector('[data-n="lunch"]');
+  if(!device || !nStage || !vStage || !nJake || !nLunch) return;
+  var api = (orbCanvas && Orb) ? Orb.mount(orbCanvas, {reactivity:'voice', emitEvery:2.8}) : null;
+
+  var timers = [], alive = false;
+  function at(ms, fn){ timers.push(setTimeout(fn, ms)); }
+  function clearAll(){ timers.forEach(clearTimeout); timers = []; }
+  // Sonner-style stack helpers. live = mounted toasts in arrival order; the last
+  // one is the "front". --before = how many toasts are stacked in front of each.
+  var order = [nJake, nLunch];
+  var live = [];
+  function relayout(){
+    live.forEach(function(el, idx){
+      var before = live.length - 1 - idx;
+      el.style.setProperty('--before', before);
+      el.setAttribute('data-front', before === 0 ? 'true' : 'false');
+    });
+  }
+  function reveal(el){
+    if(live.indexOf(el) < 0) live.push(el);
+    el.setAttribute('data-mounted', 'true');
+    relayout();
+  }
+  function reset(){
+    live = [];
+    nStage.setAttribute('data-resetting', '');   // snap, don't animate, the wipe
+    order.forEach(function(el){
+      el.removeAttribute('data-mounted');
+      el.removeAttribute('data-front');
+      el.classList.remove('active');
+      el.style.removeProperty('--before');
+    });
+    void nStage.offsetWidth;                      // flush styles
+    nStage.removeAttribute('data-resetting');
+    nStage.style.opacity = '1';
+    vStage.style.opacity = '0';
+    if(api) api.setVoice(false);
+  }
+  function run(){
+    if(!alive) return;
+    reset();
+    at(500,  function(){ reveal(nJake); });                  // Jake slides up — front toast
+    at(2300, function(){ reveal(nLunch); });                 // long beat, then Lunchtime arrives in front; Jake stays behind
+    at(3100, function(){ nLunch.classList.add('active'); }); // the noon reminder highlights
+    at(3750, function(){ nStage.style.opacity = '0'; });     // notifications fade out
+    at(4000, function(){ vStage.style.opacity = '1'; if(api) api.setVoice(true); }); // orb fades in & speaks
+    at(8000, function(){ if(api) api.setVoice(false); });    // finishes speaking
+    at(9200, run);                                           // loop
+  }
+  function start(){
+    if(alive) return; alive = true;
+    if(reduce){
+      // static, fully-resolved frame: both reminders shown, orb visible
+      reveal(nJake); reveal(nLunch);
+      nLunch.classList.add('active');
+      nStage.style.opacity = '0';
+      vStage.style.opacity = '1';
+      return;
+    }
+    run();
+  }
+  function stop(){ alive = false; clearAll(); reset(); }
+
+  // Chat thread: play the messages in once when it scrolls into view, then
+  // leave them. Unlike the voice device, it does NOT loop — once it's done,
+  // it's done. Mirrors the staggered reveal of the family-answers device above.
+  var chat = section.querySelector('.device.chat');
+  var chatcol = chat ? chat.querySelector('.chatcol') : null;
+  var msgs = chat ? Array.prototype.slice.call(chat.querySelectorAll('.msg')) : [];
+  var chatPlayed = false;
+  // Keep the newest bubble in view: in French the thread is taller than the
+  // device, so without this the last messages would reveal below the fold.
+  function followScroll(el){
+    if(!chatcol || !el) return;
+    var delta = (el.getBoundingClientRect().bottom - chatcol.getBoundingClientRect().bottom) + 14;
+    if(delta > 0) chatcol.scrollTop += delta;
+  }
+  function playChat(){
+    if(chatPlayed) return; chatPlayed = true;
+    if(chatcol) chatcol.scrollTop = 0;
+    if(reduce){
+      msgs.forEach(function(m){ m.classList.add('seen'); });
+      if(chatcol) chatcol.scrollTop = chatcol.scrollHeight;   // show the latest
+      return;
+    }
+    // Pace = midpoint between this section's old 750ms cadence and the
+    // How-it-works thread's ~1500ms (stepMin 1400 / stepMax 1600): ~1125ms.
+    msgs.forEach(function(m, i){
+      setTimeout(function(){ m.classList.add('seen'); followScroll(m); }, 450 + i * 1125);
+    });
+  }
+
+  if(!('IntersectionObserver' in window)){ start(); playChat(); return; }
+  new IntersectionObserver(function(es){
+    es.forEach(function(e){ e.isIntersecting ? start() : stop(); });
+  }, {threshold:0.35}).observe(device);
+  var chatObs = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ playChat(); chatObs.disconnect(); } });
+  }, {threshold:0.3});
+  if(chat) chatObs.observe(chat);
 })();
 </script>
 </body>
