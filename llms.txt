@@ -1,10 +1,10 @@
 # That's Right
 
-> A voice companion for people living with memory loss,
+> A calm voice for a parent who asks the same questions,
 > and the families who love them.
 
-That's Right is an iPhone app, currently in private preview. A person
-living with memory loss can speak to it anytime; it answers calmly using
+That's Right is an iPhone app, currently in private preview. A parent
+whose memory is slipping can speak to it anytime; it answers calmly using
 what their family has shared. Each evening, it tells the family how the
 day really went, so they can steer the AI in the right direction.
 Available in English and French. iPhone only at launch.
