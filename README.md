@@ -54,6 +54,10 @@ The language switcher (top right) navigates between `/` (EN) and `/fr`
 for search engines. The `FR_ENABLED` flag at the top of `i18n.js` hides
 the switcher and forces English if you ever need to roll French back.
 
+## Setup guide
+
+The in-app setup guide (EN + FR) lives under `guide/` (built static output) and `guide-src/` (Astro source). To edit guide content or add FAQ items, see [`guide-src/README.md`](guide-src/README.md) — it explains the JSON content files, how to rebuild, and what to commit.
+
 ## Deployment
 
 Auto-deploys to Vercel on push to `main`.

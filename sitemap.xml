@@ -16,4 +16,116 @@
   <url>
     <loc>https://www.thatsright.xyz/privacy</loc>
   </url>
+
+  <!-- Guide — English -->
+  <url>
+    <loc>https://www.thatsright.xyz/guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/faq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/faq"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/install</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/install"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/install"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/install"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/welcome</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/welcome"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/welcome"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/welcome"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/interview</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/interview"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/interview"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/interview"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/sign-in</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/sign-in"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/sign-in"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/sign-in"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/permissions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/permissions"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/permissions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/permissions"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/family-group</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/family-group"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/family-group"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/family-group"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/guide/hand-over</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/hand-over"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/hand-over"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/hand-over"/>
+  </url>
+
+  <!-- Guide — French -->
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/faq</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/faq"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/faq"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/faq"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/install</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/install"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/install"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/install"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/welcome</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/welcome"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/welcome"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/welcome"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/interview</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/interview"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/interview"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/interview"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/sign-in</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/sign-in"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/sign-in"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/sign-in"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/permissions</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/permissions"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/permissions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/permissions"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/family-group</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/family-group"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/family-group"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/family-group"/>
+  </url>
+  <url>
+    <loc>https://www.thatsright.xyz/fr/guide/hand-over</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/hand-over"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/hand-over"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/hand-over"/>
+  </url>
 </urlset>
