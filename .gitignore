@@ -4,3 +4,8 @@ node_modules
 
 # brainstorming visual companion
 .superpowers/
+
+# Astro guide toolchain (source is tracked; built output in guide/ IS committed)
+guide-src/node_modules/
+guide-src/.astro/
+guide-src/dist/
