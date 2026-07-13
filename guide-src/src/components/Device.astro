@@ -1,0 +1,10 @@
+---
+import { t, type Lang } from '../lib/i18n';
+interface Props { lang: Lang; chrome: { en: string; fr: string }; caption?: { en: string; fr: string } }
+const { lang, chrome, caption } = Astro.props;
+---
+<figure class="device">
+  <div class="dtop"><span>{t(chrome, lang)}</span><span>●</span></div>
+  <slot />
+  {caption && <figcaption class="caption">{t(caption, lang)}</figcaption>}
+</figure>

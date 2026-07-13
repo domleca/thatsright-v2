@@ -1,2 +1,6 @@
-import { defineConfig } from 'vitest/config';
-export default defineConfig({ test: { testTimeout: 120000 } });
+/// <reference types="vitest" />
+import { getViteConfig } from 'astro/config';
+
+export default getViteConfig({
+  test: { testTimeout: 120000 },
+});

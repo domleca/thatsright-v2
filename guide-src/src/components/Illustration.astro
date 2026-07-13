@@ -1,0 +1,105 @@
+---
+import { t, type Lang } from '../lib/i18n';
+import Device from './Device.astro';
+
+interface Props { lang: Lang; illustration: any; bare?: boolean }
+const { lang, illustration: ill, bare = false } = Astro.props;
+
+const APP = { en: "That's Right", fr: "That's Right" };
+const TG  = { en: 'Telegram', fr: 'Telegram' };
+---
+
+{ill.kind === 'voice' && !bare && (
+  <div class="visual">
+    <Device lang={lang} chrome={APP} caption={ill.caption}>
+      <div class="orbring"></div>
+      <p class="speaking">{t(ill.speaking, lang)}</p>
+    </Device>
+  </div>
+)}
+{ill.kind === 'voice' && bare && (
+  <Device lang={lang} chrome={APP} caption={ill.caption}>
+    <div class="orbring"></div>
+    <p class="speaking">{t(ill.speaking, lang)}</p>
+  </Device>
+)}
+
+{ill.kind === 'permission' && !bare && (
+  <div class="visual">
+    <Device lang={lang} chrome={APP} caption={ill.caption}>
+      <div class="orbring"></div>
+      <div class="perm">
+        <p class="perm-t">{t(ill.title, lang)}</p>
+        <p class="perm-b">{t(ill.body, lang)}</p>
+        <div class="perm-row">
+          <span class="deny">{t(ill.denyLabel, lang)}</span>
+          <span class="allow">{t(ill.allowLabel, lang)}</span>
+        </div>
+      </div>
+    </Device>
+  </div>
+)}
+{ill.kind === 'permission' && bare && (
+  <Device lang={lang} chrome={APP} caption={ill.caption}>
+    <div class="orbring"></div>
+    <div class="perm">
+      <p class="perm-t">{t(ill.title, lang)}</p>
+      <p class="perm-b">{t(ill.body, lang)}</p>
+      <div class="perm-row">
+        <span class="deny">{t(ill.denyLabel, lang)}</span>
+        <span class="allow">{t(ill.allowLabel, lang)}</span>
+      </div>
+    </div>
+  </Device>
+)}
+
+{ill.kind === 'chat' && !bare && (
+  <div class="visual">
+    <Device lang={lang} chrome={TG} caption={ill.caption}>
+      <div class="bubbles">
+        {ill.bubbles.map((b: any) => (
+          <div class={`msg ${b.from}`}>
+            <div class="bub">{t(b.text, lang)}</div>
+            {b.who && <span class="who">{t(b.who, lang)}</span>}
+          </div>
+        ))}
+      </div>
+    </Device>
+  </div>
+)}
+{ill.kind === 'chat' && bare && (
+  <Device lang={lang} chrome={TG} caption={ill.caption}>
+    <div class="bubbles">
+      {ill.bubbles.map((b: any) => (
+        <div class={`msg ${b.from}`}>
+          <div class="bub">{t(b.text, lang)}</div>
+          {b.who && <span class="who">{t(b.who, lang)}</span>}
+        </div>
+      ))}
+    </div>
+  </Device>
+)}
+
+{ill.kind === 'qr' && !bare && (
+  <div class="visual">
+    <Device lang={lang} chrome={APP} caption={ill.caption}>
+      <p class="dlabel">{t(ill.label, lang)}</p>
+      <p class="dsub">{t(ill.sub, lang)}</p>
+      <div class="qrbox" aria-hidden="true"><!-- static QR glyph, decorative --></div>
+    </Device>
+  </div>
+)}
+{ill.kind === 'qr' && bare && (
+  <Device lang={lang} chrome={APP} caption={ill.caption}>
+    <p class="dlabel">{t(ill.label, lang)}</p>
+    <p class="dsub">{t(ill.sub, lang)}</p>
+    <div class="qrbox" aria-hidden="true"><!-- static QR glyph, decorative --></div>
+  </Device>
+)}
+
+{ill.kind === 'two-phone' && (
+  <div class="visual pair">
+    <Astro.self lang={lang} illustration={ill.left} bare={true} />
+    <Astro.self lang={lang} illustration={ill.right} bare={true} />
+  </div>
+)}
