@@ -98,10 +98,12 @@ design_handoff_thats_right_site/
   },
   "devDependencies": {
     "fuse.js": "^7.0.0",
-    "vitest": "^2.1.0"
+    "vitest": "^3.2.7"
   }
 }
 ```
+
+Note: vitest MUST be v3+. Astro 5.18 requires Vite 6; vitest 2.x bundles Vite 5 and crashes `getViteConfig`-based `.astro` component tests with an opaque "[object Object]" error. (Learned during Task 4.)
 
 `guide-src/astro.config.mjs`:
 ```js
