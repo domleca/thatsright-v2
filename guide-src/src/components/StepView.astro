@@ -1,0 +1,51 @@
+---
+import { t, guidePath, type Lang } from '../lib/i18n';
+import Illustration from './Illustration.astro';
+import StepNav from './StepNav.astro';
+
+interface Props {
+  lang: Lang;
+  step: any;
+  index: number;
+  total: number;
+  nav: { prev?: any; next?: any };
+  faqs: any[];
+}
+
+const { lang, step, index, total, nav, faqs } = Astro.props;
+const d = step.data;
+
+const stepLabel =
+  lang === 'fr'
+    ? `Étape ${index} sur ${total}`
+    : `Step ${index} of ${total}`;
+
+const youShouldSeeLabel =
+  lang === 'fr' ? 'Vous devriez voir' : 'You should see';
+
+const snagFaq = d.snag ? faqs.find((f: any) => f.id === d.snag.faqRef.id) : undefined;
+const snagHref = snagFaq ? guidePath(lang, 'faq') + '#' + snagFaq.id : undefined;
+---
+<section class="stage">
+  <div class="main">
+    <div class="txt">
+      <p class="steplabel">{stepLabel}</p>
+      <h1 class="steph">{t(d.title, lang)}</h1>
+      <ol class="actions">
+        {d.actions.map((a: any) => <li set:html={t(a, lang)} />)}
+      </ol>
+      <div class="check">
+        <b>{youShouldSeeLabel}</b>
+        {t(d.youShouldSee, lang)}
+      </div>
+      {d.snag && snagFaq && (
+        <p class="snag">
+          {t(d.snag.text, lang)}{' '}
+          <a href={snagHref}>{t(snagFaq.question, lang)}</a>
+        </p>
+      )}
+    </div>
+    <Illustration lang={lang} illustration={d.illustration} />
+  </div>
+  <StepNav lang={lang} prev={nav.prev} next={nav.next} />
+</section>
