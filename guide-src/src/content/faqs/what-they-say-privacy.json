@@ -1,0 +1,16 @@
+{
+  "id": "what-they-say-privacy",
+  "question": {
+    "en": "What happens to what my parent tells the app?",
+    "fr": "Que se passe-t-il avec ce que mon parent dit à l'application ?"
+  },
+  "answer": {
+    "en": "Nothing is recorded and no audio ever leaves the iPhone. The assistant listens, understands, and answers, all on the device. What your parent tells the assistant is not stored as a recording. The assistant's knowledge comes from what you and your family confirmed during setup, not from listening in.",
+    "fr": "Rien n'est enregistré et aucun audio ne quitte jamais l'iPhone. L'assistant écoute, comprend et répond, tout sur l'appareil. Ce que votre parent dit à l'assistant n'est pas conservé sous forme d'enregistrement. Les connaissances de l'assistant proviennent de ce que vous et votre famille avez confirmé lors de la configuration, pas d'une surveillance."
+  },
+  "category": "privacy",
+  "keywords": {
+    "en": ["privacy", "recorded", "audio", "stored", "data", "listening"],
+    "fr": ["confidentialité", "enregistré", "audio", "stocké", "données", "écoute"]
+  }
+}

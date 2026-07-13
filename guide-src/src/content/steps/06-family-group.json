@@ -1,0 +1,47 @@
+{
+  "order": 6,
+  "slug": "family-group",
+  "title": { "en": "Set up the family group", "fr": "Créer le groupe familial" },
+  "actions": [
+    { "en": "That's Right creates the family group for you and shows a square code on your parent's phone.",
+      "fr": "That's Right crée le groupe familial pour vous et affiche un code carré sur le téléphone de votre parent." },
+    { "en": "Take out your own phone and open the camera.",
+      "fr": "Prenez votre propre téléphone et ouvrez l'appareil photo." },
+    { "en": "Point it at the code, then tap the link that appears to open Telegram and join the group, already named after your parent.",
+      "fr": "Dirigez-le vers le code, puis touchez le lien qui apparaît pour ouvrir Telegram et rejoindre le groupe, déjà au nom de votre parent." }
+  ],
+  "youShouldSee": {
+    "en": "Telegram opens on your phone and you join the family group.",
+    "fr": "Telegram s'ouvre sur votre téléphone et vous rejoignez le groupe familial."
+  },
+  "snag": {
+    "text": {
+      "en": "Nothing happened when you scanned?",
+      "fr": "Rien ne s'est passé au scan ?"
+    },
+    "faqRef": "code-doesnt-work"
+  },
+  "illustration": {
+    "kind": "two-phone",
+    "left": {
+      "kind": "qr",
+      "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+      "label": { "en": "Almost there.", "fr": "Presque terminé." },
+      "sub": { "en": "Scan this with your own phone's camera", "fr": "Scannez ceci avec l'appareil photo de votre téléphone" }
+    },
+    "right": {
+      "kind": "chat",
+      "caption": { "en": "Your phone", "fr": "Votre téléphone" },
+      "bubbles": [
+        {
+          "from": "them",
+          "who": { "en": "That's Right", "fr": "That's Right" },
+          "text": {
+            "en": "Welcome! Tap to join the family group for your father.",
+            "fr": "Bienvenue ! Touchez pour rejoindre le groupe familial de votre père."
+          }
+        }
+      ]
+    }
+  }
+}

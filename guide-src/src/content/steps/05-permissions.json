@@ -1,0 +1,38 @@
+{
+  "order": 5,
+  "slug": "permissions",
+  "title": { "en": "Allow microphone access", "fr": "Autoriser l'accès au microphone" },
+  "actions": [
+    { "en": "The app shows the screen \"You're almost there\" with three permissions so the assistant can listen and respond.",
+      "fr": "L'application affiche l'écran \"Vous y êtes presque\" avec trois autorisations pour que l'assistant puisse écouter et répondre." },
+    { "en": "Tap Allow all (or tap each row). Microphone and speech recognition are required. Notifications are optional.",
+      "fr": "Touchez Tout autoriser (ou touchez chaque ligne). Le microphone et la reconnaissance vocale sont nécessaires. Les notifications sont facultatives." },
+    { "en": "When iOS asks for the microphone, tap Allow. Nothing is recorded and everything stays on the iPhone.",
+      "fr": "Quand iOS demande l'accès au microphone, touchez Autoriser. Rien n'est enregistré et tout reste sur l'iPhone." }
+  ],
+  "youShouldSee": {
+    "en": "The setup continues once the required permissions are granted.",
+    "fr": "La configuration continue une fois les autorisations nécessaires accordées."
+  },
+  "snag": {
+    "text": {
+      "en": "Microphone blocked or the button is greyed out?",
+      "fr": "Microphone bloqué ou bouton grisé ?"
+    },
+    "faqRef": "mic"
+  },
+  "illustration": {
+    "kind": "permission",
+    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "title": {
+      "en": "\"That's Right\" would like to access the microphone",
+      "fr": "\"That's Right\" souhaite accéder au microphone"
+    },
+    "body": {
+      "en": "To hear their voice. Nothing is recorded, everything stays on the iPhone.",
+      "fr": "Pour entendre sa voix. Rien n'est enregistré, tout reste sur l'iPhone."
+    },
+    "allowLabel": { "en": "Allow", "fr": "Autoriser" },
+    "denyLabel": { "en": "Don't Allow", "fr": "Refuser" }
+  }
+}

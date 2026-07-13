@@ -1,0 +1,16 @@
+{
+  "id": "add-family-later",
+  "question": {
+    "en": "Can I add my siblings or other family members to the group later?",
+    "fr": "Puis-je ajouter mes frères et sœurs ou d'autres membres de la famille au groupe plus tard ?"
+  },
+  "answer": {
+    "en": "Yes. Once the family group is created in Telegram, you can add anyone at any time by sharing the group link or inviting them directly from the group. Each person who joins can see updates and share memories with the assistant.",
+    "fr": "Oui. Une fois le groupe familial créé dans Telegram, vous pouvez y ajouter n'importe qui à tout moment en partageant le lien du groupe ou en les invitant directement depuis le groupe. Chaque personne qui rejoint peut voir les mises à jour et partager des souvenirs avec l'assistant."
+  },
+  "category": "family-group",
+  "keywords": {
+    "en": ["add", "siblings", "family", "group", "later", "invite"],
+    "fr": ["ajouter", "frères", "sœurs", "famille", "groupe", "plus tard", "inviter"]
+  }
+}

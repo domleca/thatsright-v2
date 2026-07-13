@@ -1,0 +1,16 @@
+{
+  "id": "resume-onboarding",
+  "question": {
+    "en": "The app closed in the middle of setup. Do I have to start over?",
+    "fr": "L'application s'est fermée en pleine configuration. Dois-je recommencer ?"
+  },
+  "answer": {
+    "en": "No. Just reopen the app on your parent's iPhone and it picks up exactly where you left off. Nothing is lost.",
+    "fr": "Non. Rouvrez simplement l'application sur l'iPhone de votre parent et elle reprend exactement là où vous vous étiez arrêtés. Rien n'est perdu."
+  },
+  "category": "installing",
+  "keywords": {
+    "en": ["closed", "start over", "resume", "setup", "lost", "restart"],
+    "fr": ["fermée", "recommencer", "reprendre", "configuration", "perdu", "redémarrer"]
+  }
+}

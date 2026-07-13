@@ -1,0 +1,19 @@
+{
+  "order": 2,
+  "slug": "welcome",
+  "title": { "en": "Open the app", "fr": "Ouvrir l'application" },
+  "actions": [
+    { "en": "Read the welcome message: \"A daily presence to support a loved one whose memory is fading. Let's set it up together.\"",
+      "fr": "Lisez le message d'accueil : \"Une présence quotidienne pour accompagner un proche dont la mémoire vacille. Configurons-la ensemble.\"" },
+    { "en": "Tap Get started.", "fr": "Touchez Commencer." }
+  ],
+  "youShouldSee": {
+    "en": "The setup begins and the assistant introduces itself.",
+    "fr": "La configuration commence et l'assistant se présente."
+  },
+  "illustration": {
+    "kind": "voice",
+    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "speaking": { "en": "Welcome", "fr": "Bienvenue" }
+  }
+}

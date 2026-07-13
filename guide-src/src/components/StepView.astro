@@ -47,7 +47,7 @@ const snagHref = snagFaq ? guidePath(lang, 'faq') + '#' + snagFaq.id : undefined
       {d.snag && snagFaq && (
         <p class="snag">
           {t(d.snag.text, lang)}{' '}
-          <a href={snagHref}>{t(snagFaq.question, lang)}</a>
+          <a href={snagHref}>{t(snagFaq.data.question, lang)}</a>
         </p>
       )}
     </div>

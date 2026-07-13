@@ -1,0 +1,46 @@
+{
+  "order": 3,
+  "slug": "interview",
+  "title": { "en": "Tell the assistant about your parent", "fr": "Parler de votre parent à l'assistant" },
+  "actions": [
+    { "en": "The app chats with you in a calm, iMessage-style conversation, asking gentle questions about your parent: their life, the people who matter to them, their daily habits, their health.",
+      "fr": "L'application vous pose des questions tranquilles sur votre parent dans une conversation au style iMessage : sa vie, les personnes qui comptent pour lui, ses habitudes quotidiennes, sa santé." },
+    { "en": "Take your time. The conversation lasts about 15 to 20 minutes, but you can close the app at any point and come back. It remembers exactly where you were.",
+      "fr": "Prenez le temps qu'il faut. La conversation dure environ 15 à 20 minutes, mais vous pouvez fermer l'application à tout moment et y revenir. Elle se souvient exactement où vous en étiez." },
+    { "en": "\"I don't know\" is always a fine answer. The assistant notes it and moves on. You can fill in the detail later from the family group.",
+      "fr": "\"Je ne sais pas\" est toujours une réponse valable. L'assistant le note et continue. Vous pourrez compléter ce détail plus tard depuis le groupe familial." }
+  ],
+  "youShouldSee": {
+    "en": "A conversation screen with the assistant's questions appearing one by one, and a text field for your answers.",
+    "fr": "Un écran de conversation avec les questions de l'assistant qui apparaissent une par une, et un champ de texte pour vos réponses."
+  },
+  "illustration": {
+    "kind": "chat",
+    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "bubbles": [
+      {
+        "from": "them",
+        "who": { "en": "That's Right", "fr": "That's Right" },
+        "text": {
+          "en": "What are some of the things your father has always loved doing?",
+          "fr": "Quelles sont les choses que votre père a toujours aimé faire ?"
+        }
+      },
+      {
+        "from": "you",
+        "text": {
+          "en": "He used to love cooking Sunday dinners for the whole family.",
+          "fr": "Il adorait cuisiner les repas du dimanche pour toute la famille."
+        }
+      },
+      {
+        "from": "them",
+        "who": { "en": "That's Right", "fr": "That's Right" },
+        "text": {
+          "en": "That's a beautiful detail. Did he have a favourite dish he liked to make?",
+          "fr": "C'est un beau souvenir. Avait-il un plat favori qu'il aimait préparer ?"
+        }
+      }
+    ]
+  }
+}

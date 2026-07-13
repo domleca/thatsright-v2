@@ -1,0 +1,20 @@
+{
+  "order": 7,
+  "slug": "hand-over",
+  "title": { "en": "Hand the phone to your parent", "fr": "Donner le téléphone à votre parent" },
+  "actions": [
+    { "en": "The app shows \"We're all set!\" Hand the phone to your parent.",
+      "fr": "L'application affiche \"Tout est prêt !\" Donnez le téléphone à votre parent." },
+    { "en": "Your parent can now tap and talk to the assistant anytime.",
+      "fr": "Votre parent peut désormais toucher l'écran et parler à l'assistant à tout moment." }
+  ],
+  "youShouldSee": {
+    "en": "Your parent sees the assistant's main screen, ready to listen.",
+    "fr": "Votre parent voit l'écran principal de l'assistant, prêt à écouter."
+  },
+  "illustration": {
+    "kind": "voice",
+    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "speaking": { "en": "We're all set", "fr": "Tout est prêt" }
+  }
+}

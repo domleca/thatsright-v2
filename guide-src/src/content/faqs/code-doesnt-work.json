@@ -1,0 +1,16 @@
+{
+  "id": "code-doesnt-work",
+  "question": {
+    "en": "I scanned the code but nothing happened.",
+    "fr": "J'ai scanné le code mais rien ne s'est passé."
+  },
+  "answer": {
+    "en": "Make sure you scanned with YOUR own phone's camera, not your parent's. Hold your phone steady about 20 centimetres from the screen and wait a moment. A yellow link should appear, then tap it. If you do not have Telegram installed, your phone will offer to install it first.",
+    "fr": "Assurez-vous d'avoir scanné avec l'appareil photo de VOTRE propre téléphone, pas celui de votre parent. Tenez votre téléphone stable à environ 20 centimètres de l'écran et attendez un instant. Un lien jaune devrait apparaître, puis touchez-le. Si vous n'avez pas Telegram installé, votre téléphone vous proposera de l'installer d'abord."
+  },
+  "category": "family-group",
+  "keywords": {
+    "en": ["scan", "qr", "code", "nothing", "camera", "telegram", "link"],
+    "fr": ["scanner", "qr", "code", "rien", "appareil photo", "telegram", "lien"]
+  }
+}

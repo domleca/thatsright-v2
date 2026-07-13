@@ -1,0 +1,16 @@
+{
+  "id": "who-needs-telegram",
+  "question": {
+    "en": "Does my parent need Telegram too?",
+    "fr": "Mon parent a-t-il besoin de Telegram aussi ?"
+  },
+  "answer": {
+    "en": "No. Telegram is only on your phone, for the family group. Your parent never opens it. The assistant lives entirely on their iPhone and your parent talks to it by tapping the screen, not through any chat app.",
+    "fr": "Non. Telegram n'est que sur votre téléphone, pour le groupe familial. Votre parent ne l'ouvre jamais. L'assistant est entièrement sur l'iPhone de votre parent et votre parent lui parle en touchant l'écran, pas via une application de messagerie."
+  },
+  "category": "family-group",
+  "keywords": {
+    "en": ["telegram", "parent", "family group", "chat app"],
+    "fr": ["telegram", "parent", "groupe familial", "application de messagerie"]
+  }
+}
