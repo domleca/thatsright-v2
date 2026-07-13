@@ -49,16 +49,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/interview"/>
   </url>
   <url>
-    <loc>https://www.thatsright.xyz/guide/sign-in</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/sign-in"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/sign-in"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/sign-in"/>
-  </url>
-  <url>
-    <loc>https://www.thatsright.xyz/guide/permissions</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/permissions"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/permissions"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/permissions"/>
+    <loc>https://www.thatsright.xyz/guide/notifications</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/notifications"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/notifications"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/notifications"/>
   </url>
   <url>
     <loc>https://www.thatsright.xyz/guide/family-group</loc>
@@ -105,16 +99,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/interview"/>
   </url>
   <url>
-    <loc>https://www.thatsright.xyz/fr/guide/sign-in</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/sign-in"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/sign-in"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/sign-in"/>
-  </url>
-  <url>
-    <loc>https://www.thatsright.xyz/fr/guide/permissions</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/permissions"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/permissions"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/permissions"/>
+    <loc>https://www.thatsright.xyz/fr/guide/notifications</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.thatsright.xyz/guide/notifications"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.thatsright.xyz/fr/guide/notifications"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.thatsright.xyz/guide/notifications"/>
   </url>
   <url>
     <loc>https://www.thatsright.xyz/fr/guide/family-group</loc>

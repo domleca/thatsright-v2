@@ -1,16 +1,16 @@
 {
   "id": "mic",
   "question": {
-    "en": "The microphone is blocked or the button is greyed out. What do I do?",
-    "fr": "Le microphone est bloqué ou le bouton est grisé. Que faire ?"
+    "en": "The microphone is blocked or the assistant doesn't hear me. What do I do?",
+    "fr": "Le microphone est bloqué ou l'assistant ne m'entend pas. Que faire ?"
   },
   "answer": {
-    "en": "The microphone is required for the assistant to hear your parent. If iOS blocked it, go to Settings, find That's Right, and turn Microphone on. If the button in the app is greyed out, it means iOS denied the permission earlier. The same Settings path fixes it.",
-    "fr": "Le microphone est nécessaire pour que l'assistant entende votre parent. Si iOS l'a bloqué, allez dans Réglages, trouvez That's Right et activez Microphone. Si le bouton dans l'application est grisé, iOS a refusé l'autorisation précédemment. Le même chemin dans Réglages règle le problème."
+    "en": "The microphone is how the assistant hears you during setup, and your parent every day after. If iOS blocked it, the app switches to typing: go to Settings, find That's Right, turn Microphone on, then reopen the app. Tapping the circle on the question screen takes you to the same Settings page.",
+    "fr": "C'est par le microphone que l'assistant vous entend pendant la configuration, puis votre parent au quotidien. Si iOS l'a bloqué, l'application passe à l'écrit : allez dans Réglages, trouvez That's Right, activez Microphone, puis rouvrez l'application. Toucher le cercle sur l'écran de question mène à la même page des Réglages."
   },
   "category": "installing",
   "keywords": {
-    "en": ["microphone", "permission", "allow", "access", "blocked", "greyed", "settings"],
-    "fr": ["microphone", "permission", "autoriser", "accès", "bloqué", "grisé", "réglages"]
+    "en": ["microphone", "permission", "allow", "access", "blocked", "typing", "settings"],
+    "fr": ["microphone", "permission", "autoriser", "accès", "bloqué", "écrit", "réglages"]
   }
 }

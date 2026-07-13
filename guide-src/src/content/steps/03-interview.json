@@ -3,45 +3,37 @@
   "slug": "interview",
   "title": { "en": "Tell the assistant about your parent", "fr": "Parler de votre parent à l'assistant" },
   "actions": [
-    { "en": "The app chats with you in a calm, iMessage-style conversation, asking gentle questions about your parent: their life, the people who matter to them, their daily habits, their health.",
-      "fr": "L'application vous pose des questions tranquilles sur votre parent dans une conversation au style iMessage : sa vie, les personnes qui comptent pour lui, ses habitudes quotidiennes, sa santé." },
-    { "en": "Take your time. The conversation lasts about 15 to 20 minutes, but you can close the app at any point and come back. It remembers exactly where you were.",
-      "fr": "Prenez le temps qu'il faut. La conversation dure environ 15 à 20 minutes, mais vous pouvez fermer l'application à tout moment et y revenir. Elle se souvient exactement où vous en étiez." },
-    { "en": "\"I don't know\" is always a fine answer. The assistant notes it and moves on. You can fill in the detail later from the family group.",
-      "fr": "\"Je ne sais pas\" est toujours une réponse valable. L'assistant le note et continue. Vous pourrez compléter ce détail plus tard depuis le groupe familial." }
+    {
+      "en": "The assistant's questions appear on screen, one at a time: your parent's life, the people who matter to them, their daily habits, their health. Answer by speaking, as you would in a conversation. You can also type any answer instead of saying it.",
+      "fr": "Les questions de l'assistant apparaissent à l'écran, une à la fois : la vie de votre parent, les personnes qui comptent pour lui, ses habitudes quotidiennes, sa santé. Répondez à voix haute, comme dans une conversation. Vous pouvez aussi écrire une réponse au lieu de la dire."
+    },
+    {
+      "en": "At the first question, iOS asks for access to the microphone. Tap Allow so the assistant can hear you.",
+      "fr": "À la première question, iOS demande l'accès au microphone. Touchez Autoriser pour que l'assistant puisse vous entendre."
+    },
+    {
+      "en": "Take your time. The conversation lasts about 15 to 20 minutes, but you can close the app at any point and come back. It remembers exactly where you were.",
+      "fr": "Prenez le temps qu'il faut. La conversation dure environ 15 à 20 minutes, mais vous pouvez fermer l'application à tout moment et y revenir. Elle se souvient exactement où vous en étiez."
+    },
+    {
+      "en": "\"I don't know\" is always a fine answer. The assistant notes it and moves on. You can fill in the detail later from the family group.",
+      "fr": "\"Je ne sais pas\" est toujours une réponse valable. L'assistant le note et continue. Vous pourrez compléter ce détail plus tard depuis le groupe familial."
+    }
   ],
   "youShouldSee": {
-    "en": "A conversation screen with the assistant's questions appearing one by one, and a text field for your answers.",
-    "fr": "Un écran de conversation avec les questions de l'assistant qui apparaissent une par une, et un champ de texte pour vos réponses."
+    "en": "One question at a time on a calm screen, a circle that reacts while you speak, and a progress indicator at the top.",
+    "fr": "Une question à la fois sur un écran épuré, un cercle qui réagit quand vous parlez, et une indication de progression en haut."
+  },
+  "snag": {
+    "text": {
+      "en": "Microphone blocked or the assistant doesn't hear you?",
+      "fr": "Microphone bloqué ou l'assistant ne vous entend pas ?"
+    },
+    "faqRef": "mic"
   },
   "illustration": {
-    "kind": "chat",
-    "app": "thatsright",
+    "kind": "voice",
     "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
-    "bubbles": [
-      {
-        "from": "them",
-        "who": { "en": "That's Right", "fr": "That's Right" },
-        "text": {
-          "en": "What are some of the things your father has always loved doing?",
-          "fr": "Quelles sont les choses que votre père a toujours aimé faire ?"
-        }
-      },
-      {
-        "from": "you",
-        "text": {
-          "en": "He used to love cooking Sunday dinners for the whole family.",
-          "fr": "Il adorait cuisiner les repas du dimanche pour toute la famille."
-        }
-      },
-      {
-        "from": "them",
-        "who": { "en": "That's Right", "fr": "That's Right" },
-        "text": {
-          "en": "That's a beautiful detail. Did he have a favourite dish he liked to make?",
-          "fr": "C'est un beau souvenir. Avait-il un plat favori qu'il aimait préparer ?"
-        }
-      }
-    ]
+    "speaking": { "en": "What is their first name?", "fr": "Quel est son prénom ?" }
   }
 }

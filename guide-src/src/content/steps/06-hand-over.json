@@ -1,10 +1,10 @@
 {
-  "order": 7,
+  "order": 6,
   "slug": "hand-over",
   "title": { "en": "Hand the phone to your parent", "fr": "Donner le téléphone à votre parent" },
   "actions": [
-    { "en": "The app shows \"We're all set!\" Hand the phone to your parent.",
-      "fr": "L'application affiche \"Tout est prêt !\" Donnez le téléphone à votre parent." },
+    { "en": "The app shows \"We're all set!\" Tap the button with your parent's name and hand them the phone.",
+      "fr": "L'application affiche \"Tout est prêt !\" Touchez le bouton au prénom de votre parent et donnez-lui le téléphone." },
     { "en": "Your parent can now tap and talk to the assistant anytime.",
       "fr": "Votre parent peut désormais toucher l'écran et parler à l'assistant à tout moment." }
   ],

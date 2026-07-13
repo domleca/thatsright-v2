@@ -1,10 +1,10 @@
 {
-  "order": 6,
+  "order": 4,
   "slug": "family-group",
   "title": { "en": "Set up the family group", "fr": "Créer le groupe familial" },
   "actions": [
-    { "en": "That's Right creates the family group for you and shows a square code on your parent's phone.",
-      "fr": "That's Right crée le groupe familial pour vous et affiche un code carré sur le téléphone de votre parent." },
+    { "en": "At the end of the conversation, the assistant sums up and offers to create the family group. Tap the button to continue: That's Right creates the group for you and shows a square code on your parent's phone.",
+      "fr": "À la fin de la conversation, l'assistant fait le point et vous propose de créer le groupe familial. Touchez le bouton pour continuer : That's Right crée le groupe pour vous et affiche un code carré sur le téléphone de votre parent." },
     { "en": "Take out your own phone and open the camera.",
       "fr": "Prenez votre propre téléphone et ouvrez l'appareil photo." },
     { "en": "Point it at the code, then tap the link that appears to open Telegram and join the group, already named after your parent.",
@@ -26,7 +26,7 @@
     "left": {
       "kind": "qr",
       "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
-      "label": { "en": "Almost there.", "fr": "Presque terminé." },
+      "label": { "en": "Your family group is ready", "fr": "Votre groupe est prêt" },
       "sub": { "en": "Scan this with your own phone's camera", "fr": "Scannez ceci avec l'appareil photo de votre téléphone" }
     },
     "right": {
