@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import Faq from '../../components/Faq.astro';
+
+const lang = 'en';
+const faqs = await getCollection('faqs');
+---
+<GuideLayout lang={lang} title="FAQ — That's Right Guide" path="faq">
+  <section>
+    <p class="eyebrow">FAQ</p>
+    <h1 style="font-family:var(--serif);font-weight:400;font-size:32px;margin-bottom:28px;letter-spacing:-0.01em;">Common questions</h1>
+    <Faq
+      lang={lang}
+      faqs={faqs}
+      labels={{
+        search: 'Type your question…',
+        all: 'All',
+        categories: {
+          installing: 'Installing',
+          interview: 'The interview',
+          'family-group': 'The family group',
+          'daily-use': 'Daily use',
+          privacy: 'Privacy',
+        },
+      }}
+    />
+  </section>
+</GuideLayout>

@@ -1,0 +1,16 @@
+{
+  "id": "mic",
+  "question": {
+    "en": "Should I allow the microphone?",
+    "fr": "Dois-je autoriser le microphone ?"
+  },
+  "answer": {
+    "en": "Yes, it is how your parent speaks to the app. Without microphone access, the voice companion cannot hear them and will not respond.",
+    "fr": "Oui, c'est ainsi que votre parent parle à l'application. Sans accès au microphone, le compagnon vocal ne peut pas les entendre et ne répondra pas."
+  },
+  "category": "installing",
+  "keywords": {
+    "en": ["microphone", "permission", "allow", "access"],
+    "fr": ["microphone", "permission", "autoriser", "accès"]
+  }
+}

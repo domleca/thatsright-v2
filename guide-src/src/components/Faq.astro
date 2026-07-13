@@ -1,0 +1,58 @@
+---
+import { type Lang } from '../lib/i18n';
+import { buildIndex } from '../lib/search';
+interface Props { lang: Lang; faqs: any[]; labels: { search: string; all: string; categories: Record<string,string> } }
+const { lang, faqs, labels } = Astro.props;
+const index = buildIndex(faqs, lang);
+const cats = [...new Set(index.map((e) => e.category))];
+---
+<div class="search">
+  <input id="faq-q" type="search" placeholder={labels.search} autocomplete="off" />
+</div>
+<div class="chips" id="faq-chips">
+  <button class="chip on" data-cat="all">{labels.all}</button>
+  {cats.map((c) => <button class="chip" data-cat={c}>{labels.categories[c]}</button>)}
+</div>
+<div class="faq" id="faq-list">
+  {index.map((e) => (
+    <div class="qa" id={e.id} data-cat={e.category}>
+      <button class="q" aria-expanded="false">{e.question}<span class="ic">+</span></button>
+      <div class="a" hidden>{e.answer}</div>
+    </div>
+  ))}
+</div>
+<script type="application/json" id="faq-index" set:html={JSON.stringify(index)}></script>
+<script>
+  import { search } from '../lib/search';
+  const index = JSON.parse(document.getElementById('faq-index')!.textContent!);
+  const q = document.getElementById('faq-q') as HTMLInputElement;
+  const list = document.getElementById('faq-list')!;
+  let cat = 'all';
+  function apply() {
+    const ids = new Set(search(index, q.value));
+    for (const el of list.querySelectorAll<HTMLElement>('.qa')) {
+      const okText = ids.has(el.id);
+      const okCat = cat === 'all' || el.dataset.cat === cat;
+      el.hidden = !(okText && okCat);
+    }
+  }
+  q.addEventListener('input', apply);
+  document.getElementById('faq-chips')!.addEventListener('click', (e) => {
+    const b = (e.target as Element).closest('.chip') as HTMLElement | null;
+    if (!b) return;
+    cat = b.dataset.cat!;
+    document.querySelectorAll('.chip').forEach((c) => c.classList.toggle('on', c === b));
+    apply();
+  });
+  list.addEventListener('click', (e) => {
+    const btn = (e.target as Element).closest('.q') as HTMLElement | null;
+    if (!btn) return;
+    const a = btn.nextElementSibling as HTMLElement;
+    const open = a.hidden;
+    a.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.querySelector('.ic')!.textContent = open ? '–' : '+';
+  });
+  // deep-link: open the entry named in the URL hash (snag links)
+  if (location.hash) { const el = document.querySelector(location.hash); if (el) (el.querySelector('.q') as HTMLElement | null)?.click(); }
+</script>

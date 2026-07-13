@@ -423,6 +423,21 @@ ol.actions li em { font-style: italic; }
   transition: border-color .15s, color .15s;
 }
 .chip:hover { border-color: var(--terra); color: var(--terra); }
+.chip.on { border-color: var(--terra); color: var(--terra); background: rgba(183,87,46,.08); }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+
+.search input {
+  flex: 1;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 15px;
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+}
+.search input:focus { border-color: var(--terra); }
 
 .qa { margin-bottom: 28px; }
 .qa dt {
@@ -432,6 +447,30 @@ ol.actions li em { font-style: italic; }
   color: var(--ink);
 }
 .qa dd {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.qa .q {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--line-faint);
+  padding: 12px 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  gap: 12px;
+}
+.qa .q:hover { color: var(--terra); }
+.qa .q .ic { flex-shrink: 0; font-style: normal; color: var(--terra); }
+.qa .a {
+  padding: 12px 0 4px;
   font-size: 16px;
   color: var(--ink-soft);
   line-height: 1.7;
