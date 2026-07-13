@@ -1,0 +1,19 @@
+{
+  "order": 1,
+  "slug": "install",
+  "title": { "en": "Install the app", "fr": "Installer l'application" },
+  "actions": [
+    { "en": "On your parent's iPhone, open the invitation link we sent you.",
+      "fr": "Sur l'iPhone de votre parent, ouvrez le lien d'invitation que nous vous avons envoyé." },
+    { "en": "If TestFlight is not installed yet, the App Store opens so you can get it, then return to the link.",
+      "fr": "Si TestFlight n'est pas encore installé, l'App Store s'ouvre pour vous permettre de l'obtenir, puis revenez au lien." },
+    { "en": "Tap Install, then Open.", "fr": "Touchez Installer, puis Ouvrir." }
+  ],
+  "youShouldSee": { "en": "The That's Right icon on the home screen, and the app opens to a welcome screen.",
+                    "fr": "L'icône That's Right sur l'écran d'accueil, et l'application s'ouvre sur un écran de bienvenue." },
+  "illustration": {
+    "kind": "voice",
+    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "speaking": { "en": "Welcome", "fr": "Bienvenue" }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "no-telegram",
+  "question": { "en": "I don't have Telegram. Do I need it?",
+                "fr": "Je n'ai pas Telegram. En ai-je besoin ?" },
+  "answer": { "en": "You do, but only on your own phone, and only for the family group. Your parent never needs it. When you scan the code, your phone offers to install Telegram if it is missing.",
+              "fr": "Oui, mais seulement sur votre propre téléphone, et uniquement pour le groupe familial. Votre parent n'en a jamais besoin. Quand vous scannez le code, votre téléphone propose d'installer Telegram s'il manque." },
+  "category": "family-group",
+  "keywords": { "en": ["telegram", "install", "family group"],
+                "fr": ["telegram", "installer", "groupe familial"] }
+}

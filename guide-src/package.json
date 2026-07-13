@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/place.mjs",
+    "build": "node scripts/validate.mjs && astro build && node scripts/place.mjs",
     "preview": "astro preview",
     "test": "vitest run"
   },
