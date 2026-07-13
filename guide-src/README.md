@@ -29,13 +29,13 @@ Each file is **bilingual** — it holds both `en` and `fr` fields in a single JS
    ```bash
    npm --prefix guide-src run build
    ```
-   This regenerates `guide/` and `fr/guide/` (static HTML, committed to the repo).
+   This regenerates `guide/`, `fr/guide/`, and `_astro/` (static HTML + shared CSS/JS bundle, all committed to the repo).
 3. Run a quick smoke-check locally:
    ```bash
    python3 -m http.server 8000
    # then open http://localhost:8000/guide/ and http://localhost:8000/fr/guide/
    ```
-4. **Commit the source and the built output together** — same rule as `generate_fr.py` → `fr/index.html`. Never commit only one side.
+4. **Commit the source and the built output together** — `guide/`, `fr/guide/`, and `_astro/` must all be committed alongside the source changes. Never commit only one side.
 
 ## Running tests
 

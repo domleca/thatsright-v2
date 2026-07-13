@@ -12,15 +12,20 @@ const bubble = z.object({
   who: bilingual.optional(),
 });
 
-// Discriminated union: each step's illustration is exactly one kind.
-const illustration = z.discriminatedUnion('kind', [
+// The four single-phone illustration kinds (used directly and as two-phone children).
+const singlePhone = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('voice'), caption: bilingual, speaking: bilingual }),
   z.object({ kind: z.literal('chat'), caption: bilingual, bubbles: z.array(bubble).min(1),
              app: z.enum(['thatsright', 'telegram']).default('telegram') }),
   z.object({ kind: z.literal('permission'), caption: bilingual, title: bilingual, body: bilingual,
              allowLabel: bilingual, denyLabel: bilingual }),
   z.object({ kind: z.literal('qr'), caption: bilingual, label: bilingual, sub: bilingual }),
-  z.object({ kind: z.literal('two-phone'), left: z.any(), right: z.any() }), // validated in Task 4 refinement
+]);
+
+// Discriminated union: each step's illustration is exactly one kind.
+const illustration = z.union([
+  singlePhone,
+  z.object({ kind: z.literal('two-phone'), left: singlePhone, right: singlePhone }),
 ]);
 
 const steps = defineCollection({
