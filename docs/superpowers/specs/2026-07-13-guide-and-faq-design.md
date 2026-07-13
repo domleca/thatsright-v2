@@ -56,8 +56,10 @@ Each step is one screen:
 - **"You should see" box** — `--bubble-them` fill, `--line-faint` border,
   terracotta label in **sentence case** (not caps). Describes the expected
   on-screen result so the caregiver can self-confirm.
-- **Snag line** — "Nothing happened when you scanned? See '…'" linking to the
-  relevant FAQ entry. **Left-aligned with the text inside the "You should see"
+- **Snag line** (optional) — "Nothing happened when you scanned? See '…'"
+  linking to the relevant FAQ entry. **Only shown when a relevant FAQ entry
+  actually exists** for this step; steps without one simply omit the line.
+  When shown, it is **left-aligned with the text inside the "You should see"
   box** so the block reads as one column.
 - **Navigation** — **chevrons left/right of the main view**, each with a small
   subtle label naming the adjacent step. No large Prev/Next buttons.
@@ -95,7 +97,9 @@ repo (Astro content collection), not prose embedded in a page.
 - `title` — { en, fr }
 - `actions` — ordered list of { en, fr } strings
 - `youShouldSee` — { en, fr }
-- `snag` — optional { text: {en, fr}, faqRef: <faq-id> }
+- `snag` — optional { text: {en, fr}, faqRef: <faq-id> }. Omitted entirely when
+  no relevant FAQ entry exists. When present, `faqRef` must resolve to a real
+  FAQ entry or the build fails (see §4, property 2).
 - `illustration` — structured description the renderer turns into drawn phones:
   which device type(s), bubble text, QR vs. permission-popup vs. voice orb, etc.
 
