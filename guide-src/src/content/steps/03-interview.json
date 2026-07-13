@@ -16,6 +16,7 @@
   },
   "illustration": {
     "kind": "chat",
+    "app": "thatsright",
     "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
     "bubbles": [
       {

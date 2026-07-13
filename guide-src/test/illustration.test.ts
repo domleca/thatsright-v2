@@ -22,6 +22,13 @@ describe('Illustration', () => {
     expect(html).toContain('Allow');
   });
 
+  it('renders a chat phone with That\'s Right chrome when app is thatsright', async () => {
+    const html = await render({ lang: 'en',
+      illustration: { kind: 'chat', app: 'thatsright', caption: { en: 'App phone', fr: 'x' },
+        bubbles: [{ from: 'them', text: { en: 'Hello!', fr: 'x' } }] } });
+    expect(html).toContain("That&#39;s Right");
+  });
+
   it('renders two phones at equal height', async () => {
     const html = await render({ lang: 'en',
       illustration: { kind: 'two-phone',

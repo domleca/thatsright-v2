@@ -31,7 +31,7 @@ const TG  = { en: 'Telegram', fr: 'Telegram' };
 )}
 
 {ill.kind === 'chat' && (
-  <Device lang={lang} chrome={TG} caption={ill.caption}>
+  <Device lang={lang} chrome={ill.app === 'thatsright' ? APP : TG} caption={ill.caption}>
     <div class="bubbles">
       {ill.bubbles.map((b: any) => (
         <div class={`msg ${b.from}`}>

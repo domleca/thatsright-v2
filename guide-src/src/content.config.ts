@@ -15,7 +15,8 @@ const bubble = z.object({
 // Discriminated union: each step's illustration is exactly one kind.
 const illustration = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('voice'), caption: bilingual, speaking: bilingual }),
-  z.object({ kind: z.literal('chat'), caption: bilingual, bubbles: z.array(bubble).min(1) }),
+  z.object({ kind: z.literal('chat'), caption: bilingual, bubbles: z.array(bubble).min(1),
+             app: z.enum(['thatsright', 'telegram']).default('telegram') }),
   z.object({ kind: z.literal('permission'), caption: bilingual, title: bilingual, body: bilingual,
              allowLabel: bilingual, denyLabel: bilingual }),
   z.object({ kind: z.literal('qr'), caption: bilingual, label: bilingual, sub: bilingual }),
