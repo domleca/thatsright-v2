@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merci — That’s Right</title>
+  <meta name="robots" content="noindex">
+  <style>
+    :root{
+      --paper:#f4f2ee;--ink:#2e2e2e;--ink-soft:#6b675f;--terra:#b7572e;
+      --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Inter,system-ui,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--paper);color:var(--ink);font-family:var(--sans);
+      min-height:100vh;display:flex;flex-direction:column}
+    .top{padding:22px 28px}
+    .brand{font-weight:600;font-size:17px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+    main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:24px 20px}
+    .done{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.4vw,32px);
+      line-height:1.45;color:var(--ink);max-width:24ch}
+    .home{margin-top:32px;font-size:14px;color:var(--terra);text-decoration:none}
+    .home:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="top"><a class="brand" href="/fr">That’s Right</a></div>
+  <main>
+    <p class="done">Merci, vous êtes sur la liste. Je vous écrirai personnellement.</p>
+    <a class="home" href="/fr">← Revenir au site</a>
+  </main>
+</body>
+</html>

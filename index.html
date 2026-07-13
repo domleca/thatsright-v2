@@ -494,6 +494,19 @@
   .form[hidden]{display:none}
   #gate .form-done{font-family:var(--serif);font-size:21px;line-height:1.5;color:var(--ink);max-width:34ch;margin:8px auto 0}
   #gate .form-err{margin-top:16px;font-size:13px;color:var(--terra)}
+  /* Gate CTA: opens the Tally form in a modal popup. Terra pill, sized up
+     from the nav CTA since this is the page's primary conversion point. */
+  .gate-cta{
+    display:inline-block;text-decoration:none;
+    appearance:none;border:0;cursor:pointer;font-family:var(--sans);
+    font-size:15px;font-weight:500;letter-spacing:.01em;
+    padding:14px 30px;border-radius:999px;
+    background:var(--terra);color:var(--paper);
+    touch-action:manipulation;
+    transition:filter .15s ease, transform .15s ease;
+  }
+  .gate-cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
+  .gate-cta:active{transform:scale(0.96)}
 
   /* ---------- footer : giant half-orb ---------- */
   footer{
@@ -585,7 +598,7 @@
   <div class="controls">
     <a href="#how" class="navLink" id="navHow" data-k="nav_how"></a>
     <div class="lang" id="langSwitch" role="group" aria-label="Language"></div>
-    <a href="#gate" class="btn-cta" id="navCta" data-k="nav_cta"></a>
+    <a href="/apply" class="btn-cta" id="navCta" data-k="nav_cta"></a>
   </div>
 </div>
 
@@ -751,16 +764,8 @@
   <div class="gateinner">
     <h2 class="reveal" data-k="gate_h"></h2>
     <p class="reveal" data-k="gate_p"></p>
-    <form class="form reveal" id="gateForm"
-          action="https://app.loops.so/api/newsletter-form/cmqqm4rz22cs60j1mamgq8659" method="POST">
-      <label class="visually-hidden" for="gateEmail" data-k="gate_ph"></label>
-      <input type="email" id="gateEmail" name="email" autocomplete="email" inputmode="email"
-             required spellcheck="false" data-k-ph="gate_ph">
-      <button type="submit" data-k="gate_btn"></button>
-    </form>
+    <a href="/apply" class="gate-cta reveal" data-k="gate_btn"></a>
     <p class="fineprint reveal" data-k="gate_fine"></p>
-    <p class="form-done" id="gateDone" data-k="gate_done" hidden></p>
-    <p class="form-err" id="gateErr" data-k="gate_err" hidden></p>
   </div>
 </section>
 </main>
@@ -918,7 +923,7 @@ const COPY = {
       priv_h:"Leur vie n’est pas une base de données",
       priv_p:"Aucune publicité. Aucun traqueur. Ce que votre famille partage ne sert qu’à une chose, lui répondre, et si vous partez, tout est effacé. Hébergé en Europe.",
       gate_h:"Si c’est aussi votre histoire",
-      gate_p:"Laissez votre adresse. Je vous écrirai personnellement, rien d’autre.",
+      gate_p:"Laissez votre adresse. Je vous écrirai personnellement.",
       gate_ph:"Votre adresse e-mail…",
       gate_btn:"Demander un accès",
       gate_fine:"Pas de newsletter. Pas de marketing. iPhone seulement pour l’instant. Français et anglais.",
@@ -986,38 +991,6 @@ document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 
 I18n.init(COPY, { defaultMode: "kindness" });
 
-// Gate form → Loops. Submit in the background so the visitor never sees the raw
-// {"success":true} JSON the endpoint returns; swap in a thank-you message instead.
-(function gateForm(){
-  const form = document.getElementById("gateForm");
-  if(!form) return;
-  const btn  = form.querySelector("button[type=submit]");
-  const fine = document.querySelector("#gate .fineprint");
-  const done = document.getElementById("gateDone");
-  const err  = document.getElementById("gateErr");
-  form.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const email = ((form.email && form.email.value) || "").trim();
-    if(!email) return;
-    if(btn) btn.disabled = true;
-    if(err) err.hidden = true;
-    try{
-      const res  = await fetch(form.action, {
-        method: "POST",
-        headers: {"Content-Type": "application/x-www-form-urlencoded"},
-        body: new URLSearchParams({ email })
-      });
-      const data = await res.json().catch(()=>({}));
-      if(!(res.ok && data.success)) throw new Error();
-      form.hidden = true;
-      if(fine) fine.hidden = true;
-      if(done) done.hidden = false;
-    }catch(_){
-      if(btn) btn.disabled = false;
-      if(err) err.hidden = false;
-    }
-  });
-})();
 </script>
 <script src="orb.js"></script>
 <script>
