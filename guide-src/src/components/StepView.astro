@@ -1,7 +1,6 @@
 ---
 import { t, guidePath, type Lang } from '../lib/i18n';
 import Illustration from './Illustration.astro';
-import StepNav from './StepNav.astro';
 
 interface Props {
   lang: Lang;
@@ -14,6 +13,7 @@ interface Props {
 
 const { lang, step, index, total, nav, faqs } = Astro.props;
 const d = step.data;
+const { prev, next } = nav;
 
 const stepLabel =
   lang === 'fr'
@@ -27,6 +27,12 @@ const snagFaq = d.snag ? faqs.find((f: any) => f.id === d.snag.faqRef.id) : unde
 const snagHref = snagFaq ? guidePath(lang, 'faq') + '#' + snagFaq.id : undefined;
 ---
 <section class="stage">
+  {prev
+    ? <a class="chev prev" href={guidePath(lang, prev.slug)}>
+        <span class="arrow" aria-hidden="true">‹</span>
+        <span class="cl">{prev.title[lang]}</span>
+      </a>
+    : <span class="chev spacer"></span>}
   <div class="main">
     <div class="txt">
       <p class="steplabel">{stepLabel}</p>
@@ -47,5 +53,10 @@ const snagHref = snagFaq ? guidePath(lang, 'faq') + '#' + snagFaq.id : undefined
     </div>
     <Illustration lang={lang} illustration={d.illustration} />
   </div>
-  <StepNav lang={lang} prev={nav.prev} next={nav.next} />
+  {next
+    ? <a class="chev next" href={guidePath(lang, next.slug)}>
+        <span class="cl">{next.title[lang]}</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+    : <span class="chev spacer"></span>}
 </section>
