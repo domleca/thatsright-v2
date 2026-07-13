@@ -1,0 +1,396 @@
+/* =====================================================================
+   guide.css — That's Right guide stylesheet
+   Design tokens verbatim from index.html :root; primitives from index.html
+   lines 292-318; guide-specific rules from guide-step-v2.html mockup.
+   ===================================================================== */
+
+/* ---------- tokens -------------------------------------------------- */
+:root {
+  --paper:        #f4f2ee;
+  --paper-deep:   #ece8e1;
+  --ink:          #2e2e2e;
+  --ink-soft:     #6f6a63;
+  --ink-faint:    #a39d94;
+  --terra:        #b7572e;
+  --terra-soft:   #c8825f;
+  --line:         #ddd7cd;
+  --line-faint:   #eae6dd;
+  --bubble-them:  #faf8f3;
+  --bubble-you:   rgba(183,87,46,.20);
+  --serif:        "Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+  --sans:         -apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Inter,system-ui,sans-serif;
+}
+
+/* ---------- reset + base -------------------------------------------- */
+*  { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+/* ---------- topbar -------------------------------------------------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--line-faint);
+  background: var(--paper);
+}
+.topbar .brand {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+}
+.topbar .lang {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.topbar .lang a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.topbar .lang a[aria-current="true"] {
+  color: var(--terra);
+  font-weight: 600;
+}
+
+/* ---------- footer -------------------------------------------------- */
+.foot {
+  padding: 28px 24px;
+  border-top: 1px solid var(--line-faint);
+  font-size: 13px;
+  color: var(--ink-faint);
+  text-align: center;
+}
+.foot a {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+/* ---------- page wrap ----------------------------------------------- */
+main { max-width: 1060px; margin: 0 auto; padding: 48px 20px 80px; }
+
+/* ---------- step chrome --------------------------------------------- */
+.steplabel {
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.3;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- actions list: terracotta numbers, NO circles ------------ */
+ol.actions {
+  list-style: none;
+  counter-reset: act;
+  margin: 0 0 26px;
+}
+ol.actions li {
+  counter-increment: act;
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 14px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+ol.actions li::before {
+  content: counter(act) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--terra);
+  font-family: var(--serif, serif);
+  font-size: 18px;
+}
+ol.actions li em { font-style: italic; }
+
+/* ---------- "you should see" box ------------------------------------ */
+.check {
+  background: var(--bubble-them);
+  border: 1px solid var(--line-faint);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 14px;
+  max-width: 520px;
+}
+/* label in sentence case — CSS must NOT force uppercase */
+.check b {
+  font-weight: 600;
+  color: var(--terra);
+  display: block;
+  margin-bottom: 3px;
+  font-size: 15px;
+}
+
+/* snag: aligns with the text inside .check (16px padding-left = 16px) */
+.snag {
+  font-size: 15px;
+  color: var(--ink-soft);
+  padding-left: 16px;
+}
+.snag a {
+  color: var(--terra);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(183,87,46,.35);
+}
+
+/* ---------- stage layout (chevrons + main) -------------------------- */
+.stage {
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  gap: 18px;
+  align-items: center;
+}
+.chev {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-faint);
+  cursor: pointer;
+  user-select: none;
+  transition: color .2s;
+}
+.chev:hover { color: var(--ink); }
+.chev svg   { width: 30px; height: 30px; }
+.chev .cl   { font-size: 11px; letter-spacing: .08em; line-height: 1.3; text-align: center; }
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 56px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* ---------- visual / device primitives (from index.html 292-318) ---- */
+.visual {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* two-phone layout: both devices same height */
+.visual.pair {
+  align-items: stretch;
+}
+.visual.pair .device {
+  align-self: stretch;
+  height: 100%;
+}
+
+.device {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  padding: 22px 20px;
+  aspect-ratio: 9/17.5;
+  max-width: 215px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 40px -28px rgba(46,46,46,.4);
+}
+.device.small { max-width: 165px; }
+
+.device .dtop {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-bottom: auto;
+}
+
+/* device text labels */
+.device .dlabel {
+  font-family: var(--serif);
+  font-size: 15px;
+  text-align: center;
+  margin: 14px 0 4px;
+}
+.device .dsub {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  text-align: center;
+  line-height: 1.45;
+}
+
+/* QR placeholder box */
+.qrbox {
+  margin: auto auto 0;
+  width: 116px;
+  height: 116px;
+  border: 1.5px solid var(--terra);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+/* voice device orb ring */
+.orbring {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: auto auto 18px;
+  border: 1.5px solid var(--ink);
+  position: relative;
+}
+.orbring::after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-faint);
+  opacity: .5;
+}
+
+.speaking {
+  font-family: var(--serif);
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: auto;
+}
+
+/* chat bubbles — from index.html */
+.bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-end;
+  flex: 1;
+}
+.msg { display: flex; flex-direction: column; max-width: 88%; }
+.msg.them { align-self: flex-start; align-items: flex-start; }
+.msg.you  { align-self: flex-end;   align-items: flex-end; }
+.bub {
+  padding: 9px 12px;
+  border-radius: 14px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.msg.them .bub {
+  background: var(--bubble-them);
+  color: var(--ink);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--line-faint);
+}
+.msg.you .bub {
+  background: var(--bubble-you);
+  color: var(--ink);
+  border-bottom-right-radius: 4px;
+  border: 1px solid rgba(183,87,46,.22);
+}
+.who {
+  display: block;
+  font-size: 10px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  margin-top: 3px;
+  padding: 0 2px;
+}
+
+/* device note widget (index.html 306-310) */
+.device .note .nh {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.device .note .nh::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--terra);
+  border-radius: 2px;
+  display: inline-block;
+}
+.device .note ul {
+  list-style: none;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.device .note li { position: relative; padding-left: 14px; margin-bottom: 8px; }
+.device .note li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 7px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--terra);
+  opacity: .7;
+}
+
+/* caption below device */
+.caption {
+  font-size: 12px;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ---------- FAQ / search chip --------------------------------------- */
+.search { display: flex; gap: 10px; margin-bottom: 24px; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  background: var(--paper);
+  transition: border-color .15s, color .15s;
+}
+.chip:hover { border-color: var(--terra); color: var(--terra); }
+
+.qa { margin-bottom: 28px; }
+.qa dt {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.qa dd {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+/* ---------- responsive ---------------------------------------------- */
+@media (max-width: 760px) {
+  .stage { grid-template-columns: 44px 1fr 44px; gap: 8px; }
+  .main  { grid-template-columns: 1fr; }
+  .visual { order: -1; }
+}

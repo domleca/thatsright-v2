@@ -1,0 +1,30 @@
+---
+import '../styles/guide.css';
+import { guidePath, otherLang, type Lang } from '../lib/i18n';
+
+interface Props { lang: Lang; title: string; path: string }
+const { lang, title, path } = Astro.props;
+const other = otherLang(lang);
+const homeHref = lang === 'fr' ? '/fr' : '/';
+---
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="alternate" hreflang={other} href={guidePath(other, path)} />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href={homeHref}>That's Right</a>
+      <nav class="lang">
+        <a aria-current={lang === 'en' ? 'true' : 'false'} href={guidePath('en', path)}>EN</a>
+        <span>·</span>
+        <a aria-current={lang === 'fr' ? 'true' : 'false'} href={guidePath('fr', path)}>FR</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer class="foot"><a href={homeHref}>That's Right</a></footer>
+  </body>
+</html>
