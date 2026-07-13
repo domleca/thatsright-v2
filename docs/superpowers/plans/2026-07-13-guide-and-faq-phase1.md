@@ -12,7 +12,7 @@
 
 - **Existing pages untouched.** No edits to `index.html`, `fr/index.html`, `privacy.html`, `apply/`, `thanks/`, `orb.js`, `i18n.js`, or `generate_fr.py`. Guide is additive only.
 - **Zero-build deploy preserved.** Vercel runs no build command. Astro output is committed static files. `git push origin main` = deploy, unchanged.
-- **Astro output goes to repo-root `guide/` and `fr/guide/`** so URLs are `/guide/*` and `/fr/guide/*` under `cleanUrls`.
+- **Astro builds into its own `guide-src/dist/` (which `astro build` may safely wipe), then a post-build copy places the two language trees at repo-root `guide/` and `fr/guide/`** so URLs are `/guide/*` and `/fr/guide/*` under `cleanUrls`. Astro must NEVER be pointed at the repo root as its `outDir` — it cleans the output dir on every build and would delete the existing site. No `base` is set (a `base` breaks the `/fr/guide/*` tree); page URLs come from the `src/pages/guide/**` and `src/pages/fr/guide/**` file layout.
 - **Design tokens (copy verbatim into guide CSS):** `--paper:#f4f2ee` `--paper-deep:#ece8e1` `--ink:#2e2e2e` `--ink-soft:#6f6a63` `--ink-faint:#a39d94` `--terra:#b7572e` `--terra-soft:#c8825f` `--line:#ddd7cd` `--line-faint:#eae6dd` `--bubble-them:#faf8f3` `--bubble-you:rgba(183,87,46,.20)`.
 - **Fonts:** serif `"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif` (weight 400); sans `-apple-system,BlinkMacSystemFont,"Helvetica Neue","Segoe UI",Inter,system-ui,sans-serif`.
 - **Copy rules:** no em dashes (comma in a sentence, hyphen for a label); French spacing = a space before `? ! : ;`. Follow the `thatsright-product-voice` skill. Caregiver-addressed voice ("your parent", "your father").
@@ -27,8 +27,9 @@
 ```
 design_handoff_thats_right_site/
 ├── guide-src/                      # Astro project (source + toolchain; NOT served)
-│   ├── package.json
-│   ├── astro.config.mjs            # base:'/guide', outDir to ../guide, build for /fr/guide too
+│   ├── package.json               # build = astro build && node scripts/place.mjs
+│   ├── astro.config.mjs            # NO base; default outDir (dist/); trailingSlash never
+│   ├── scripts/place.mjs          # copies dist/guide -> ../guide, dist/fr/guide -> ../fr/guide
 │   ├── tsconfig.json
 │   ├── vitest.config.ts
 │   ├── src/
@@ -69,12 +70,14 @@ design_handoff_thats_right_site/
 ## Task 1: Scaffold the Astro project, wire output to committed static folders
 
 **Files:**
-- Create: `guide-src/package.json`, `guide-src/astro.config.mjs`, `guide-src/tsconfig.json`
-- Create: `guide-src/src/pages/guide/index.astro` (temporary hello-world)
-- Modify: `.gitignore` (ignore Astro toolchain artifacts, NOT the built output)
+- Create: `guide-src/package.json`, `guide-src/astro.config.mjs`, `guide-src/tsconfig.json`, `guide-src/scripts/place.mjs`
+- Create: `guide-src/src/pages/guide/index.astro` and `guide-src/src/pages/fr/guide/index.astro` (temporary hello-worlds, one per language — proves BOTH trees emit)
+- Modify: `.gitignore` (ignore Astro toolchain artifacts incl. `dist/`, NOT the built output under `guide/` and `fr/guide/`)
 
 **Interfaces:**
-- Produces: `npm --prefix guide-src run build` emits static files into repo-root `guide/`. `npm --prefix guide-src run dev` serves a live preview.
+- Produces: `npm --prefix guide-src run build` builds into `guide-src/dist/` then copies `dist/guide` → repo-root `guide/` and `dist/fr/guide` → repo-root `fr/guide/`. `npm --prefix guide-src run dev` serves a live preview.
+
+**Why no `base` and why copy out:** `astro build` wipes its `outDir` on every run. Pointing `outDir` at the repo root would delete the existing site; pointing it at `../guide` cannot also produce the `/fr/guide/*` tree. So Astro builds into its own `dist/` (safe to wipe), and a tiny post-build script copies the two language subtrees to their repo-root homes. URLs come from the `src/pages/guide/**` + `src/pages/fr/guide/**` layout, not from `base`.
 
 - [ ] **Step 1: Create the Astro project config**
 
@@ -86,7 +89,7 @@ design_handoff_thats_right_site/
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/place.mjs",
     "preview": "astro preview",
     "test": "vitest run"
   },
@@ -104,17 +107,36 @@ design_handoff_thats_right_site/
 ```js
 import { defineConfig } from 'astro/config';
 
-// Astro is a build-time tool only. Output is committed and served statically
-// by Vercel with no build step. base:'/guide' makes all internal asset URLs
-// resolve under /guide/*. outDir writes the built site into the repo-root
-// guide/ folder (one level up from guide-src/).
+// Astro is a BUILD-TIME tool only; its output is committed and served statically
+// by Vercel with no build step. NO `base` is set — page URLs come from the
+// src/pages/guide/** and src/pages/fr/guide/** file layout, which is what lets
+// one build emit BOTH /guide/* and /fr/guide/*. Default outDir is guide-src/dist/,
+// which `astro build` may safely wipe. scripts/place.mjs copies the two language
+// trees out to the repo root. Never point outDir at the repo root: the build
+// cleans it and would delete the existing site.
 export default defineConfig({
   site: 'https://thatsright.xyz',
-  base: '/guide',
-  outDir: '../guide',
   trailingSlash: 'never',
-  build: { format: 'file' }, // emit /guide/faq.html not /guide/faq/index.html
 });
+```
+
+`guide-src/scripts/place.mjs`:
+```js
+// Copy the built language trees from dist/ to their repo-root homes.
+// Run automatically after `astro build` (see package.json build script).
+import { cp, rm } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+
+const root = fileURLToPath(new URL('..', import.meta.url));            // guide-src/
+const pairs = [
+  ['dist/guide',    '../guide'],
+  ['dist/fr/guide', '../fr/guide'],
+];
+for (const [from, to] of pairs) {
+  await rm(new URL(to + '/', `file://${root}`), { recursive: true, force: true });
+  await cp(new URL(from, `file://${root}`), new URL(to, `file://${root}`), { recursive: true });
+}
+console.log('placed guide/ and fr/guide/ from dist/');
 ```
 
 `guide-src/tsconfig.json`:
@@ -122,7 +144,7 @@ export default defineConfig({
 { "extends": "astro/tsconfigs/strict" }
 ```
 
-- [ ] **Step 2: Add a temporary hello-world page**
+- [ ] **Step 2: Add temporary hello-world pages for BOTH languages**
 
 `guide-src/src/pages/guide/index.astro`:
 ```astro
@@ -131,6 +153,16 @@ export default defineConfig({
 <html lang="en">
   <head><meta charset="utf-8" /><title>Guide</title></head>
   <body><h1>Guide build works</h1></body>
+</html>
+```
+
+`guide-src/src/pages/fr/guide/index.astro`:
+```astro
+---
+---
+<html lang="fr">
+  <head><meta charset="utf-8" /><title>Guide</title></head>
+  <body><h1>Le guide fonctionne</h1></body>
 </html>
 ```
 
@@ -143,28 +175,32 @@ Expected: creates `guide-src/node_modules` and `guide-src/package-lock.json`, no
 
 Append to `.gitignore`:
 ```
-# Astro guide toolchain (source is tracked; built output in guide/ IS committed)
+# Astro guide toolchain (source is tracked; built output in guide/ and fr/guide/ IS committed)
 guide-src/node_modules/
 guide-src/.astro/
 guide-src/dist/
 ```
 
-- [ ] **Step 5: Build and verify output lands in repo-root guide/**
+- [ ] **Step 5: Build and verify BOTH trees land at the repo root**
 
 Run: `npm --prefix guide-src run build`
-Expected: build succeeds; `guide/index.html` exists at the repo root and contains "Guide build works".
-Run: `test -f guide/index.html && echo OK`
-Expected: `OK`
+Expected: build succeeds; the copy step prints "placed guide/ and fr/guide/ from dist/".
+Run: `test -f guide/index.html && test -f fr/guide/index.html && echo OK`
+Expected: `OK`. Confirm `guide/index.html` contains "Guide build works" and `fr/guide/index.html` contains "Le guide fonctionne". Confirm NO stray `.mjs` files were copied into `guide/` (only `.html` + assets).
 
-- [ ] **Step 6: Verify Vercel-style static serving locally**
+- [ ] **Step 6: Verify Vercel-style cleanUrls serving for both languages**
 
-Run (from repo root): `python3 -m http.server 8000` then in another shell `curl -s localhost:8000/guide/index.html | grep -c "Guide build works"`
-Expected: `1`. Stop the server.
+The existing `vercel.json` uses `cleanUrls:true, trailingSlash:false`, so `/guide` must resolve to `guide/index.html` and `/fr/guide` to `fr/guide/index.html`. Verify the file layout supports that. From repo root: `python3 -m http.server 8000`, then in another shell:
+```bash
+curl -s localhost:8000/guide/ | grep -c "Guide build works"        # expect 1
+curl -s localhost:8000/fr/guide/ | grep -c "Le guide fonctionne"   # expect 1
+```
+Stop the server. (Note: python's server needs the trailing slash to serve index.html; Vercel's cleanUrls serves `/guide` directly — the file layout is what matters.)
 
 - [ ] **Step 7: Commit**
 
 ```bash
-git add guide-src/package.json guide-src/package-lock.json guide-src/astro.config.mjs guide-src/tsconfig.json guide-src/src/pages/guide/index.astro guide/index.html .gitignore
+git add guide-src/package.json guide-src/package-lock.json guide-src/astro.config.mjs guide-src/scripts/place.mjs guide-src/tsconfig.json guide-src/src/pages/ guide/ fr/guide/ .gitignore
 git commit -m "feat(guide): scaffold Astro build wired to committed static output"
 ```
 
