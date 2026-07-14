@@ -4,8 +4,8 @@
   "title": { "en": "Allow notifications", "fr": "Autoriser les notifications" },
   "actions": [
     {
-      "en": "Back on your parent's phone, the app shows \"Reminders at the right moment\". Notifications let the assistant remind your parent of what matters during the day.",
-      "fr": "De retour sur le téléphone de votre parent, l'application affiche \"Les rappels au bon moment\". Les notifications permettent à l'assistant de rappeler à votre parent ce qui compte dans la journée."
+      "en": "Back on your parent's phone, the app shows \"Reminders at the right moment\". Notifications allow you to remind your parent of what matters during the day.",
+      "fr": "De retour sur le téléphone de votre parent, l'application affiche \"Les rappels au bon moment\". Les notifications vous permettent de rappeler à votre parent ce qui compte dans la journée."
     },
     {
       "en": "Tap Allow notifications, then Allow when iOS asks. This is optional: you can continue without it and turn it on later in Settings.",
