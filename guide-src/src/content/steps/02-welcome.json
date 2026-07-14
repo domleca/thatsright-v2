@@ -8,12 +8,8 @@
       "fr": "Lisez le message d'accueil : \"Une présence quotidienne pour accompagner un proche dont la mémoire vacille. Configurons-la ensemble.\""
     },
     {
-      "en": "Tap Sign in with Apple.",
-      "fr": "Touchez Se connecter avec Apple."
-    },
-    {
-      "en": "Confirm with Face ID or the iPhone passcode.",
-      "fr": "Confirmez avec Face ID ou le code de l'iPhone."
+      "en": "Sign in with your parent's Apple account.",
+      "fr": "Connectez-vous avec le compte Apple de votre parent."
     }
   ],
   "youShouldSee": {

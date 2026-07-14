@@ -3,12 +3,12 @@
   "slug": "family-group",
   "title": { "en": "Set up the family group", "fr": "Créer le groupe familial" },
   "actions": [
-    { "en": "At the end of the conversation, the assistant sums up and offers to create the family group. Tap the button to continue: That's Right creates the group for you and shows a square code on your parent's phone.",
-      "fr": "À la fin de la conversation, l'assistant fait le point et vous propose de créer le groupe familial. Touchez le bouton pour continuer : That's Right crée le groupe pour vous et affiche un code carré sur le téléphone de votre parent." },
-    { "en": "Take out your own phone and open the camera.",
-      "fr": "Prenez votre propre téléphone et ouvrez l'appareil photo." },
-    { "en": "Point it at the code, then tap the link that appears to open Telegram and join the group, already named after your parent.",
-      "fr": "Dirigez-le vers le code, puis touchez le lien qui apparaît pour ouvrir Telegram et rejoindre le groupe, déjà au nom de votre parent." }
+    { "en": "At the end of the conversation, the assistant offers to create the family group. Tap the button to continue.",
+      "fr": "À la fin de la conversation, l'assistant vous propose de créer le groupe familial. Touchez le bouton pour continuer." },
+    { "en": "Take out your own phone and scan the QR code on your parent's phone with your camera.",
+      "fr": "Prenez votre propre téléphone et scannez le QR code sur le téléphone de votre parent avec votre appareil photo." },
+    { "en": "Tap the link that appears to open Telegram and join the group, already named after your parent. It's also a good time to invite other caregivers.",
+      "fr": "Touchez le lien qui apparaît pour ouvrir Telegram et rejoindre le groupe, déjà au nom de votre parent. C'est aussi le bon moment pour inviter d'autres proches." }
   ],
   "youShouldSee": {
     "en": "Telegram opens on your phone and you join the family group.",
