@@ -32,8 +32,13 @@
     "faqRef": "mic"
   },
   "illustration": {
-    "kind": "voice",
+    "kind": "question",
     "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
-    "speaking": { "en": "What is their first name?", "fr": "Quel est son prénom ?" }
+    "progress": "23 %",
+    "q": {
+      "en": "Tell me about a usual day for John. What does he enjoy? What upsets him?",
+      "fr": "Parlez-moi d'une journée type de Jean. Qu'aime-t-il faire ? Qu'est-ce qui le contrarie ?"
+    },
+    "who": { "en": "That's Right", "fr": "That's Right" }
   }
 }

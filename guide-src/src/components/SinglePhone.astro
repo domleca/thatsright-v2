@@ -1,24 +1,64 @@
 ---
 import { t, type Lang } from '../lib/i18n';
 import Device from './Device.astro';
+import qrGlyph from './qr-glyph.svg?raw';
 
 interface Props { lang: Lang; illustration: { kind: string; [key: string]: any } }
 const { lang, illustration: ill } = Astro.props;
 
 const APP = { en: "That's Right", fr: "That's Right" };
 const TG  = { en: 'Telegram', fr: 'Telegram' };
+const APP_ICON = '/apple-touch-icon.png';
 ---
 
 {ill.kind === 'voice' && (
-  <Device lang={lang} chrome={APP} caption={ill.caption}>
-    <div class="orbring"></div>
+  <Device lang={lang} chrome={APP} caption={ill.caption} variant={ill.dark ? 'dark' : undefined}>
+    <div class={ill.live ? 'orbring live' : 'orbring'}></div>
     <p class="speaking">{t(ill.speaking, lang)}</p>
+  </Device>
+)}
+
+{ill.kind === 'welcome' && (
+  <Device lang={lang} chrome={APP} caption={ill.caption} variant="wdev">
+    <div class="wcenter">
+      <div class="orbring"></div>
+      <p class="wtitle">{t(ill.title, lang)}</p>
+    </div>
+    <div class="signin"><span>{t(ill.signIn, lang)}</span></div>
+  </Device>
+)}
+
+{ill.kind === 'question' && (
+  <Device lang={lang} chrome={APP} caption={ill.caption} variant="qdev">
+    <div class="qprog"><span class="g" aria-hidden="true"></span><span>{ill.progress}</span></div>
+    <div class="qbubble"><p class="q">{t(ill.q, lang)}</p></div>
+    <p class="qwho">{t(ill.who, lang)}</p>
+    <span class="qorb" aria-hidden="true"></span>
+  </Device>
+)}
+
+{ill.kind === 'homescreen' && (
+  <Device lang={lang} chrome={APP} caption={ill.caption}>
+    <div class="homescreen">
+      <div class="homegrid">
+        <div class="appslot">
+          <img class="ic" src={APP_ICON} alt="That's Right app icon" />
+          <span class="an">That's Right</span>
+        </div>
+        {Array.from({ length: 11 }).map(() => (
+          <div class="appslot"><span class="ic"></span><span class="lb"></span></div>
+        ))}
+      </div>
+      <div class="homedock">
+        {Array.from({ length: 4 }).map(() => <span class="ic"></span>)}
+      </div>
+    </div>
   </Device>
 )}
 
 {ill.kind === 'permission' && (
   <Device lang={lang} chrome={APP} caption={ill.caption}>
-    <div class="orbring"></div>
+    <div class="orbring thick"></div>
     <div class="perm">
       <p class="perm-t">{t(ill.title, lang)}</p>
       <p class="perm-b">{t(ill.body, lang)}</p>
@@ -47,6 +87,6 @@ const TG  = { en: 'Telegram', fr: 'Telegram' };
   <Device lang={lang} chrome={APP} caption={ill.caption}>
     <p class="dlabel">{t(ill.label, lang)}</p>
     <p class="dsub">{t(ill.sub, lang)}</p>
-    <div class="qrbox" aria-hidden="true"><!-- static QR glyph, decorative --></div>
+    <div class="qrbox" aria-hidden="true" set:html={qrGlyph}></div>
   </Device>
 )}

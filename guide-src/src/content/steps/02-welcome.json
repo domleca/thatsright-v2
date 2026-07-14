@@ -24,8 +24,9 @@
     "faqRef": "sign-in-trouble"
   },
   "illustration": {
-    "kind": "voice",
+    "kind": "welcome",
     "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
-    "speaking": { "en": "Welcome", "fr": "Bienvenue" }
+    "title": { "en": "Welcome", "fr": "Bienvenue" },
+    "signIn": { "en": "Sign in with Apple", "fr": "Se connecter avec Apple" }
   }
 }

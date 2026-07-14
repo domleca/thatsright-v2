@@ -14,8 +14,7 @@
     "fr": "L'icône That's Right apparaît sur l'écran d'accueil et l'application s'ouvre sur un écran de bienvenue."
   },
   "illustration": {
-    "kind": "voice",
-    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
-    "speaking": { "en": "Welcome", "fr": "Bienvenue" }
+    "kind": "homescreen",
+    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" }
   }
 }

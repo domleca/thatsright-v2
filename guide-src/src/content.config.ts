@@ -12,14 +12,24 @@ const bubble = z.object({
   who: bilingual.optional(),
 });
 
-// The four single-phone illustration kinds (used directly and as two-phone children).
+// The single-phone illustration kinds (used directly and as two-phone children).
 const singlePhone = z.discriminatedUnion('kind', [
-  z.object({ kind: z.literal('voice'), caption: bilingual, speaking: bilingual }),
+  // voice: resting orb + a spoken caption. `dark`+`live` render the patient's
+  // dark listening screen with the pulsing terracotta ring (hand-over step).
+  z.object({ kind: z.literal('voice'), caption: bilingual, speaking: bilingual,
+             dark: z.boolean().optional(), live: z.boolean().optional() }),
   z.object({ kind: z.literal('chat'), caption: bilingual, bubbles: z.array(bubble).min(1),
              app: z.enum(['thatsright', 'telegram']).default('telegram') }),
   z.object({ kind: z.literal('permission'), caption: bilingual, title: bilingual, body: bilingual,
              allowLabel: bilingual, denyLabel: bilingual }),
   z.object({ kind: z.literal('qr'), caption: bilingual, label: bilingual, sub: bilingual }),
+  // homescreen: iOS home grid with the app icon in slot 1 (install step).
+  z.object({ kind: z.literal('homescreen'), caption: bilingual }),
+  // welcome: orb + title + Sign-in-with-Apple button (welcome step).
+  z.object({ kind: z.literal('welcome'), caption: bilingual, title: bilingual, signIn: bilingual }),
+  // question: progress pill + question bubble + small orb (interview step).
+  z.object({ kind: z.literal('question'), caption: bilingual, progress: z.string(),
+             q: bilingual, who: bilingual }),
 ]);
 
 // Discriminated union: each step's illustration is exactly one kind.
