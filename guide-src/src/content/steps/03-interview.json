@@ -1,23 +1,23 @@
 {
   "order": 3,
   "slug": "interview",
-  "title": { "en": "Tell the assistant about your parent", "fr": "Parler de votre parent à l'assistant" },
+  "title": { "en": "Tell the assistant about your parent", "fr": "Parler de votre parent à l’assistant" },
   "actions": [
     {
-      "en": "The assistant's questions appear on screen, one at a time: your parent's life, the people who matter to them, their daily habits, their health. Answer by speaking, as you would in a conversation. You can also type any answer instead of saying it.",
-      "fr": "Les questions de l'assistant apparaissent à l'écran, une à la fois : la vie de votre parent, les personnes qui comptent pour lui, ses habitudes quotidiennes, sa santé. Répondez à voix haute, comme dans une conversation. Vous pouvez aussi écrire une réponse au lieu de la dire."
+      "en": "The assistant’s questions appear on screen, one at a time: your parent’s life, the people who matter to them, their daily habits, their health. Answer by speaking, as you would in a conversation. You can also type any answer instead of saying it.",
+      "fr": "Les questions de l’assistant apparaissent à l’écran, une à la fois : la vie de votre parent, les personnes qui comptent pour lui, ses habitudes quotidiennes, sa santé. Répondez à voix haute, comme dans une conversation. Vous pouvez aussi écrire une réponse au lieu de la dire."
     },
     {
-      "en": "At the first question, iOS asks for access to the microphone. Tap Allow so the assistant can hear you.",
-      "fr": "À la première question, iOS demande l'accès au microphone. Touchez Autoriser pour que l'assistant puisse vous entendre."
+      "en": "At the first question, iOS asks for access to the microphone. Tap Allow so the assistant can hear you. Some older iPhones also show a Speech Recognition prompt. Tap Allow there as well.",
+      "fr": "À la première question, iOS demande l’accès au microphone. Touchez Autoriser pour que l’assistant puisse vous entendre. Certains iPhone plus anciens affichent aussi une demande de Reconnaissance vocale. Touchez également Autoriser."
     },
     {
       "en": "Take your time. The conversation lasts about 5 to 10 minutes, but you can close the app at any point and come back. It remembers exactly where you were.",
-      "fr": "Prenez le temps qu'il faut. La conversation dure environ 5 à 10 minutes, mais vous pouvez fermer l'application à tout moment et y revenir. Elle se souvient exactement où vous en étiez."
+      "fr": "Prenez le temps qu’il faut. La conversation dure environ 5 à 10 minutes, mais vous pouvez fermer l’application à tout moment et y revenir. Elle se souvient exactement où vous en étiez."
     },
     {
-      "en": "\"I don't know\" is always a fine answer. The assistant notes it and moves on. You can fill in the detail later from the family group.",
-      "fr": "\"Je ne sais pas\" est toujours une réponse valable. L'assistant le note et continue. Vous pourrez compléter ce détail plus tard depuis le groupe familial."
+      "en": "\"I don’t know\" is always a fine answer. The assistant notes it and moves on. You can fill in the detail later from the family group.",
+      "fr": "\"Je ne sais pas\" est toujours une réponse valable. L’assistant le note et continue. Vous pourrez compléter ce détail plus tard depuis le groupe familial."
     }
   ],
   "youShouldSee": {
@@ -26,19 +26,19 @@
   },
   "snag": {
     "text": {
-      "en": "Microphone blocked or the assistant doesn't hear you?",
-      "fr": "Microphone bloqué ou l'assistant ne vous entend pas ?"
+      "en": "Microphone blocked or the assistant doesn’t hear you?",
+      "fr": "Microphone bloqué ou l’assistant ne vous entend pas ?"
     },
     "faqRef": "mic"
   },
   "illustration": {
     "kind": "question",
-    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "caption": { "en": "Your parent’s phone", "fr": "Le téléphone de votre parent" },
     "progress": "23 %",
     "q": {
       "en": "Tell me about a usual day for John. What does he enjoy? What upsets him?",
-      "fr": "Parlez-moi d'une journée type de Jean. Qu'aime-t-il faire ? Qu'est-ce qui le contrarie ?"
+      "fr": "Parlez-moi d’une journée type de Jean. Qu’aime-t-il faire ? Qu’est-ce qui le contrarie ?"
     },
-    "who": { "en": "That's Right", "fr": "That's Right" }
+    "who": { "en": "That’s Right", "fr": "That’s Right" }
   }
 }

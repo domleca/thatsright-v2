@@ -26,7 +26,7 @@ describe('Illustration', () => {
     const html = await render({ lang: 'en',
       illustration: { kind: 'chat', app: 'thatsright', caption: { en: 'App phone', fr: 'x' },
         bubbles: [{ from: 'them', text: { en: 'Hello!', fr: 'x' } }] } });
-    expect(html).toContain("That&#39;s Right");
+    expect(html).toContain("That’s Right");
   });
 
   it('renders two phones at equal height', async () => {

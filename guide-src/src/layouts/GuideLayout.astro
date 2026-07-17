@@ -17,7 +17,7 @@ const homeHref = lang === 'fr' ? '/fr' : '/';
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href={homeHref}>That's Right</a>
+      <a class="brand" href={homeHref}>That’s Right</a>
       <nav class="lang">
         <a aria-current={lang === 'en' ? 'true' : 'false'} href={guidePath('en', path)}>EN</a>
         <span>·</span>
@@ -25,6 +25,6 @@ const homeHref = lang === 'fr' ? '/fr' : '/';
       </nav>
     </header>
     <main><slot /></main>
-    <footer class="foot"><a href={homeHref}>That's Right</a></footer>
+    <footer class="foot"><a href={homeHref}>That’s Right</a></footer>
   </body>
 </html>

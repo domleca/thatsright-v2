@@ -1,12 +1,12 @@
 {
   "id": "sign-in-trouble",
   "question": {
-    "en": "Sign in with Apple didn't go through. What do I do?",
-    "fr": "La connexion avec Apple n'a pas abouti. Que faire ?"
+    "en": "Sign in with Apple didn’t go through. What do I do?",
+    "fr": "La connexion avec Apple n’a pas abouti. Que faire ?"
   },
   "answer": {
     "en": "Tap Sign in with Apple again. A Face ID or passcode prompt is normal, that is how Apple confirms your identity. If it still does not go through, check that the iPhone is signed into an Apple ID by going to Settings and looking for your name at the top. If no Apple ID is listed, add one and try again.",
-    "fr": "Touchez à nouveau Se connecter avec Apple. Une demande Face ID ou code est normale, c'est ainsi qu'Apple confirme votre identité. Si la connexion n'aboutit toujours pas, vérifiez que l'iPhone est connecté à un identifiant Apple en allant dans Réglages et en cherchant votre nom en haut. S'il n'y a pas d'identifiant Apple, ajoutez-en un puis réessayez."
+    "fr": "Touchez à nouveau Se connecter avec Apple. Une demande Face ID ou code est normale, c’est ainsi qu’Apple confirme votre identité. Si la connexion n’aboutit toujours pas, vérifiez que l’iPhone est connecté à un identifiant Apple en allant dans Réglages et en cherchant votre nom en haut. S’il n’y a pas d’identifiant Apple, ajoutez-en un puis réessayez."
   },
   "category": "installing",
   "keywords": {

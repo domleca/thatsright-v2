@@ -26,6 +26,6 @@ const lang = 'fr';
 const { step, index, total, nav, faqs } = Astro.props;
 const d = step.data;
 ---
-<GuideLayout lang={lang} title={`${t(d.title, lang)} — That's Right`} path={d.slug}>
+<GuideLayout lang={lang} title={`${t(d.title, lang)} — That’s Right`} path={d.slug}>
   <StepView lang={lang} step={step} index={index} total={total} nav={nav} faqs={faqs} />
 </GuideLayout>

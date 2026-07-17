@@ -1,31 +1,31 @@
 {
   "order": 2,
   "slug": "welcome",
-  "title": { "en": "Open the app and sign in", "fr": "Ouvrir l'application et se connecter" },
+  "title": { "en": "Open the app and sign in", "fr": "Ouvrir l’application et se connecter" },
   "actions": [
     {
-      "en": "Read the welcome message: \"A daily presence to support a loved one whose memory is fading. Let's set it up together.\"",
-      "fr": "Lisez le message d'accueil : \"Une présence quotidienne pour accompagner un proche dont la mémoire vacille. Configurons-la ensemble.\""
+      "en": "Read the welcome message: \"A daily presence to support a loved one whose memory is fading. Let’s set it up together.\"",
+      "fr": "Lisez le message d’accueil : \"Une présence quotidienne pour accompagner un proche dont la mémoire vacille. Configurons-la ensemble.\""
     },
     {
-      "en": "Sign in with your parent's Apple account.",
+      "en": "Sign in with your parent’s Apple account.",
       "fr": "Connectez-vous avec le compte Apple de votre parent."
     }
   ],
   "youShouldSee": {
-    "en": "The assistant's first question appears on screen.",
-    "fr": "La première question de l'assistant apparaît à l'écran."
+    "en": "The assistant’s first question appears on screen.",
+    "fr": "La première question de l’assistant apparaît à l’écran."
   },
   "snag": {
     "text": {
-      "en": "Sign in didn't go through?",
-      "fr": "La connexion n'a pas abouti ?"
+      "en": "Sign in didn’t go through?",
+      "fr": "La connexion n’a pas abouti ?"
     },
     "faqRef": "sign-in-trouble"
   },
   "illustration": {
     "kind": "welcome",
-    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "caption": { "en": "Your parent’s phone", "fr": "Le téléphone de votre parent" },
     "title": { "en": "Welcome", "fr": "Bienvenue" },
     "signIn": { "en": "Sign in with Apple", "fr": "Se connecter avec Apple" }
   }

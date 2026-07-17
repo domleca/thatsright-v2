@@ -6,7 +6,7 @@ import qrGlyph from './qr-glyph.svg?raw';
 interface Props { lang: Lang; illustration: { kind: string; [key: string]: any } }
 const { lang, illustration: ill } = Astro.props;
 
-const APP = { en: "That's Right", fr: "That's Right" };
+const APP = { en: "That’s Right", fr: "That’s Right" };
 const TG  = { en: 'Telegram', fr: 'Telegram' };
 const APP_ICON = '/apple-touch-icon.png';
 ---
@@ -42,8 +42,8 @@ const APP_ICON = '/apple-touch-icon.png';
     <div class="homescreen">
       <div class="homegrid">
         <div class="appslot">
-          <img class="ic" src={APP_ICON} alt="That's Right app icon" />
-          <span class="an">That's Right</span>
+          <img class="ic" src={APP_ICON} alt="That’s Right app icon" />
+          <span class="an">That’s Right</span>
         </div>
         {Array.from({ length: 11 }).map(() => (
           <div class="appslot"><span class="ic"></span><span class="lb"></span></div>

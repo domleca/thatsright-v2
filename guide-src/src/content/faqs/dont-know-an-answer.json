@@ -1,16 +1,16 @@
 {
   "id": "dont-know-an-answer",
   "question": {
-    "en": "What if I don't know the answer to one of the assistant's questions?",
-    "fr": "Que faire si je ne connais pas la réponse à l'une des questions de l'assistant ?"
+    "en": "What if I don’t know the answer to one of the assistant’s questions?",
+    "fr": "Que faire si je ne connais pas la réponse à l’une des questions de l’assistant ?"
   },
   "answer": {
-    "en": "\"I don't know\" is always fine. The assistant notes it and moves on. You can come back to it anytime by sending a message in the family group, and the assistant will learn it from there.",
-    "fr": "\"Je ne sais pas\" est toujours une réponse valable. L'assistant le note et continue. Vous pourrez y revenir à tout moment en envoyant un message dans le groupe familial, et l'assistant l'apprendra de là."
+    "en": "\"I don’t know\" is always fine. The assistant notes it and moves on. You can come back to it anytime by sending a message in the family group, and the assistant will learn it from there.",
+    "fr": "\"Je ne sais pas\" est toujours une réponse valable. L’assistant le note et continue. Vous pourrez y revenir à tout moment en envoyant un message dans le groupe familial, et l’assistant l’apprendra de là."
   },
   "category": "interview",
   "keywords": {
-    "en": ["don't know", "answer", "skip", "family group", "later"],
+    "en": ["don’t know", "answer", "skip", "family group", "later"],
     "fr": ["je ne sais pas", "réponse", "passer", "groupe familial", "plus tard"]
   }
 }

@@ -2,11 +2,11 @@
   "id": "speech-recognition",
   "question": {
     "en": "The app asked for \"Speech Recognition\". Is that normal?",
-    "fr": "L'application a demandé la « Reconnaissance vocale ». Est-ce normal ?"
+    "fr": "L’application a demandé la \"Reconnaissance vocale\". Est-ce normal ?"
   },
   "answer": {
-    "en": "Yes, on some iPhones. Older models turn speech into words a different way, so the app asks for Speech Recognition to understand what's said — right on the phone, nothing is sent away. Tap Allow. Newer iPhones handle this on their own and never ask. If you tapped Don't Allow and voice stopped working, go to Settings, find That's Right, turn Speech Recognition on, then reopen the app.",
-    "fr": "Oui, sur certains iPhone. Les modèles plus anciens transforment la parole en texte autrement : l'application demande alors la Reconnaissance vocale pour comprendre ce qui est dit — directement sur le téléphone, rien n'est envoyé ailleurs. Touchez Autoriser. Les iPhone plus récents s'en chargent seuls et ne le demandent jamais. Si vous avez touché Refuser et que la voix ne marche plus, allez dans Réglages, trouvez That's Right, activez Reconnaissance vocale, puis rouvrez l'application."
+    "en": "Yes, on some iPhones. Older models turn speech into words a different way, so the app asks for Speech Recognition to understand what’s said. This happens right on the phone, and nothing is sent away. Tap Allow. Newer iPhones handle this on their own and never ask. If you tapped Don’t Allow and voice stopped working, go to Settings, find That’s Right, turn Speech Recognition on, then reopen the app.",
+    "fr": "Oui, sur certains iPhone. Les modèles plus anciens transforment la parole en texte autrement : l’application demande alors la Reconnaissance vocale pour comprendre ce qui est dit. Tout se passe directement sur le téléphone, rien n’est envoyé ailleurs. Touchez Autoriser. Les iPhone plus récents s’en chargent seuls et ne le demandent jamais. Si vous avez touché Refuser et que la voix ne marche plus, allez dans Réglages, trouvez That’s Right, activez Reconnaissance vocale, puis rouvrez l’application."
   },
   "category": "installing",
   "keywords": {

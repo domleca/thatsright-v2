@@ -4,30 +4,30 @@
   "title": { "en": "Allow notifications", "fr": "Autoriser les notifications" },
   "actions": [
     {
-      "en": "Back on your parent's phone, the app shows \"Reminders at the right moment\". Notifications allow you to remind your parent of what matters during the day.",
-      "fr": "De retour sur le téléphone de votre parent, l'application affiche \"Les rappels au bon moment\". Les notifications vous permettent de rappeler à votre parent ce qui compte dans la journée."
+      "en": "Back on your parent’s phone, the app shows \"Reminders at the right moment\". Notifications allow you to remind your parent of what matters during the day.",
+      "fr": "De retour sur le téléphone de votre parent, l’application affiche \"Les rappels au bon moment\". Les notifications vous permettent de rappeler à votre parent ce qui compte dans la journée."
     },
     {
       "en": "Tap Allow notifications, then Allow when iOS asks. This is optional: you can continue without it and turn it on later in Settings.",
-      "fr": "Touchez Autoriser les notifications, puis Autoriser quand iOS le demande. C'est facultatif : vous pouvez continuer sans et l'activer plus tard dans les Réglages."
+      "fr": "Touchez Autoriser les notifications, puis Autoriser quand iOS le demande. C’est facultatif : vous pouvez continuer sans et l’activer plus tard dans les Réglages."
     }
   ],
   "youShouldSee": {
-    "en": "The final screen appears: \"We're all set!\"",
+    "en": "The final screen appears: \"We’re all set!\"",
     "fr": "Le dernier écran apparaît : \"Tout est prêt\"."
   },
   "illustration": {
     "kind": "permission",
-    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
+    "caption": { "en": "Your parent’s phone", "fr": "Le téléphone de votre parent" },
     "title": {
-      "en": "\"That's Right\" would like to send you notifications",
-      "fr": "\"That's Right\" souhaite vous envoyer des notifications"
+      "en": "\"That’s Right\" would like to send you notifications",
+      "fr": "\"That’s Right\" souhaite vous envoyer des notifications"
     },
     "body": {
       "en": "For reminders at the right moment.",
       "fr": "Pour des rappels au bon moment."
     },
     "allowLabel": { "en": "Allow", "fr": "Autoriser" },
-    "denyLabel": { "en": "Don't Allow", "fr": "Refuser" }
+    "denyLabel": { "en": "Don’t Allow", "fr": "Refuser" }
   }
 }

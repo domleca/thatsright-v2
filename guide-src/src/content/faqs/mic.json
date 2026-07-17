@@ -1,12 +1,12 @@
 {
   "id": "mic",
   "question": {
-    "en": "The microphone is blocked or the assistant doesn't hear me. What do I do?",
-    "fr": "Le microphone est bloqué ou l'assistant ne m'entend pas. Que faire ?"
+    "en": "The microphone is blocked or the assistant doesn’t hear me. What do I do?",
+    "fr": "Le microphone est bloqué ou l’assistant ne m’entend pas. Que faire ?"
   },
   "answer": {
-    "en": "The microphone is how the assistant hears you during setup, and your parent every day after. If iOS blocked it, the app switches to typing: go to Settings, find That's Right, turn Microphone on, then reopen the app. Tapping the circle on the question screen takes you to the same Settings page.",
-    "fr": "C'est par le microphone que l'assistant vous entend pendant la configuration, puis votre parent au quotidien. Si iOS l'a bloqué, l'application passe à l'écrit : allez dans Réglages, trouvez That's Right, activez Microphone, puis rouvrez l'application. Toucher le cercle sur l'écran de question mène à la même page des Réglages."
+    "en": "The microphone is how the assistant hears you during setup, and your parent every day after. If iOS blocked it, the app switches to typing: go to Settings, find That’s Right, turn Microphone on, then reopen the app. Tapping the circle on the question screen takes you to the same Settings page.",
+    "fr": "C’est par le microphone que l’assistant vous entend pendant la configuration, puis votre parent au quotidien. Si iOS l’a bloqué, l’application passe à l’écrit : allez dans Réglages, trouvez That’s Right, activez Microphone, puis rouvrez l’application. Toucher le cercle sur l’écran de question mène à la même page des Réglages."
   },
   "category": "installing",
   "keywords": {

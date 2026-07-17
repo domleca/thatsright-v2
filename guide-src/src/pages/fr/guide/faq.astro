@@ -6,7 +6,7 @@ import Faq from '../../../components/Faq.astro';
 const lang = 'fr';
 const faqs = await getCollection('faqs');
 ---
-<GuideLayout lang={lang} title="FAQ — Guide That's Right" path="faq">
+<GuideLayout lang={lang} title="FAQ — Guide That’s Right" path="faq">
   <section>
     <p class="eyebrow">FAQ</p>
     <h1 style="font-family:var(--serif);font-weight:400;font-size:32px;margin-bottom:28px;letter-spacing:-0.01em;">Questions fréquentes</h1>
@@ -18,7 +18,7 @@ const faqs = await getCollection('faqs');
         all: 'Tout',
         categories: {
           installing: 'Installation',
-          interview: "L'entretien",
+          interview: "L’entretien",
           'family-group': 'Le groupe familial',
           'daily-use': 'Au quotidien',
           privacy: 'Confidentialité',

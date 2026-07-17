@@ -1,20 +1,20 @@
 {
   "order": 1,
   "slug": "install",
-  "title": { "en": "Install the app", "fr": "Installer l'application" },
+  "title": { "en": "Install the app", "fr": "Installer l’application" },
   "actions": [
-    { "en": "On your parent's iPhone, open the TestFlight invitation link we sent you.",
-      "fr": "Sur l'iPhone de votre parent, ouvrez le lien d'invitation TestFlight que nous vous avons envoyé." },
+    { "en": "On your parent’s iPhone, open the TestFlight invitation link we sent you.",
+      "fr": "Sur l’iPhone de votre parent, ouvrez le lien d’invitation TestFlight que nous vous avons envoyé." },
     { "en": "If TestFlight is not already installed, the App Store opens so you can get it. Install TestFlight, then return to the invitation link.",
-      "fr": "Si TestFlight n'est pas encore installé, l'App Store s'ouvre pour vous permettre de l'obtenir. Installez TestFlight, puis revenez au lien d'invitation." },
+      "fr": "Si TestFlight n’est pas encore installé, l’App Store s’ouvre pour vous permettre de l’obtenir. Installez TestFlight, puis revenez au lien d’invitation." },
     { "en": "Tap Install, then Open.", "fr": "Touchez Installer, puis Ouvrir." }
   ],
   "youShouldSee": {
-    "en": "The That's Right icon appears on the home screen and the app opens to a welcome screen.",
-    "fr": "L'icône That's Right apparaît sur l'écran d'accueil et l'application s'ouvre sur un écran de bienvenue."
+    "en": "The That’s Right icon appears on the home screen and the app opens to a welcome screen.",
+    "fr": "L’icône That’s Right apparaît sur l’écran d’accueil et l’application s’ouvre sur un écran de bienvenue."
   },
   "illustration": {
     "kind": "homescreen",
-    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" }
+    "caption": { "en": "Your parent’s phone", "fr": "Le téléphone de votre parent" }
   }
 }

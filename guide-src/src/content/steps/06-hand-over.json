@@ -3,19 +3,19 @@
   "slug": "hand-over",
   "title": { "en": "Hand the phone to your parent", "fr": "Donner le téléphone à votre parent" },
   "actions": [
-    { "en": "The app shows \"We're all set!\" Tap the button with your parent's name and hand them the phone.",
-      "fr": "L'application affiche \"Tout est prêt !\" Touchez le bouton au prénom de votre parent et donnez-lui le téléphone." },
+    { "en": "The app shows \"We’re all set!\" Tap the button with your parent’s name and hand them the phone.",
+      "fr": "L’application affiche \"Tout est prêt !\" Touchez le bouton au prénom de votre parent et donnez-lui le téléphone." },
     { "en": "Your parent can now tap and talk to the assistant anytime. On your side, you can talk to the assistant on Telegram anytime, and it gives you an update there every day.",
-      "fr": "Votre parent peut désormais toucher l'écran et parler à l'assistant à tout moment. De votre côté, vous pouvez parler à l'assistant sur Telegram à tout moment, et il vous donne des nouvelles chaque jour." }
+      "fr": "Votre parent peut désormais toucher l’écran et parler à l’assistant à tout moment. De votre côté, vous pouvez parler à l’assistant sur Telegram à tout moment, et il vous donne des nouvelles chaque jour." }
   ],
   "youShouldSee": {
-    "en": "Your parent sees the assistant's main screen, ready to listen.",
-    "fr": "Votre parent voit l'écran principal de l'assistant, prêt à écouter."
+    "en": "Your parent sees the assistant’s main screen, ready to listen.",
+    "fr": "Votre parent voit l’écran principal de l’assistant, prêt à écouter."
   },
   "illustration": {
     "kind": "voice",
-    "caption": { "en": "Your parent's phone", "fr": "Le téléphone de votre parent" },
-    "speaking": { "en": "Listening…", "fr": "À l'écoute…" },
+    "caption": { "en": "Your parent’s phone", "fr": "Le téléphone de votre parent" },
+    "speaking": { "en": "Listening…", "fr": "À l’écoute…" },
     "dark": true,
     "live": true
   }
