@@ -507,6 +507,11 @@
   }
   .gate-cta:hover{filter:brightness(1.06);transform:translateY(-1px)}
   .gate-cta:active{transform:scale(0.96)}
+  /* Secondary link under the gate CTA + at the end of How-it-works: sends
+     hesitant caregivers to the setup guide without competing with the CTA. */
+  .gate-guide{margin-top:22px;text-align:center}
+  .gate-guide a{display:inline-block;color:var(--terra);text-decoration:none;font-size:14px;padding-bottom:3px;border-bottom:1px solid transparent;transition:border-color .15s ease}
+  .gate-guide a:hover{border-bottom-color:currentColor}
 
   /* ---------- footer : giant half-orb ---------- */
   footer{
@@ -765,6 +770,7 @@
     <h2 class="reveal" data-k="gate_h"></h2>
     <p class="reveal" data-k="gate_p"></p>
     <a href="/apply" class="gate-cta reveal" data-k="gate_btn"></a>
+    <p class="gate-guide reveal"><a href="/guide/install" data-k="gate_guide"></a></p>
     <p class="fineprint reveal" data-k="gate_fine"></p>
   </div>
 </section>
@@ -773,7 +779,7 @@
 <footer>
   <div class="foot-inner">
     <p data-k="foot"></p>
-    <p class="foot-links"><a href="/privacy" data-k="foot_priv"></a> · <a href="mailto:hello@thatsright.xyz" data-k="foot_supp"></a></p>
+    <p class="foot-links"><a href="/privacy" data-k="foot_priv"></a> · <a href="/guide/install" data-k="foot_guide"></a> · <a href="mailto:hello@thatsright.xyz" data-k="foot_supp"></a></p>
   </div>
   <div class="foot-orb"><canvas id="footOrb" aria-hidden="true"></canvas></div>
 </footer>
@@ -802,7 +808,7 @@ const COPY = {
     dev_a3_who:"Marie",
     dev_a3:"It’s Kelly.",
     foot:"© 2026 · That’s Right · Made in Paris, for one father, first.",
-    foot_priv:"Privacy", foot_supp:"Support",
+    foot_priv:"Privacy", foot_supp:"Support", foot_guide:"Setup guide",
     nav_cta:"Request access",
     nav_how:"How it works",
     answer_eb:"For families where the same questions are coming back",
@@ -851,6 +857,7 @@ const COPY = {
       gate_p:"Leave your email. I’ll write to you personally, nothing else.",
       gate_ph:"Your email address…",
       gate_btn:"Request access",
+      gate_guide:"See how the setup works",
       gate_fine:"No newsletter. No marketing. iPhone only for now. English and French.",
       gate_done:"Thank you, you’re on the list. I’ll be in touch personally.",
       gate_err:"Something went wrong. Please try again, or email hello@thatsright.xyz."
@@ -877,7 +884,7 @@ const COPY = {
     dev_a3_who:"Marie",
     dev_a3:"C’est Kelly.",
     foot:"© 2026 · That’s Right · Fait à Paris, pour un père, d’abord.",
-    foot_priv:"Confidentialité", foot_supp:"Contact",
+    foot_priv:"Confidentialité", foot_supp:"Contact", foot_guide:"Guide d’installation",
     nav_cta:"Demander un accès",
     nav_how:"Comment ça marche",
     answer_eb:"Pour les familles dont un parent commence à se répéter",
@@ -926,6 +933,7 @@ const COPY = {
       gate_p:"Laissez votre adresse. Je vous écrirai personnellement.",
       gate_ph:"Votre adresse e-mail…",
       gate_btn:"Demander un accès",
+      gate_guide:"Voir comment se passe l’installation",
       gate_fine:"Pas de newsletter. Pas de marketing. iPhone seulement pour l’instant. Français et anglais.",
       gate_done:"Merci, vous êtes sur la liste. Je vous écrirai personnellement.",
       gate_err:"Une erreur s’est produite. Réessayez, ou écrivez à hello@thatsright.xyz."
