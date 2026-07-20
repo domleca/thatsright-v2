@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer le groupe — That's Right</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <style>
+    /* Matches the app onboarding surface: cream #F5F2EA, ink #1F1D17, cream
+       text on ink, SF sans, continuous-rounded ink CTA. No pure #fff / #000. */
+    :root{
+      --cream:#F5F2EA;--ink:#1F1D17;--cream-on-ink:#F5F2EA;
+      --ink-70:rgba(31,29,23,.70);--ink-55:rgba(31,29,23,.55);--ink-25:rgba(31,29,23,.25);
+      --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue","Segoe UI",Inter,system-ui,sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--cream);color:var(--ink);font-family:var(--sans);
+      min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;
+      -webkit-font-smoothing:antialiased}
+    .top{padding:22px 26px}
+    .brand{font-weight:600;font-size:17px;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+    main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:24px 24px 44px}
+
+    /* Entrance: fade + scale-from-0.94 with a gentle spring overshoot, echoing
+       OnboardingMotion.successCelebration (spring response .5, damping .6). */
+    .stage{display:flex;flex-direction:column;align-items:center;
+      animation:rise .5s cubic-bezier(.22,1.1,.32,1) both}
+    @keyframes rise{from{opacity:0;transform:scale(.94)}60%{opacity:1;transform:scale(1.012)}to{transform:scale(1)}}
+    @media (prefers-reduced-motion:reduce){.stage{animation:none}}
+
+    .headline{font-size:clamp(25px,6.5vw,29px);font-weight:600;letter-spacing:-.015em;
+      line-height:1.28;color:var(--ink);max-width:15ch}
+    .sub{margin-top:14px;font-size:17px;line-height:1.5;color:var(--ink-70);max-width:24ch}
+
+    /* Primary control: full ink. Secondary: muted ink. Terracotta is reserved
+       for problem/state signals, never functional controls. */
+    .actions{margin-top:40px;width:100%;max-width:340px;display:flex;flex-direction:column;gap:26px}
+    .btn-primary{display:block;background:var(--ink);color:var(--cream-on-ink);text-decoration:none;
+      font-size:18px;font-weight:600;padding:18px 22px;border-radius:16px;line-height:1.2;
+      transition:transform .16s ease-out;will-change:transform}
+    .btn-primary:active{transform:scale(.97)}
+    .install{display:flex;flex-direction:column;align-items:center;gap:9px}
+    .install-q{font-size:15px;color:var(--ink-55)}
+    .btn-secondary{display:inline-block;color:var(--ink-70);text-decoration:none;
+      font-size:16px;font-weight:600;padding:12px 22px;border-radius:14px;
+      border:1px solid var(--ink-25);line-height:1.2;transition:transform .16s ease-out}
+    .btn-secondary:active{transform:scale(.97)}
+
+    .error{font-size:17px;line-height:1.5;color:var(--ink-70);max-width:24ch}
+    [hidden]{display:none !important}
+  </style>
+</head>
+<body>
+  <div class="top"><a class="brand" href="/">That's Right</a></div>
+  <main>
+    <div class="stage">
+      <p class="headline" id="headline">Créer le groupe familial</p>
+      <p class="sub" id="sub">Ce groupe fonctionne dans Telegram.</p>
+
+      <div class="actions" id="actions" hidden>
+        <a class="btn-primary" id="joinBtn" href="#" rel="noopener">Créer le groupe</a>
+        <div class="install">
+          <span class="install-q" id="installQ">Avez-vous Telegram ?</span>
+          <a class="btn-secondary" id="installBtn"
+             href="https://apps.apple.com/app/telegram-messenger/id686449807" rel="noopener">Installer</a>
+        </div>
+      </div>
+
+      <p class="error" id="errorMsg" hidden>Ce lien n'est plus valide. Scannez à nouveau le QR code depuis l'application.</p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // French-primary (the people scanning a caregiver's QR are almost always
+      // French relatives); English when the browser asks for it.
+      var COPY = {
+        fr: {
+          title: "Créer le groupe — That's Right",
+          headline: "Créer le groupe familial",
+          sub: "Ce groupe fonctionne dans Telegram.",
+          join: "Créer le groupe",
+          installQ: "Avez-vous Telegram ?",
+          install: "Installer",
+          error: "Ce lien n'est plus valide. Scannez à nouveau le QR code depuis l'application."
+        },
+        en: {
+          title: "Create the group — That's Right",
+          headline: "Create the family group",
+          sub: "This group runs in Telegram.",
+          join: "Create the group",
+          installQ: "Have Telegram?",
+          install: "Install",
+          error: "This link is no longer valid. Scan the QR code again from the app."
+        }
+      };
+      var lang = (navigator.language || "fr").toLowerCase().indexOf("en") === 0 ? "en" : "fr";
+      var t = COPY[lang];
+      document.documentElement.lang = lang;
+      document.title = t.title;
+      document.getElementById("headline").textContent = t.headline;
+      document.getElementById("sub").textContent = t.sub;
+      document.getElementById("joinBtn").textContent = t.join;
+      document.getElementById("installQ").textContent = t.installQ;
+      document.getElementById("installBtn").textContent = t.install;
+      document.getElementById("errorMsg").textContent = t.error;
+
+      // The group invite rides in the URL fragment, so it never reaches the
+      // server (no access-log exposure of a private join link). Validate it is
+      // a real Telegram link before wiring it to a button — otherwise the page
+      // would be an open redirect that lends our brand to an arbitrary URL.
+      function invite() {
+        var raw = location.hash.slice(1);
+        if (!raw) return null;
+        var link;
+        try { link = decodeURIComponent(raw); } catch (e) { return null; }
+        return link.indexOf("https://t.me/") === 0 ? link : null;
+      }
+
+      var link = invite();
+      if (!link) {
+        document.getElementById("errorMsg").hidden = false;
+        return;
+      }
+
+      // Wire the manual "Créer le groupe" button (the fallback / already-here path).
+      document.getElementById("joinBtn").href = link;
+      var actions = document.getElementById("actions");
+      function revealChoice() { actions.hidden = false; }
+
+      // Auto-open: a web page can't detect whether Telegram is installed, so we
+      // *attempt* to open it via its tg:// invite deep link. If the app is
+      // there, iOS foregrounds Telegram and this page is left behind. If it
+      // isn't, we stay visible and reveal the manual choice (incl. "Installer")
+      // after a short beat so nobody is stuck. The branded headline is on
+      // screen throughout, so there's no blank flash.
+      function tgDeepLink(httpsLink) {
+        var m = httpsLink.match(/^https:\/\/t\.me\/(?:\+|joinchat\/)([A-Za-z0-9_-]+)$/);
+        return m ? "tg://join?invite=" + m[1] : null;
+      }
+      var tg = tgDeepLink(link);
+      if (!tg) {
+        // Not a private-invite link we can deep-link — just show the choice.
+        revealChoice();
+        return;
+      }
+      // Paint first, then attempt the open, then reveal the fallback.
+      requestAnimationFrame(function () {
+        window.location.href = tg;
+        setTimeout(revealChoice, 1500);
+      });
+    })();
+  </script>
+</body>
+</html>
