@@ -108,6 +108,12 @@
       document.getElementById("installBtn").textContent = t.install;
       document.getElementById("errorMsg").textContent = t.error;
 
+      // Send each platform to its own store — a relative scanning on Android
+      // must not land on the iOS App Store.
+      document.getElementById("installBtn").href = /android/i.test(navigator.userAgent)
+        ? "https://play.google.com/store/apps/details?id=org.telegram.messenger"
+        : "https://apps.apple.com/app/telegram-messenger/id686449807";
+
       // The group invite rides in the URL fragment, so it never reaches the
       // server (no access-log exposure of a private join link). Validate it is
       // a real Telegram link before wiring it to a button — otherwise the page
